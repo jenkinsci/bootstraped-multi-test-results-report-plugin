@@ -1,0 +1,9 @@
+language: java
+before_install:
+  - mvn clean
+install:
+  - mvn install -Dgpg.skip=true
+notifications:
+  email:
+    recipients:
+      - bogdan.livadariu@gmail.com
