@@ -23,13 +23,13 @@ public abstract class CucumberTestReportBaseAction implements Action {
     }
 
     public String getIconFileName() {
-        return "/plugin/jenkins-cucumber-reports-handlebars/logo.png";
+        return "/plugin/bootstraped-multi-test-results-report/logo.png";
     }
 
     public void doDynamic(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
         DirectoryBrowserSupport dbs =
             new DirectoryBrowserSupport(this, new FilePath(this.dir()), this.getTitle(),
-                "/plugin/jenkins-cucumber-reports-handlebars/logo.png", false);
+                "graph.gif", false);
         dbs.setIndexFileName("featuresOverview.html");
         dbs.generateResponse(req, rsp, this);
     }

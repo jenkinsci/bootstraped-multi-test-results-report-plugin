@@ -28,7 +28,7 @@ import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
-import com.github.bogdanlivadariu.cucumber.handlebars.ReportBuilder;
+import com.github.bogdanlivadariu.reporting.cucumber.builder.ReportBuilder;
 
 @SuppressWarnings("unchecked")
 public class CucumberTestReportPublisher extends Recorder {
@@ -64,7 +64,7 @@ public class CucumberTestReportPublisher extends Recorder {
     }
 
     @Override
-    public boolean perform(AbstractBuild< ? , ? > build, Launcher launcher, BuildListener listener)
+    public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener)
         throws IOException, InterruptedException {
 
         listener.getLogger().println("[CucumberReportPublisher] Compiling Cucumber Html Reports ...");
@@ -116,9 +116,11 @@ public class CucumberTestReportPublisher extends Recorder {
                 for (String fi : jsonReportFiles) {
                     fullJsonPaths.add(targetBuildDirectory + "/" + fi);
                 }
-
+                for (String ss : fullPathToJsonFiles(jsonReportFiles, targetBuildDirectory)) {
+                    listener.getLogger().println("processing: " + ss);
+                }
                 ReportBuilder rep = new ReportBuilder(
-                    fullPathToJsonFiles(jsonReportFiles, targetBuildDirectory));
+                    fullPathToJsonFiles(jsonReportFiles, targetBuildDirectory), targetBuildDirectory.getAbsolutePath());
                 rep.writeReportsOnDisk();
 
             } catch (Exception e) {
@@ -162,7 +164,7 @@ public class CucumberTestReportPublisher extends Recorder {
         }
 
         // Performs on-the-fly validation on the file mask wildcard.
-        public FormValidation doCheck(@AncestorInPath AbstractProject< ? , ? > project,
+        public FormValidation doCheck(@AncestorInPath AbstractProject project,
             @QueryParameter String value) throws IOException, ServletException {
             FilePath ws = project.getSomeWorkspace();
             return ws != null ? ws.validateRelativeDirectory(value) : FormValidation.ok();

@@ -18,9 +18,9 @@ public class CucumberTestReportProjectAction extends CucumberTestReportBaseActio
     @Override
     protected File dir() {
         if (this.project instanceof AbstractProject) {
-            AbstractProject< ? , ? > abstractProject = (AbstractProject< ? , ? >) this.project;
+            AbstractProject abstractProject = (AbstractProject) this.project;
 
-            Run< ? , ? > run = abstractProject.getLastCompletedBuild();
+            Run run = abstractProject.getLastCompletedBuild();
             if (run != null) {
                 File javadocDir = getBuildArchiveDir(run);
 
@@ -40,7 +40,7 @@ public class CucumberTestReportProjectAction extends CucumberTestReportBaseActio
     /**
      * Gets the directory where the HTML report is stored for the given build.
      */
-    private File getBuildArchiveDir(Run< ? , ? > run) {
+    private File getBuildArchiveDir(Run run) {
         return new File(run.getRootDir(), "cucumber-reports-with-handlebars");
     }
 
