@@ -94,11 +94,12 @@ public class CucumberTestReportPublisher extends Recorder {
                     + workspaceJsonReportDirectory.getRemote()
                     + " to reports directory: " + targetBuildDirectory);
         }
-        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN, new FilePath(targetBuildDirectory));
+        File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath()+"/jsonData");
+        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN, new FilePath(targetBuildJsonDirectory));
 
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
-        String[] jsonReportFiles = findJsonFiles(targetBuildDirectory, fileIncludePattern, fileExcludePattern);
+        String[] jsonReportFiles = findJsonFiles(targetBuildJsonDirectory, fileIncludePattern, fileExcludePattern);
         if (jsonReportFiles.length > 0) {
             listener.getLogger().println(
                 String.format("[CucumberReportPublisher] Found %d json files.", jsonReportFiles.length));
@@ -114,15 +115,19 @@ public class CucumberTestReportPublisher extends Recorder {
                 List<String> fullJsonPaths = new ArrayList<String>();
                 // reportBuilder.generateReports();
                 for (String fi : jsonReportFiles) {
-                    fullJsonPaths.add(targetBuildDirectory + "/" + fi);
+                    fullJsonPaths.add(targetBuildJsonDirectory + "/" + fi);
                 }
-                for (String ss : fullPathToJsonFiles(jsonReportFiles, targetBuildDirectory)) {
+                for (String ss : fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 ReportBuilder rep = new ReportBuilder(
-                    fullPathToJsonFiles(jsonReportFiles, targetBuildDirectory), targetBuildDirectory.getAbsolutePath());
-                rep.writeReportsOnDisk();
-
+                    fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory), targetBuildDirectory.getAbsolutePath());
+                boolean featuresResult = rep.writeReportsOnDisk();
+                if (featuresResult) {
+                    result = Result.SUCCESS;
+                } else {
+                    result = Result.FAILURE;
+                }
             } catch (Exception e) {
                 result = Result.FAILURE;
                 listener.getLogger().println(
