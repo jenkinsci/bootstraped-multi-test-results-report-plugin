@@ -2,6 +2,8 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <name>bootstraped-multi-test-results-report</name>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report</url>
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
@@ -86,5 +88,4 @@ offering rendering support on a wide range of devices.</description>
       <version>0.0.9</version>
     </dependency>
   </dependencies>
-  <name>bootstraped-multi-test-results-report</name>
 </project>
