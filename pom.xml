@@ -1,21 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <name>bootstraped-multi-test-results-report</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report</url>
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.615</version>
+    <version>1.616</version>
     <!-- which version of Jenkins is this plugin built against? -->
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <packaging>hpi</packaging>
   <scm>
-    <url>https://github.com/BogdanLivadariu/bootstraped-multi-test-results-report.git</url>
+    <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
+    <developerConnection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</developerConnection>
+    <url>git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</url>
+    <tag>HEAD</tag>
   </scm>
   <licenses>
     <license>
@@ -85,7 +86,7 @@ offering rendering support on a wide range of devices.</description>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>cucumber-reporting-handlebars</artifactId>
-      <version>0.0.9</version>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 </project>
