@@ -1,4 +1,4 @@
-package com.github.bogdanlivadariu.jenkins.reporting.cucumber;
+package com.github.bogdanlivadariu.jenkins.reporting.rspec;
 
 import hudson.Extension;
 import hudson.FilePath;
@@ -28,12 +28,12 @@ import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
-import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuilder;
+import com.github.bogdanlivadariu.reporting.rspec.builder.RSpecReportBuilder;
 
 @SuppressWarnings("unchecked")
-public class CucumberTestReportPublisher extends Recorder {
+public class RSpecTestReportPublisher extends Recorder {
 
-    private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.json";
+    private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
     public final String jsonReportDirectory;
 
@@ -42,7 +42,7 @@ public class CucumberTestReportPublisher extends Recorder {
     public final String fileExcludePattern;
 
     @DataBoundConstructor
-    public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern) {
+    public RSpecTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
@@ -67,7 +67,7 @@ public class CucumberTestReportPublisher extends Recorder {
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener)
         throws IOException, InterruptedException {
 
-        listener.getLogger().println("[CucumberReportPublisher] Compiling Cucumber Html Reports ...");
+        listener.getLogger().println("[RSpecReportPublisher] Compiling RSpec Html Reports ...");
 
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
@@ -78,38 +78,39 @@ public class CucumberTestReportPublisher extends Recorder {
         }
 
         // target directory (always on master)
-        File targetBuildDirectory = new File(build.getRootDir(), "cucumber-reports-with-handlebars");
+        File targetBuildDirectory = new File(build.getRootDir(), "rspec-reports-with-handlebars");
         if (!targetBuildDirectory.exists()) {
             targetBuildDirectory.mkdirs();
         }
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
             listener.getLogger().println(
-                "[Cucumber test report builder] Copying all json files from slave: "
+                "[RSpec test report builder] Copying all xml files from slave: "
                     + workspaceJsonReportDirectory.getRemote() + " to master reports directory: "
                     + targetBuildDirectory);
         } else {
             listener.getLogger().println(
-                "[Cucumber test report builder] Copying all json files from: "
+                "[RSpec test report builder] Copying all xml files from: "
                     + workspaceJsonReportDirectory.getRemote()
                     + " to reports directory: " + targetBuildDirectory);
         }
-        File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath()+"/jsonData");
-        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN, new FilePath(targetBuildJsonDirectory));
+        File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/xmlData");
+        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN, new FilePath(
+            targetBuildJsonDirectory));
 
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
         String[] jsonReportFiles = findJsonFiles(targetBuildJsonDirectory, fileIncludePattern, fileExcludePattern);
         if (jsonReportFiles.length > 0) {
             listener.getLogger().println(
-                String.format("[CucumberReportPublisher] Found %d json files.", jsonReportFiles.length));
+                String.format("[RSpecReportPublisher] Found %d xml files.", jsonReportFiles.length));
             int jsonIndex = 0;
             for (String jsonReportFile : jsonReportFiles) {
                 listener.getLogger().println(
-                    "[Cucumber test report builder] " + jsonIndex + ". Found a json file: " + jsonReportFile);
+                    "[RSpec test report builder] " + jsonIndex + ". Found a xml file: " + jsonReportFile);
                 jsonIndex++;
             }
-            listener.getLogger().println("[Cucumber test report builder] Generating HTML reports");
+            listener.getLogger().println("[RSpec test report builder] Generating HTML reports");
 
             try {
                 List<String> fullJsonPaths = new ArrayList<String>();
@@ -117,11 +118,13 @@ public class CucumberTestReportPublisher extends Recorder {
                 for (String fi : jsonReportFiles) {
                     fullJsonPaths.add(targetBuildJsonDirectory + "/" + fi);
                 }
-                for (String ss : fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
-                CucumberReportBuilder rep = new CucumberReportBuilder(
-                    fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory), targetBuildDirectory.getAbsolutePath());
+                RSpecReportBuilder rep =
+                    new RSpecReportBuilder(fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory),
+                        targetBuildDirectory.getAbsolutePath());
+
                 boolean featuresResult = rep.writeReportsOnDisk();
                 if (featuresResult) {
                     result = Result.SUCCESS;
@@ -131,7 +134,7 @@ public class CucumberTestReportPublisher extends Recorder {
             } catch (Exception e) {
                 result = Result.FAILURE;
                 listener.getLogger().println(
-                    "[Cucumber test report builder] there was an error generating the reports: " + e);
+                    "[RSpec test report builder] there was an error generating the reports: " + e);
                 for (StackTraceElement error : e.getStackTrace()) {
                     listener.getLogger().println(error);
                 }
@@ -139,18 +142,18 @@ public class CucumberTestReportPublisher extends Recorder {
         } else {
             result = Result.SUCCESS;
             listener.getLogger().println(
-                "[Cucumber test report builder] json path for the reports might be wrong, " + targetBuildDirectory);
+                "[RSpec test report builder] xml path for the reports might be wrong, " + targetBuildDirectory);
         }
 
-        build.addAction(new CucumberTestReportBuildAction(build));
+        build.addAction(new RSpecTestReportBuildAction(build));
         build.setResult(result);
 
         return true;
     }
 
-    private List<String> fullPathToJsonFiles(String[] jsonFiles, File targetBuildDirectory) {
+    private List<String> fullPathToXmlFiles(String[] xmlFiles, File targetBuildDirectory) {
         List<String> fullPathList = new ArrayList<String>();
-        for (String file : jsonFiles) {
+        for (String file : xmlFiles) {
             fullPathList.add(new File(targetBuildDirectory, file).getAbsolutePath());
         }
         return fullPathList;
@@ -158,14 +161,14 @@ public class CucumberTestReportPublisher extends Recorder {
 
     @Override
     public Action getProjectAction(AbstractProject< ? , ? > project) {
-        return new CucumberTestReportProjectAction(project);
+        return new RSpecTestReportProjectAction(project);
     }
 
     @Extension
     public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
         @Override
         public String getDisplayName() {
-            return "Publish cucumber reports generated with handlebars";
+            return "Publish RSpec reports generated with handlebars";
         }
 
         // Performs on-the-fly validation on the file mask wildcard.

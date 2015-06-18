@@ -10,7 +10,7 @@
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>1.0.4</version>
+  <version>1.2.0</version>
   <packaging>hpi</packaging>
   <scm>
     <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
@@ -58,8 +58,8 @@ offering rendering support on a wide range of devices.</description>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -86,7 +86,17 @@ offering rendering support on a wide range of devices.</description>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>cucumber-reporting-handlebars</artifactId>
-      <version>1.0.4</version>
+      <version>1.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.bogdanlivadariu</groupId>
+      <artifactId>junit-reporting-handlebars</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.bogdanlivadariu</groupId>
+      <artifactId>rspec-reporting-handlebars</artifactId>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 </project>
