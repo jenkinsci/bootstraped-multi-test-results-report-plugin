@@ -10,7 +10,7 @@
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.3</version>
   <packaging>hpi</packaging>
   <scm>
     <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
@@ -86,7 +86,7 @@ offering rendering support on a wide range of devices.</description>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>cucumber-reporting-handlebars</artifactId>
-      <version>1.0.5</version>
+      <version>1.0.6</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
@@ -96,6 +96,11 @@ offering rendering support on a wide range of devices.</description>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>rspec-reporting-handlebars</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.bogdanlivadariu</groupId>
+      <artifactId>testng-reporting-handlebars</artifactId>
       <version>1.0.0</version>
     </dependency>
   </dependencies>

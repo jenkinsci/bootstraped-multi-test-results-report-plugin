@@ -1,4 +1,4 @@
-package com.github.bogdanlivadariu.jenkins.reporting.cucumber;
+package com.github.bogdanlivadariu.jenkins.reporting.testng;
 
 import hudson.FilePath;
 import hudson.model.Action;
@@ -12,25 +12,25 @@ import javax.servlet.ServletException;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
-public abstract class CucumberTestReportBaseAction implements Action {
+public abstract class TestNGTestReportBaseAction implements Action {
 
     public String getUrlName() {
-        return "cucumber-reports-with-handlebars";
+        return "testng-reports-with-handlebars";
     }
 
     public String getDisplayName() {
-        return "View Cucumber Reports";
+        return "View TestNG Reports";
     }
 
     public String getIconFileName() {
-        return "/plugin/bootstraped-multi-test-results-report/logo.png";
+        return "/plugin/bootstraped-multi-test-results-report/testng.png";
     }
 
     public void doDynamic(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
         DirectoryBrowserSupport dbs =
             new DirectoryBrowserSupport(this, new FilePath(this.dir()), this.getTitle(),
                 "graph.gif", false);
-        dbs.setIndexFileName("featuresOverview.html");
+        dbs.setIndexFileName("testsByClassOverview.html");
         dbs.generateResponse(req, rsp, this);
     }
 
