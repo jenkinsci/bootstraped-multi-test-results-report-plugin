@@ -21,34 +21,36 @@
     <section class="main-content">
       <h1>
 <a id="bootstraped-multi-test-results-report" class="anchor" href="#bootstraped-multi-test-results-report" aria-hidden="true"><span class="octicon octicon-link"></span></a>bootstraped-multi-test-results-report</h1>
+<p>Created a jenkins plugin to generate test results report for automated tests, the plugin is able to generate reports for the below mentioned test runners :</p>
+<ul>
+  <li>- cucumber</li>
+  <li>- jUnit</li>
+  <li>- testNG</li>
+  <li>- RSpec</li>
+</ul>
+<p>The generated reports follow the same template, so if you are running automated tests using more than one option that is mentioned above, you will have the same template of reporting across all your automated tests.</p>
+
+<p>Here is the link to the Jenkins plugin: <a href="https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report">here</a></p>
+
+<p>If you would like to used, the steps you have to follow are quite simple:</p>
+<ul>
+  <li>1. Install a Jenkins instance that has the version bigger that 1.602</li>
+  <li>2. Make sure you have JDK8 installed onto the Jenkins host</li>
+  <li>3. Install the plugin for Jenkins, name of the plugin would be: bootstraped-multi-test-results-report</li>
+  <li>4. Restart Jenkins service</li>
+  <li>5. When you are configure your Jenkins JOB, the plugin will appear as being a Post-build action</li>
+  <li>6. Select from the Post-build action the option that suites your needs
+    Options that are displayed and are relevant with the plugin follow this pattern "Publish * reports generated with handlebars"</li>
+  <li>7. Provide the location of the test result files</li>
+  <li>8. Hit save, and build the Jenkins Job.</li>
+  <li>9. A button will appear when inspecting the job, that will point you to your awesome test reports :)</li>
+</ul>
+
 <p>
-  Created a jenkins plugin to generate test results report for automated tests, the plugin is able to generate reports for the below mentioned test runners :
-- cucumber
-- jUnit
-- testNG
-- RSpec
-
-The generated reports follow the same template, so if you are running automated tests using more than one option that is mentioned above, you will have the same template of reporting across all your automated tests.
-
-Here is the link to the Jenkins plugin: <a href="https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report">here</a>
-
-If you would like to used, the steps you have to follow are quite simple:
-1. Install a Jenkins instance that has the version bigger that 1.602
-2. Make sure you have JDK8 installed onto the Jenkins host
-3. Install the plugin for Jenkins, name of the plugin would be: bootstraped-multi-test-results-report
-4. Restart Jenkins service
-5. When you are configure your Jenkins JOB, the plugin will appear as being a Post-build action
-6. Select from the Post-build action the option that suites your needs
-    Options that are displayed and are relevant with the plugin follow this pattern "Publish * reports generated with handlebars"
-7. Provide the location of the test result files
-8. Hit save, and build the Jenkins Job.
-9. A button will appear when inspecting the job, that will point you to your awesome test reports :)
-
-
-If you encounter any issues, feel free to report then on github : <a href="https://github.com/BogdanLivadariu/bootstraped-multi-test-results-report">here</a>
-
-or you could join the Gitter chatroom, and we can get in touch to help you resolve your issues: <a href="https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report">here</a>
+  If you encounter any issues, feel free to report then on github : <a href="https://github.com/BogdanLivadariu/bootstraped-multi-test-results-report">here</a>
+  or you could join the Gitter chatroom, and we can get in touch to help you resolve your issues: <a href="https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report">here</a>
 </p>
+
 <p><a href="https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report"></a>
 The project offers the possibility to build test reports using a bootstrap components, offering rendering support on a wide range of devices.</p>
 
