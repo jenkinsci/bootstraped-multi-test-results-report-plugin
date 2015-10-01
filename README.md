@@ -1,4 +1,10 @@
 # bootstraped-multi-test-results-report
+
+[![Join the chat at https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Join the chat at https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/BogdanLivadariu/bootstraped-multi-test-results-report.svg?branch=master)](https://travis-ci.org/BogdanLivadariu/bootstraped-multi-test-results-report)
+
 The project offers the possibility to build test reports using a bootstrap components, offering rendering support on a wide range of devices.
 
 Once you have installed this plugin, and configured it with the proper location of your json test report files,
