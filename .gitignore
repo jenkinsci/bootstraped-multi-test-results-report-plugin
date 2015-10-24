@@ -1,8 +1,0 @@
-.DS_Store
-.log
-.idea
-/target/
-.classpath
-.project
-.settings/*
-*.html
