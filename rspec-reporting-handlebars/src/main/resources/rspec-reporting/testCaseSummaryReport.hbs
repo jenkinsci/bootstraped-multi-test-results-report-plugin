@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test suite report</title>
+    <style>{{> rspec-reporting/style}}</style>
+  </head>
+  <body>
+    {{> rspec-reporting/menu}}
+    {{> rspec-reporting/requiredScripts}}
+    <div id="container-chart"></div>
+    <script>
+      var totalTests = {{tests}};
+      var totalSkipped = {{skipped}};
+      var totalFailed = {{failures}};
+      var totalErrored = {{errors}};
+      var totalPassed = totalTests - totalFailed - totalSkipped;
+      var subTitle = '{{name}}';
+
+      var percentageTotalPassed = ((totalPassed / totalTests) * 100).toFixed(2);
+      var percentageTotalFailed = ((totalFailed / totalTests) * 100).toFixed(2);
+      var percentageTotalSkipped = ((totalSkipped / totalTests) * 100).toFixed(2);
+      var percentageTotalErrored = ((totalErrored / totalTests) * 100).toFixed(2);
+      var overallStatus = 
+        percentageTotalPassed + '% passed, '
+        + percentageTotalFailed +'% failed, '
+        + percentageTotalSkipped + '% skipped '
+        + percentageTotalErrored + '% errored';
+      subTitle += '<br/>' + overallStatus;
+    </script>
+    
+    <div id="feature-container" class="panel panel-primary">
+      <div class="panel-heading">
+        <input checked
+          id="toggle-collapsed"
+          data-size="mini"
+          data-toggle="toggle"
+          data-on="<span title='Click to expand all test cases'>Expand</span>"
+          data-off="<span title='Click to collapse all test cases'>Collapse</span>"
+          type="checkbox"
+          data-style="slow">
+          <span class="badge badge-success pull-right">{{#date time}}{{/date}}</span>
+        <h4 class="panel-title">
+          <p>
+            {{name}}
+          </p>
+        </h4>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          {{#each testcase}}
+            <li data-toggle="tooltip" data-placement="top" title="{{#resolve-tooltip overallStatus}}{{/resolve-tooltip}}"
+              class="scenario 
+                list-group-item 
+                list-group-item-{{#result-color overallStatus}}{{/result-color}}">
+              <span class="forDrop" data-target="#{{uniqueID}}" data-toggle="collapse">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+                {{name}}
+              </span>
+              <span class="label label-{{#result-color overallStatus}}{{/result-color}} pull-right">
+                {{#date time}}{{/date}}
+              </span>
+              <div id="{{uniqueID}}" class="collapseMagic collapse">
+                {{#if failure}}
+                <ul class="steps list-group">
+                  <li class="list-group-item
+                        list-group-item-{{#result-color overallStatus}}{{/result-color}}">
+                    <div>
+                      <span>Message:</span>
+                      <pre>{{failure.value}}</pre>
+                    </div>
+                    {{#if systemOut}}
+                      <span>System-out:</span>
+                      <pre>{{systemOut}}</pre>
+                    {{/if}}
+                    {{#if systemErr}}
+                      <span>System-Err:</span>
+                      <pre>{{systemErr}}</pre>
+                    {{/if}}
+                  </li>
+                </ul>
+                {{/if}}
+                {{#if error}}
+                <ul class="steps list-group">
+                  <li class="list-group-item
+                        list-group-item-{{#result-color overallStatus}}{{/result-color}}">
+                    <div>
+                      <span>Message:</span>
+                      <pre>{{error.value}}</pre>
+                    </div>
+                    {{#if systemOut}}
+                      <span>System-out:</span>
+                      <pre>{{systemOut}}</pre>
+                    {{/if}}
+                    {{#if systemErr}}
+                      <span>System-Err:</span>
+                      <pre>{{systemErr}}</pre>
+                    {{/if}}
+                </li>
+              </ul>
+              {{/if}}
+              <div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <a href="#" class="back-to-top" style="display: none;">
+      <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
+    </a>
+    {{> rspec-reporting/highchartsScripts}}
+    {{> rspec-reporting/analitics}}
+    {{> rspec-reporting/scrollTopScript}}
+    {{> rspec-reporting/footer}}
+  </body>
+</html>

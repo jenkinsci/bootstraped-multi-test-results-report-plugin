@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test case report</title>
+    <style>{{> testng-reporting/style}}</style>
+  </head>
+  <body>
+    {{> testng-reporting/menu}}
+    {{> testng-reporting/requiredScripts}}
+    <div id="feature-container" class="panel panel-primary">
+      <div class="panel-heading">
+        <input checked
+          id="toggle-collapsed"
+          data-size="mini"
+          data-toggle="toggle"
+          data-on="<span title='Click to expand all test cases'>Expand</span>"
+          data-off="<span title='Click to collapse all test cases'>Collapse</span>"
+          type="checkbox"
+          data-style="slow">
+
+          <input checked
+          id="toggle-collapsed2"
+          data-size="mini"
+          data-toggle="toggle"
+          data-on="<span title='Click to show all config steps'>Show configs</span>"
+          data-off="<span title='Click to hide all config steps'>Hide configs</span>"
+          type="checkbox"
+          data-style="slow"
+          data-width="100">
+          <span class="badge badge-success pull-right">{{#date totalDuration}}{{/date}}</span>
+        <h4 class="panel-title">
+          <p>
+            {{name}}
+          </p>
+        </h4>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          {{#each testMethods}}
+          <div class="{{#is-config isConfig}}{{/is-config}}">
+            <li data-toggle="tooltip" data-placement="top" title="{{#resolve-tooltip status}}{{/resolve-tooltip}}"
+              class="scenario 
+                list-group-item 
+                list-group-item-{{#result-color status}}{{/result-color}}">
+              <span class="forDrop" data-target="#{{uniqueID}}" data-toggle="collapse">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+                {{name}}
+              </span>
+              <span class="label label-{{#result-color status}}{{/result-color}} pull-right">
+                {{#date durationMs}}{{/date}}
+              </span>
+              <div id="{{uniqueID}}" class="collapseMagic collapse">
+                {{#if exception}}
+                <ul class="steps list-group">
+                  <li class="list-group-item
+                        list-group-item-{{#result-color status}}{{/result-color}}">
+                    <div>
+                      <span>Exception:</span>
+                      <pre>{{exception.clazz}}</pre>
+                    </div>
+                    {{#if exception.message}}
+                      <span>Exception message:</span>
+                      <pre>{{exception.message.value}}</pre>
+                    {{/if}}
+                    {{#if exception.fullStacktrace}}
+                      <span>Exception full stacktrace:</span>
+                      <pre>{{exception.fullStacktrace.value}}</pre>
+                    {{/if}}
+                  </li>
+                </ul>
+                {{/if}}
+                {{#if reporterOutput}}
+                <ul class="steps list-group">
+                  <li class="list-group-item
+                        list-group-item-{{#result-color status}}{{/result-color}}">
+                    <span>Reporter output log</span>
+                      <pre>
+                        {{#each reporterOutput.lines}}
+                          {{value}}
+                        {{/each}}
+                      </pre>
+                    </li>
+                  </ul>
+                {{/if}}
+                {{#if error}}
+                <ul class="steps list-group">
+                  <li class="list-group-item
+                        list-group-item-{{#result-color overallStatus}}{{/result-color}}">
+                    <div>
+                      <span>Message:</span>
+                      <pre>{{error.value}}</pre>
+                    </div>
+                    {{#if systemOut}}
+                      <span>System-out:</span>
+                      <pre>{{systemOut}}</pre>
+                    {{/if}}
+                    {{#if systemErr}}
+                      <span>System-Err:</span>
+                      <pre>{{systemErr}}</pre>
+                    {{/if}}
+                  </li>
+                </ul>
+                {{/if}}
+              <div>
+            </li>
+          </div>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <a href="#" class="back-to-top" style="display: none;">
+      <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
+    </a>
+    {{> testng-reporting/analitics}}
+    {{> testng-reporting/scrollTopScript}}
+    {{> testng-reporting/footer}}
+  </body>
+</html>

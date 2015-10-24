@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{this.pageTitle}}</title>
+    <style>{{> cucumber-reporting/style}}</style>
+  </head>
+  <body>
+    {{> cucumber-reporting/requiredScripts}}
+    {{> cucumber-reporting/menu
+      overviewPageStatus='active'
+      summaryPageStatus='disabled'
+      featureName=''
+      overviewLink='javascript: void(0);'
+    }}
+    <div id="charts">
+      <div id="container-chart-overview-scenarios"></div>
+      <div id="container-chart-overview-steps"></div>
+    </div>
+    <script>
+      var scenariosTotalPassed = {{scenariosTotalPassed}};
+      var scenariosTotalFailed = {{scenariosTotalFailed}};
+      var scenariosTotal = {{scenariosTotal}};
+
+      var stepsTotalPassed = {{stepsTotalPassed}};
+      var stepsTotalSkipped = {{stepsTotalSkipped}};
+      var stepsTotalFailed = {{stepsTotalFailed}};
+      var stepsTotal = {{stepsTotal}};
+      
+      var percentageScenarioPass = ((scenariosTotalPassed / scenariosTotal) * 100).toFixed(2);
+      var percentageScenarioFail = ((scenariosTotalFailed / scenariosTotal) * 100).toFixed(2);
+      var scenariosSubtitle = percentageScenarioPass + '% passed, ' + percentageScenarioFail + '% failed';
+      
+      var percentageStepsPass = ((stepsTotalPassed / stepsTotal) * 100).toFixed(2);
+      var percentageStepsFailed = ((stepsTotalFailed / stepsTotal) * 100).toFixed(2);
+      var percentageStepsSkipped = ((stepsTotalSkipped / stepsTotal) * 100).toFixed(2);
+      var stepsSubtitle = percentageStepsPass + '% passed, ' + percentageStepsFailed + '% failed, ' + percentageStepsSkipped + '% skipped';
+    </script>
+    
+    <div id="feature-container" class="panel panel-primary table-responsive">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Cucumber report</div>
+      <!-- Table -->
+      <table class="table table-bordered table-hover ">
+        <tbody>
+          <tr class="success">
+            <th class="text-center" colspan="2">Feature Name</th>
+            <th class="text-center" colspan="3">Scenarios</th>
+            <th class="text-center" colspan="4">Steps</th>
+            <th class="text-center" style="width:60px;">Duration</th>
+          </tr>
+          <tr class="success">
+            <th></th>
+            <th></th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Passed</th>
+            <th class="text-center">Failed</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Passed</th>
+            <th class="text-center">Failed</th>
+            <th class="text-center">Skipped</th>
+            <th></th>
+          </tr>
+
+          {{#each features}}
+          <tr class="{{#result-color overall_status}}{{/result-color}} text-center">
+            <td class="text-left" style="width:550px;"><a href="{{outputFileLocation}}">{{name}}</a></td>
+            <td></td>
+            <td>{{scenariosCount}}</td>
+            <td>{{scenariosPassedCount}}</td>
+            <td>{{scenariosFailedCount}}</td>
+            <td>{{stepsTotalCount}}</td>
+            <td>{{stepsPassedCount}}</td>
+            <td>{{stepsFailedCount}}</td>
+            <td>{{stepsSkippedCount}}</td>
+            <td><span class="badge">{{#date total_duration}}{{/date}}</span></td>
+          </tr>
+          {{/each}}
+          <tr class="info text-center">
+            <td>TOTALS</td>
+            <td>{{featuresCount}}</td>
+            <td>{{scenariosTotal}}</td>
+            <td>{{scenariosTotalPassed}}</td>
+            <td>{{scenariosTotalFailed}}</td>
+            <td>{{stepsTotal}}</td>
+            <td>{{stepsTotalPassed}}</td>
+            <td>{{stepsTotalFailed}}</td>
+            <td>{{stepsTotalSkipped}}</td>
+            <td class="text-center"><span class="badge">{{#date totalDuration}}{{/date}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a href="#" class="back-to-top" style="display: none;">
+      <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
+    </a>
+    {{> cucumber-reporting/highchartsOverviewScripts}}
+    {{> cucumber-reporting/analitics}}
+    {{> cucumber-reporting/scrollTopScript}}
+    {{> cucumber-reporting/footer}}
+  </body>
+</html>

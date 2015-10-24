@@ -1,0 +1,74 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+      delay: { "show": 1000, "hide": 100 }
+    });
+  });
+
+  $(function() {
+    $('#toggle-collapsed').change(function() {
+      if ($(this).prop('checked')) {
+        $('.collapseMagic').collapse('hide');
+      } else {
+        $('.collapseMagic').collapse('show');
+      }
+    });
+  });
+
+  $(function() {
+    $('#toggle-collapsed2').change(function() {
+      if ($(this).prop('checked')) {
+        $('.collapseMagic2').collapse('hide');
+      } else {
+        $('.collapseMagic2').collapse('show');
+      }
+    });
+  });
+
+  $(function() {
+    var pageTitle = document.title;
+
+    switch(pageTitle) {
+      case 'Tests by class overview report':
+        $('#testsByClass').addClass('active');
+        $('#testsByName').removeClass();
+        $('#summaryFeature').removeClass().addClass('disabled');
+        break;
+
+      case 'Tests by name overview report':
+        $('#testsByName').addClass('active');
+        $('#testsByClass').removeClass();
+        $('#summaryFeature').removeClass().addClass('disabled');
+        break;
+
+      case 'Test case report':
+        $('#testsByClass').removeClass();
+        $('#summaryFeature').addClass('active');
+
+        var toAdd = $('.panel-title>p').html();
+        var current = $('#summaryFeature>a').html();
+        $('#summaryFeature>a').html(current + toAdd);
+
+        var all = $('#testsByClass>a');
+        all.attr('href', '../' + all.attr('href'));
+
+        var all = $('#testsByName>a');
+        all.attr('href', '../' + all.attr('href'));
+
+        $('#summaryFeature>a').addClass('active');
+        break;
+    }
+  });
+</script>
+

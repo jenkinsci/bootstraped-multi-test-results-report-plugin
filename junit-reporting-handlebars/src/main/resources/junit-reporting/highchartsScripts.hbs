@@ -1,0 +1,55 @@
+<script>
+  $(function () {
+  var getColor = {
+      'passed': '#E0F0D9',
+      'failed': '#F2DDDD',
+      'skipped': '#D9EDF7',
+      'errored': '#FCF8E3'
+  };
+      $('#container-chart').highcharts({
+          chart: {
+              type: 'pie',
+              options3d: {
+                  enabled: true,
+                  alpha: 50
+              }
+          },
+          title: {
+              text: 'Summary'
+          },
+          subtitle: {
+              text: subTitle,
+              useHTML: true,
+              align: "center"
+          },
+          plotOptions: {
+              pie: {
+                  innerSize: 100,
+                  depth: 45
+              }
+          },
+          series: [{
+              name: 'Number of steps',
+              data: [
+          {
+              name: 'Passed',
+              y: totalPassed,
+              color: getColor['passed']
+          }, {
+              name: 'Failed',
+              y: totalFailed,
+              color: getColor['failed']
+         }, {
+            name: 'Skipped',
+              y: totalSkipped,
+              color: getColor['skipped']
+         }, {
+            name: 'Errored',
+              y: totalErrored,
+              color: getColor['errored']
+         }
+      ]
+          },]
+      });
+  });
+</script>

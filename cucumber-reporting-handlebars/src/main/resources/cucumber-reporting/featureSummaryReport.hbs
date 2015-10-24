@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{this.pageTitle}}</title>
+    <style>{{> cucumber-reporting/style}}</style>
+  </head>
+  <body>
+    {{> cucumber-reporting/menu}}
+    {{> cucumber-reporting/requiredScripts}}
+    <div id="container-chart"></div>
+
+    <script>
+      var totalPassed = {{stepsPassedCount}};
+      var totalSkipped = {{stepsSkippedCount}};
+      var totalFailed = {{stepsFailedCount}};
+      var subTitle = '{{keyword}}: {{name}}';
+
+      var totalSteps = {{stepsTotalCount}};
+      var percentageTotalPassed = ((totalPassed / totalSteps) * 100).toFixed(2);
+      var percentageTotalFailed = ((totalFailed / totalSteps) * 100).toFixed(2);
+      var percentageTotalSkipped = ((totalSkipped / totalSteps) * 100).toFixed(2);
+      var overallStatus = percentageTotalPassed + '% passed, ' + percentageTotalFailed + '% failed, ' + percentageTotalSkipped + '% skipped';
+      subTitle += '<br/>' + overallStatus;
+    </script>
+    {{> cucumber-reporting/highchartsScripts}}
+    <div id="feature-container" class="panel panel-primary">
+      <div class="panel-heading">
+        {{#if tags}}
+          <span class="badge badge-success">Tags:
+            {{#each tags}}
+              {{name}}
+            {{/each}}
+          </span>
+        {{/if}}
+        <input checked
+          id="toggle-collapsed"
+          data-size="mini"
+          data-toggle="toggle"
+          data-on="<span title='Click to expand all scenarios'>Expand</span>"
+          data-off="<span title='Click to collapse all scenarios'>Collapse</span>"
+          type="checkbox"
+          data-style="slow">
+          <span class="badge badge-success pull-right">{{#date total_duration}}{{/date}}</span>
+        <h4 class="panel-title">
+          <p>
+            {{keyword}}: {{name}}
+          </p>
+        </h4>
+        {{#if description}}
+          <pre>{{description}}</pre>
+        {{/if}}
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          {{#each elements}}
+            <li id="{{uniqueID}}-scenario"
+              class="scenario 
+                list-group-item 
+                list-group-item-{{#result-color overallStatus}}{{/result-color}}">
+              <span class="forDrop" data-target="#{{uniqueID}}" data-toggle="collapse">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+                {{keyword}}: {{name}}
+                {{#if description}}
+                  <span class="step-location">{{description}}</span>
+                {{/if}}
+              </span>
+              <span class="label label-{{#result-color overallStatus}}{{/result-color}} pull-right">
+                {{#date total_duration}}{{/date}}
+              </span>
+              <ul id="{{uniqueID}}" class="steps list-group collapseMagic {{#is-collapsed overallStatus}}{{/is-collapsed}}">
+                  {{#each steps}}
+                    {{#unless hidden}}
+                      <li data-toggle="tooltip" data-placement="top" title="{{#resolve-title result.status}}{{/resolve-title}}"
+                        class="list-group-item 
+                          list-group-item-{{#result-color result.status}}{{/result-color}}">
+                        <span class="badge">{{#date result.duration}}{{/date}}</span>
+                        <p>
+                          {{keyword}}: {{name}}
+                          <span class="step-location">
+                            #{{match.location}}
+                          </span>
+                        </p>
+                        {{#if rows}}
+                          <pre>{{#do_table rows}}{{/do_table}}</pre>
+                        {{/if}}
+                        {{#if result.error_message}}
+                          <pre>{{result.error_message}}</pre>
+                        {{/if}}
+                      </li>
+                    {{/unless}}
+                  {{/each}}
+                  {{#if embeddings}}
+                    <li class="list-group-item list-group-item-default">
+                      {{#each embeddings}}
+                        {{#embedding data mime_type @index}}{{/embedding}}
+                      {{/each}}
+                    </li>
+                  {{/if}}
+              </ul>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <a href="#" class="back-to-top" style="display: none;">
+      <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
+    </a>
+    {{> cucumber-reporting/analitics}}
+    {{> cucumber-reporting/scrollTopScript}}
+    {{> cucumber-reporting/footer}}
+  </body>
+</html>

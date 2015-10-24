@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{this.pageTitle}}</title>
+    <style>{{> testng-reporting/style}}</style>
+  </head>
+  <body>
+    {{> testng-reporting/requiredScripts}}
+    {{> testng-reporting/menu}}
+
+    <div id="container-chart"></div>
+    <script>
+      var totalTests = {{totalTests}};
+      var totalSkipped = {{totalSkipped}};
+      var totalFailed = {{totalFailed}};
+      var totalPassed = {{totalPassed}};
+      var subTitle = '{{name}}';
+
+      var percentageTotalPassed = ((totalPassed / totalTests) * 100).toFixed(2);
+      var percentageTotalFailed = ((totalFailed / totalTests) * 100).toFixed(2);
+      var percentageTotalSkipped = ((totalSkipped / totalTests) * 100).toFixed(2);
+
+      var overallStatus = 
+        percentageTotalPassed + '% passed, '
+        + percentageTotalFailed +'% failed, '
+        + percentageTotalSkipped + '% skipped ';
+      subTitle += '<br/>' + overallStatus;
+    </script>
+
+    {{> testng-reporting/highchartsScripts}}
+
+    <div id="feature-container" class="panel panel-primary table-responsive">
+      <!-- Default panel contents -->
+      <div class="panel-heading">TestNG test report</div>
+      <!-- Table -->
+      <table class="table table-bordered table-hover ">
+        <tbody>
+          <tr class="success">
+            <th class="text-center" colspan="2">Test name</th>
+            <th class="text-center" colspan="4">Overall status</th>
+            <th class="text-center" style="width:60px;">Duration</th>
+          </tr>
+          <tr class="success">
+            <th></th>
+            <th></th>
+            <th class="text-center">Tests</th>
+            <th class="text-center">Passed</th>
+            <th class="text-center">Failures</th>
+            <th class="text-center">Skipped</th>
+            <th></th>
+          </tr>
+          {{#each allTestSuites}}
+            {{#each suites}}
+              {{#each tests}}
+                {{#each classes}}
+                  <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
+                    <td class="text-left" style="width:550px;"><a href="classes-summary/{{../name}}{{name}}.html">{{../name}}</a></td>
+                    <td></td>
+                    <td>{{totalTests}}</td>
+                    <td>{{totalPassed}}</td>
+                    <td>{{totalFailed}}</td>
+                    <td>{{totalSkipped}}</td>
+                    <td>
+                      <span class="badge">
+                        {{#date totalDuration}}{{/date}}
+                      </span>
+                    </td>
+                  </tr>
+                {{/each}}
+              {{/each}}
+            {{/each}}
+          {{/each}}
+          <tr class="info text-center">
+            <td>TOTALS</td>
+            <td>{{totalClasses}}</td>
+            <td>{{totalTests}}</td>
+            <td>{{totalPassed}}</td>
+            <td>{{totalFailed}}</td>
+            <td>{{totalSkipped}}</td>
+            <td class="text-center">
+              <span class="badge">
+                {{#date totalTime}}{{/date}}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a href="#" class="back-to-top" style="display: none;">
+      <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
+    </a>
+
+    {{> testng-reporting/analitics}}
+    {{> testng-reporting/scrollTopScript}}
+    {{> testng-reporting/footer}}
+  </body>
+</html>

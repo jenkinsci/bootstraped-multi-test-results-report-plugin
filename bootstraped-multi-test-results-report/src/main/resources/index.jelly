@@ -1,0 +1,6 @@
+<!--
+  This view is used to render the installed plugins page.
+-->
+<div>
+  This plugin HTML reports using handlebars templates with bootstrap components.
+</div>

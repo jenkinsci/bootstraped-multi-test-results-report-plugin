@@ -1,0 +1,88 @@
+<script>
+$(function () {
+var getColor = {
+    'passed': '#E0F0D9',
+    'failed': '#F2DDDD',
+    'skipped': '#D9EDF7'
+};
+    $('#container-chart-overview-scenarios').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 50
+            }
+        },
+        title: {
+            text: 'Scenarios Overview'
+        },
+        subtitle: {
+            text: scenariosSubtitle,
+            useHTML: true,
+            align: "center"
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Number of scenarios',
+            data: [
+        {
+            name: 'Passed',
+            y: scenariosTotalPassed,
+            color: getColor['passed']
+        }, {
+            name: 'Failed',
+            y: scenariosTotalFailed,
+            color: getColor['failed']
+       }
+    ]
+        },]
+    });
+    
+    $('#container-chart-overview-steps').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 50
+            }
+        },
+        title: {
+            text: 'Steps Overview'
+        },
+        subtitle: {
+            text: stepsSubtitle,
+            useHTML: true,
+            align: "center"
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Number of steps',
+            data: [
+        {
+            name: 'Passed',
+            y: stepsTotalPassed,
+            color: getColor['passed']
+        }, {
+            name: 'Failed',
+            y: stepsTotalFailed,
+            color: getColor['failed']
+       }, {
+          name: 'Skipped',
+            y: stepsTotalSkipped,
+            color: getColor['skipped']
+       }
+    ]
+        },]
+    });
+});
+</script>

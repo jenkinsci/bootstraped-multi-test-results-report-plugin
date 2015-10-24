@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{this.pageTitle}}</title>
+    <style>{{> rspec-reporting/style}}</style>
+  </head>
+  <body>
+    {{> rspec-reporting/requiredScripts}}
+    {{> rspec-reporting/menu}}
+   
+    <div id="container-chart"></div>
+    <script>
+      var totalTests = {{totalTests}};
+      var totalSkipped = {{totalSkipped}};
+      var totalFailed = {{totalFailures}};
+      var totalErrored = {{totalErrors}};
+      var totalPassed = totalTests - totalFailed - totalSkipped;
+      var subTitle = '{{name}}';
+
+      var percentageTotalPassed = ((totalPassed / totalTests) * 100).toFixed(2);
+      var percentageTotalFailed = ((totalFailed / totalTests) * 100).toFixed(2);
+      var percentageTotalSkipped = ((totalSkipped / totalTests) * 100).toFixed(2);
+      var percentageTotalErrored = ((totalErrored / totalTests) * 100).toFixed(2);
+
+      var overallStatus = 
+        percentageTotalPassed + '% passed, '
+        + percentageTotalFailed +'% failed, '
+        + percentageTotalSkipped + '% skipped '
+        + percentageTotalErrored + '% errored';
+      subTitle += '<br/>' + overallStatus;
+    </script>
+    {{> rspec-reporting/highchartsScripts}}
+
+    <div id="feature-container" class="panel panel-primary table-responsive">
+      <!-- Default panel contents -->
+      <div class="panel-heading">RSpec test report</div>
+      <!-- Table -->
+      <table class="table table-bordered table-hover ">
+        <tbody>
+          <tr class="success">
+            <th class="text-center" colspan="2">Test Suite Name</th>
+            <th class="text-center" colspan="4">Overall status</th>
+            <th class="text-center" style="width:60px;">Duration</th>
+          </tr>
+          <tr class="success">
+            <th></th>
+            <th></th>
+            <th class="text-center">Tests</th>
+            <th class="text-center">Failures</th>
+            <th class="text-center">Errors</th>
+            <th class="text-center">Skipped</th>
+            <th></th>
+          </tr>
+
+          {{#each allTestSuites}}
+          <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
+            <td class="text-left" style="width:550px;"><a href="test-summary/{{uniqueID}}.html">{{name}}</a></td>
+            <td></td>
+
+            <td>{{tests}}</td>
+            <td>{{failures}}</td>
+            <td>{{errors}}</td>
+            <td>{{skipped}}</td>
+
+            <td><span class="badge">{{#date time}}{{/date}}</span></td>
+          </tr>
+          {{/each}}
+          <tr class="info text-center">
+            <td>TOTALS</td>
+
+            <td>{{suitesCount}}</td>
+            <td>{{totalTests}}</td>
+            <td>{{totalFailures}}</td>
+            <td>{{totalErrors}}</td>
+            <td>{{totalSkipped}}</td>
+            <td class="text-center"><span class="badge">{{#date totalTime}}{{/date}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a href="#" class="back-to-top" style="display: none;">
+      <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
+    </a>
+
+    {{> rspec-reporting/analitics}}
+    {{> rspec-reporting/scrollTopScript}}
+    {{> rspec-reporting/footer}}
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs">
+  <li role="presentation">
+    <a href="#" onClick="window.location.assign(window.location.href.split('cucumber-reports-with-handlebars')[0]);">
+      Go back!
+    </a>
+  </li>
+  <li id="tags-toggle-container" role="presentation">
+    <a id="tags-toggle" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+      Tag reports
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      {{#each allTags}}
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="tag-reports/{{this}}.html">{{this}}</a></li>
+      {{/each}}
+    </ul>
+  <li>
+  <li id="allFeatures" role="presentation" class="">
+    <a href="featuresOverview.html">View all feature reports</a>
+  </li>
+  <li id="passedFeatures" role="presentation" class="">
+    <a href="featuresPassed.html">View passed features</a>
+  </li>
+  <li id="failedFeatures" role="presentation" class="">
+    <a href="featuresFailed.html">View Failed features</a>
+  </li>
+  <li id="summaryFeature" role="presentation" class="">
+    <a href="#">Feature report: </a>
+  </li>
+</ul>

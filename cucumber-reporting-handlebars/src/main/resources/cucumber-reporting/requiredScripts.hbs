@@ -1,0 +1,104 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+      delay: { "show": 1000, "hide": 100 }
+    });
+  });
+
+  $(function() {
+    $('#toggle-collapsed').change(function() {
+      if ($(this).prop('checked')) {
+        $('.collapseMagic').collapse('hide');
+      } else {
+        $('.collapseMagic').collapse('show');
+      }
+    });
+  });
+
+  $(function() {
+    var pageTitle = document.title;
+    if((pageTitle.indexOf('@') > -1) || (pageTitle.indexOf('untagged') > -1)) {
+      $('#tags-toggle-container').addClass('active');
+      var all = $('#allFeatures>a');
+      all.attr('href', '../' + all.attr('href'));
+
+      var passed = $('#passedFeatures>a');
+      passed.attr('href', '../' + passed.attr('href'));
+      var failed = $('#failedFeatures>a');
+      failed.attr('href', '../' + failed.attr('href'));
+
+      var tags = $('#tags-toggle-container>ul>li>a');
+      for(var i = 0; i< tags.length; i++) {
+        var oldVal = tags[i].getAttribute('href');
+        var newVal = '../' + oldVal;
+        tags[i].setAttribute('href', newVal);
+      }
+    }
+    switch(pageTitle) {
+      case 'Features Overview Report':
+        $('#allFeatures').addClass('active');
+        $('#tags-toggle-container').removeClass();
+
+        $('#passedFeatures').removeClass();
+        $('#failedFeatures').removeClass();
+        $('#summaryFeature').removeClass().addClass('disabled');
+        break;
+      case 'untagged':
+        $('#tags-toggle-container').addClass('active');
+        $('#allFeatures').removeClass();
+        $('#passedFeatures').removeClass();
+        $('#failedFeatures').removeClass();
+        $('#summaryFeature').removeClass().addClass('disabled')
+      break;
+      case 'Passed Features Overview Report':
+        $('#tags-toggle-container').removeClass();
+        $('#allFeatures').removeClass();
+        $('#passedFeatures').addClass('active');
+        $('#failedFeatures').removeClass();
+        $('#summaryFeature').removeClass().addClass('disabled')
+        break;
+      case 'Failed Features Overview Report':
+        $('#tags-toggle-container').removeClass();
+        $('#allFeatures').removeClass();
+        $('#passedFeatures').removeClass();
+        $('#failedFeatures').addClass('active');
+        $('#summaryFeature').removeClass().addClass('disabled')
+        break;
+      case 'Feature Summary Report':
+        $('#tags-toggle-container').removeClass();
+        $('#tags-toggle').addClass('hidden');
+        $('#allFeatures').removeClass();
+        $('#passedFeatures').removeClass();
+        $('#failedFeatures').removeClass();
+        $('#summaryFeature').addClass('active');
+
+        var toAdd = $('.panel-title>p').html().split(':')[1];
+        var current = $('#summaryFeature>a').html();
+        $('#summaryFeature>a').html(current + toAdd);
+
+        var all = $('#allFeatures>a');
+        all.attr('href', '../' + all.attr('href'));
+
+        var passed = $('#passedFeatures>a');
+        passed.attr('href', '../' + passed.attr('href'));
+
+        var failed = $('#failedFeatures>a');
+        failed.attr('href', '../' + failed.attr('href'));
+
+        $('#summaryFeature>a').addClass('active');
+        break;
+    }
+  });
+</script>
+
