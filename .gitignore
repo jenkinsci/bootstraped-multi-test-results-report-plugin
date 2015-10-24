@@ -1,4 +1,8 @@
 .DS_Store
 .log
 .idea
-target
+/target/
+.classpath
+.project
+.settings/*
+*.html
