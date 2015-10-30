@@ -1,13 +1,36 @@
+sudo: false
+
 language: java
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "UI60jHT1+1SpPvIjcvnmWKfP4E1r1plyJZbAGMGjwB9ZoQMl1laJG5nHMqDCC8K0Wu3JSMiHswwIcQ2Evw5OPRppXlOfy8Jjmvyzozjp+Y1HL5JTCl/DT8rvNDiQpCwQJ9n4Gw5kgXGGCfkgGmk/Q0e49MXI5XHiDB+cQt+P7LBmjuKl61ZKArDDQlmkeq8G6YDOSHcFlMi33ynN85e4jzewENRgb70r8Z3gq95Ike4Jz1nguWpWmuxaZhb2ok95bbAdTUwf2pjnJFXYEZVe22COWQxF2RSXLn+1eCPMT5paJwbe1WqmwSaqrm3qLnuOIqOj99BY9FMXGe/cIC1LM8gsdRay7/3jqEqE0mD40kGVSYrTfUdozaA34EZLWSrnNs1/f4nSB4P0CPRGFo11usiKQs/zWVy5Zhl8uxIJAYMo1ygwZy9IepHAAwxiiDE7b1Qrg2Vfy/WlqinNhpPr7GwDRD/Y0i+JsKELXrh7c/fZ9p9qeWovZ1p7CrGYaGUHNPRBwqt9Pbi9ZzZcKlEFUyT5tJ2EC4H6SjhBB7QgLOwLssbx4/FbZR0xVsJy38AaMyOx4gICn4nIYpn498+LHra9PQCF53mNsL2boPvCis+7Xmrtg1dJi96ax2OTm4TXrJ/0pZlqsj4MhFoc8DwLn8NnQ3QEMMAWa7MGNpS/750="
+
 jdk:
   - oraclejdk8
+
 cache:
   directories:
   - $HOME/.m2
+
+addons:
+  coverity_scan:
+    project:
+      name: "BogdanLivadariu/bootstraped-multi-test-results-report"
+      description: "Build submitted via Travis CI"
+    notification_email: bogdan.livadariu@gmail.com
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn compile -Dgpg.skip=true"
+    branch_pattern: master
+
 before_install:
   - mvn clean
+
 install:
   - mvn install -Dgpg.skip=true
+
 notifications:
   email:
     recipients:
