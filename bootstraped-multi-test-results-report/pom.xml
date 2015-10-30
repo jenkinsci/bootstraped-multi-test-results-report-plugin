@@ -10,7 +10,7 @@
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>1.4.4</version>
+  <version>1.4.5</version>
   <packaging>hpi</packaging>
   <scm>
     <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
@@ -91,7 +91,7 @@ offering rendering support on a wide range of devices.</description>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>junit-reporting-handlebars</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>

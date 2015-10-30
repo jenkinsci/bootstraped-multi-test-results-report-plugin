@@ -58,7 +58,7 @@ public class TestSuiteModel {
     }
 
     public String getFailures() {
-        return failures;
+        return failures == null ? "0" : failures;
     }
 
     public String getTime() {
@@ -66,15 +66,15 @@ public class TestSuiteModel {
     }
 
     public String getErrors() {
-        return errors;
+        return errors == null ? "0" : errors;
     }
 
     public String getTests() {
-        return tests;
+        return tests == null ? "0" : tests;
     }
 
     public String getSkipped() {
-        return skipped;
+        return skipped == null ? "0" : skipped;
     }
 
     public String getName() {
