@@ -2,6 +2,11 @@
 
 [![Join the chat at https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/BogdanLivadariu/bootstraped-multi-test-results-report.svg?branch=master)](https://travis-ci.org/BogdanLivadariu/bootstraped-multi-test-results-report)
+[![codecov.io](https://codecov.io/github/BogdanLivadariu/bootstraped-multi-test-results-report/coverage.svg?branch=master)](https://codecov.io/github/BogdanLivadariu/bootstraped-multi-test-results-report?branch=master)
+<a href="https://scan.coverity.com/projects/bogdanlivadariu-bootstraped-multi-test-results-report">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/6820/badge.svg"/>
+</a>
 
 The project offers the possibility to build test reports using a bootstrap components, offering rendering support on a wide range of devices.
 

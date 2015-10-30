@@ -26,10 +26,14 @@ addons:
     branch_pattern: master
 
 before_install:
+  - pip install --user codecov	
   - mvn clean
 
 install:
   - mvn install -Dgpg.skip=true
+
+after_success:
+  - codecov
 
 notifications:
   email:
