@@ -6,3 +6,8 @@
 .project
 .settings/*
 *.html
+bootstraped-multi-test-results-report/target/
+rspec-reporting-handlebars/target/
+testng-reporting-handlebars/target/
+junit-reporting-handlebars/target/
+cucumber-reporting-handlebars/target/
