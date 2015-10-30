@@ -2,5 +2,6 @@
   This view is used to render the installed plugins page.
 -->
 <div>
-  This plugin HTML reports using handlebars templates with bootstrap components.
+  <p>This plugin generates HTML reports using handlebars templates with bootstrap components.</p>
+  <p><a href="https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report">Join chat</a> if you have questions/suggestions</p>
 </div>
