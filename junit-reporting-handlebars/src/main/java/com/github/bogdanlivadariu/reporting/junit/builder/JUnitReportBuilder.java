@@ -53,7 +53,7 @@ public class JUnitReportBuilder {
 
         for (String xml : xmlReports) {
 
-            Logger.getGlobal().info(">>>>>>>>>>" + xml);
+            Logger.getGlobal().info("Processing: " + xml);
             TestSuiteModel ts = (TestSuiteModel) unm.unmarshal(new File(xml));
             for (TestCaseModel tc : ts.getTestcase()) {
                 if (tc.getError() != null) {

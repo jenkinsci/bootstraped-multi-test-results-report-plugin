@@ -1,4 +1,6 @@
-package com.github.bogdanlivadariu.reporting.junit;
+package com.github.bogdanlivadariu.reporting.junit.builder;
+
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,10 +9,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
-
-import com.github.bogdanlivadariu.reporting.junit.builder.JUnitReportBuilder;
 
 /**
  * Unit test for simple App.
