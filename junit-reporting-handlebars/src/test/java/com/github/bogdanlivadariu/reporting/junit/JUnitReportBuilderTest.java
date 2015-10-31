@@ -1,4 +1,4 @@
-package com.github.bogdanlivadariu.reporting.junit.builder;
+package com.github.bogdanlivadariu.reporting.junit;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,10 +10,12 @@ import javax.xml.bind.JAXBException;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import com.github.bogdanlivadariu.reporting.junit.builder.JUnitReportBuilder;
+
 /**
  * Unit test for simple App.
  */
-public class JUnitReportBuilderTests {
+public class JUnitReportBuilderTest {
 
     @Test(expected = NullPointerException.class)
     public void npeTest() throws IOException, JAXBException {
