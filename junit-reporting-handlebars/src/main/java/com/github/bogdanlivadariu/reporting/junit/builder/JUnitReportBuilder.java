@@ -33,12 +33,20 @@ public class JUnitReportBuilder {
 
     private List<TestSuiteModel> processedTestSuites;
 
+    public List<TestSuiteModel> getProcessedTestSuites() {
+        return processedTestSuites;
+    }
+
     public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath) throws FileNotFoundException,
         JAXBException {
         TEST_OVERVIEW_PATH = targetBuildPath + "/";
         TEST_SUMMARY_PATH = targetBuildPath + "/test-summary/";
         processedTestSuites = new ArrayList<>();
 
+        processXmlReports(xmlReports);
+    }
+
+    private List<TestSuiteModel> processXmlReports(List<String> xmlReports) throws JAXBException {
         JAXBContext cntx = JAXBContext.newInstance(TestSuiteModel.class);
 
         Unmarshaller unm = cntx.createUnmarshaller();
@@ -58,6 +66,7 @@ public class JUnitReportBuilder {
             }
             processedTestSuites.add(ts);
         }
+        return processedTestSuites;
     }
 
     private void writeTestOverviewReport() throws IOException {
