@@ -9,6 +9,4 @@ public class Constants {
 
     protected static final String SKIPPED = "skipped";
 
-    public static final String LATEST_LIB = "1.0.1";
-
 }

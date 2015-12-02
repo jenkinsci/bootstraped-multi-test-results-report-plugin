@@ -95,13 +95,6 @@ public class Helpers {
             }
         });
 
-        handlebar.registerHelper("latest-lib", new Helper<Object>() {
-            @Override
-            public CharSequence apply(Object context, Options options) throws IOException {
-                return Constants.LATEST_LIB;
-            }
-        });
-
         return handlebar;
     }
 }
