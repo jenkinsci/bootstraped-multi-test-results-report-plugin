@@ -16,7 +16,7 @@ import org.junit.Test;
  */
 public class JUnitReportBuilderTest {
 
-    //@Test(expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void npeTest() throws IOException, JAXBException {
         List<String> xmlReports = null;
         new JUnitReportBuilder(xmlReports, "out");
