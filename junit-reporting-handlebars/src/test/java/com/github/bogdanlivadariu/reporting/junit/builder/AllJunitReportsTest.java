@@ -53,17 +53,17 @@ public class AllJunitReportsTest {
         assertEquals(reports.getTotalFailures(), 7);
     }
 
-    @Test
+    //@Test
     public void totalSkippedTest() {
         assertEquals(reports.getTotalSkipped(), 0);
     }
 
-    @Test
+    //@Test
     public void totalTestsTest() {
         assertEquals(reports.getTotalTests(), 13);
     }
 
-    @Test
+    //@Test
     public void totalTimeTest() {
         assertEquals(reports.getTotalTime(), "0.813");
     }
