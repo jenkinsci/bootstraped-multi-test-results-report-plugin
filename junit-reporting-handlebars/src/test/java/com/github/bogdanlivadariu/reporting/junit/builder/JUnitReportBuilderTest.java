@@ -22,7 +22,7 @@ public class JUnitReportBuilderTest {
         new JUnitReportBuilder(xmlReports, "out");
     }
 
-    //@Test
+    @Test
     public void processedReportsTest() throws FileNotFoundException, JAXBException {
         List<String> xmlReports = new ArrayList<>();
         String report = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
