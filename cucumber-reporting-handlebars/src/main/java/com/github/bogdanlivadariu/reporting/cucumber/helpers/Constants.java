@@ -2,8 +2,6 @@ package com.github.bogdanlivadariu.reporting.cucumber.helpers;
 
 public class Constants {
 
-    public static final String LATEST_VERSION = "1.0.8";
-
     public static final String PASSED = "passed";
 
     public static final String FAILED = "failed";

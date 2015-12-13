@@ -137,13 +137,6 @@ public class Helpers {
             }
         });
 
-        handlebar.registerHelper("latest-lib", new Helper<Object>() {
-            @Override
-            public CharSequence apply(Object context, Options options) throws IOException {
-                return Constants.LATEST_VERSION;
-            }
-        });
-
         handlebar.registerHelper("do_table", new Helper<List<Row>>() {
             @Override
             public CharSequence apply(List<Row> rows, Options arg1) throws IOException {
