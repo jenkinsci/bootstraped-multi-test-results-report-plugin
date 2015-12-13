@@ -7,7 +7,12 @@ import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FE
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -17,6 +22,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
@@ -39,6 +45,8 @@ public class CucumberReportBuilder {
 
     private final String REPORTS_OVERVIEW_PATH;
 
+    private final String TARGET_BUILD_PATH;
+
     private Gson gs = new Gson();
 
     private Handlebars bars = new Helpers(new Handlebars()).registerHelpers();
@@ -47,10 +55,11 @@ public class CucumberReportBuilder {
 
     public CucumberReportBuilder(List<String> jsonReports, String targetBuildPath) throws FileNotFoundException,
         IOException {
-        REPORTS_SUMMARY_PATH = targetBuildPath + "/feature-reports/";
+        this.TARGET_BUILD_PATH = targetBuildPath;
+        this.REPORTS_SUMMARY_PATH = targetBuildPath + "/feature-reports/";
 
-        REPORTS_OVERVIEW_PATH = targetBuildPath + "/";
-        FEATURE_TAG_REPORT = targetBuildPath + "/tag-reports/";
+        this.REPORTS_OVERVIEW_PATH = targetBuildPath + "/";
+        this.FEATURE_TAG_REPORT = targetBuildPath + "/tag-reports/";
         processedFeatures = prepareData(jsonReports);
     }
 
@@ -169,6 +178,7 @@ public class CucumberReportBuilder {
      * @throws IOException
      */
     public boolean writeReportsOnDisk() throws IOException {
+        copyResources();
         writeFeatureSummaryReports();
         writeFeatureOverviewReport();
         writeFeaturePassedReport();
@@ -180,6 +190,16 @@ public class CucumberReportBuilder {
             }
         }
         return true;
+    }
+
+    private void copyResources() throws IOException {
+
+        File dest = new File(TARGET_BUILD_PATH + "/resources/style.css");
+        FileUtils.forceMkdir(dest.getParentFile());
+        InputStream style = CucumberReportBuilder.class.getResourceAsStream("/cucumber-reporting/style.css");
+
+        Files.copy(style, dest.toPath());
+
     }
 
     @SuppressWarnings("unchecked")
