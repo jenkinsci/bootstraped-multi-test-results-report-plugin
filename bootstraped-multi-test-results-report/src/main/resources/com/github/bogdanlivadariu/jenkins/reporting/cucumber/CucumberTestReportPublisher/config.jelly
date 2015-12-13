@@ -19,6 +19,9 @@
     <f:entry title="File Exclude Pattern" field="fileExcludePattern" description="Nothing is excluded by default.">
       <f:textbox />
     </f:entry>
+    <f:entry title="Ignore failed tests" field="markAsUnstable" description="Tick this to mark build as Unstable if test failures are present.">
+      <f:checkbox />
+    </f:entry>
 
   </f:advanced>
 </j:jelly>

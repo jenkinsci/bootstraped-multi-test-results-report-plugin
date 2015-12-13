@@ -40,12 +40,15 @@ public class CucumberTestReportPublisher extends Recorder {
     public final String fileIncludePattern;
 
     public final String fileExcludePattern;
+    
+    public final boolean markAsUnstable;
 
     @DataBoundConstructor
-    public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern) {
+    public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern, boolean markAsUnstable) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
+        this.markAsUnstable = markAsUnstable;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
@@ -126,7 +129,7 @@ public class CucumberTestReportPublisher extends Recorder {
                 if (featuresResult) {
                     result = Result.SUCCESS;
                 } else {
-                    result = Result.FAILURE;
+                    result = markAsUnstable ? Result.UNSTABLE : Result.FAILURE;
                 }
             } catch (Exception e) {
                 result = Result.FAILURE;
