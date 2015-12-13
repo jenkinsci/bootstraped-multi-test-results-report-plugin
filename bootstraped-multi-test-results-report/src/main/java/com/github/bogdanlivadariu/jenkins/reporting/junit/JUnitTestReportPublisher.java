@@ -35,17 +35,21 @@ public class JUnitTestReportPublisher extends Recorder {
 
     private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
-    public final String jsonReportDirectory;
+    private final String jsonReportDirectory;
 
-    public final String fileIncludePattern;
+    private final String fileIncludePattern;
 
-    public final String fileExcludePattern;
+    private final String fileExcludePattern;
+
+    private final boolean markAsUnstable;
 
     @DataBoundConstructor
-    public JUnitTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern) {
+    public JUnitTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
+        boolean markAsUnstable) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
+        this.markAsUnstable = markAsUnstable;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
@@ -129,7 +133,7 @@ public class JUnitTestReportPublisher extends Recorder {
                 if (featuresResult) {
                     result = Result.SUCCESS;
                 } else {
-                    result = Result.FAILURE;
+                    result = markAsUnstable ? Result.UNSTABLE : Result.FAILURE;
                 }
             } catch (Exception e) {
                 result = Result.FAILURE;

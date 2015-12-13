@@ -35,13 +35,13 @@ public class CucumberTestReportPublisher extends Recorder {
 
     private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.json";
 
-    public final String jsonReportDirectory;
+    private final String jsonReportDirectory;
 
-    public final String fileIncludePattern;
+    private final String fileIncludePattern;
 
-    public final String fileExcludePattern;
+    private final String fileExcludePattern;
     
-    public final boolean markAsUnstable;
+    private final boolean markAsUnstable;
 
     @DataBoundConstructor
     public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern, boolean markAsUnstable) {
