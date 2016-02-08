@@ -12,4 +12,4 @@ after the build is finished, then the following menu will be present on your bui
 <img src='http://s6.postimg.org/wnpkt6crl/jenkins_Ci.png'>
 
 and this will allow you to view reports as they are described in the readme from the following project:
-https://github.com/BogdanLivadariu/cucumber-reporting-handlebars
+https://github.com/web-innovate/cucumber-reporting-handlebars
