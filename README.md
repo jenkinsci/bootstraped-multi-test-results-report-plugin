@@ -1,7 +1,7 @@
 # bootstraped-multi-test-results-report
 
 [![Join the chat at https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BogdanLivadariu/bootstraped-multi-test-results-report?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/BogdanLivadariu/bootstraped-multi-test-results-report.svg?branch=master)](https://travis-ci.org/BogdanLivadariu/bootstraped-multi-test-results-report)
+[![Build Status](https://travis-ci.org/web-innovate/bootstraped-multi-test-results-report.svg?branch=master)](https://travis-ci.org/web-innovate/bootstraped-multi-test-results-report)
 [![codecov.io](https://codecov.io/github/BogdanLivadariu/bootstraped-multi-test-results-report/coverage.svg?branch=master)](https://codecov.io/github/BogdanLivadariu/bootstraped-multi-test-results-report?branch=master)
 
 
