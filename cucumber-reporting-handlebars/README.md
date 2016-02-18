@@ -1,9 +1,5 @@
 # cucumber reporting with bootstrap components and handlebars as template engine 
 
-[![Join the chat at https://gitter.im/BogdanLivadariu/cucumber-reporting-handlebars](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BogdanLivadariu/cucumber-reporting-handlebars?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/BogdanLivadariu/cucumber-reporting-handlebars.svg?branch=master)](https://travis-ci.org/BogdanLivadariu/cucumber-reporting-handlebars)
-
-
 This is a module to generate cucumber html reports from cucumber.json files,
 using handlebars to compute the HTML, and bootstrap components to render the HTML content.
 
