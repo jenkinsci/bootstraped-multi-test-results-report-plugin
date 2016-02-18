@@ -12,4 +12,4 @@ after the build is finished, then the following menu will be present on your bui
 <img src='http://s6.postimg.org/wnpkt6crl/jenkins_Ci.png'>
 
 and this will allow you to view reports as they are described in the readme from the following project:
-[cucumber-reporting-handlebars](https://github.com/BogdanLivadariu/bootstraped-multi-test-results-report/tree/master/cucumber-reporting-handlebars)
+[cucumber-reporting-handlebars](https://github.com/web-innovate/bootstraped-multi-test-results-report/tree/master/cucumber-reporting-handlebars)
