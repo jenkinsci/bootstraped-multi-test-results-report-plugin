@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Clonning Excel file and verifying"
+<testsuite name="Cloning Excel file and verifying"
            tests="13"
            failures="7"
            errors="0"
            skipped="0"
            time="0.813">
   <properties />
-            <testcase name="verifyingTheClonnedFile" time="0.048" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.048" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -14,7 +14,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -47,7 +47,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyingTheClonnedFile" time="0.113" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.113" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -55,7 +55,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -88,7 +88,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyingTheClonnedFile" time="0.068" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.068" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -96,7 +96,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -129,7 +129,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyingTheClonnedFile" time="0.040" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.040" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -137,7 +137,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -170,7 +170,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyingTheClonnedFile" time="0.046" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.046" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -178,7 +178,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -211,7 +211,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyingTheClonnedFile" time="0.050" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.050" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -219,7 +219,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -252,7 +252,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyingTheClonnedFile" time="0.052" classname="test.java.PlayingWithExcelFiles">
+            <testcase name="verifyingTheClonedFile" time="0.052" classname="test.java.PlayingWithExcelFiles">
                 <failure type="java.lang.AssertionError"
                   message="Test failed as &apos;pass&apos; was not found expected [true] but found [false]"
               >
@@ -260,7 +260,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
-  test.java.PlayingWithExcelFiles.verifyingTheClonnedFile(PlayingWithExcelFiles.java:35)
+  test.java.PlayingWithExcelFiles.verifyingTheClonedFile(PlayingWithExcelFiles.java:35)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -295,11 +295,11 @@
           </testcase>
 
 
-            <testcase name="verifyingTheClonnedFile" time="0.068" classname="test.java.PlayingWithExcelFiles" />
-                <testcase name="verifyingTheClonnedFile" time="0.065" classname="test.java.PlayingWithExcelFiles" />
-                <testcase name="verifyingTheClonnedFile" time="0.044" classname="test.java.PlayingWithExcelFiles" />
-                <testcase name="verifyingTheClonnedFile" time="0.120" classname="test.java.PlayingWithExcelFiles" />
-                <testcase name="verifyingTheClonnedFile" time="0.051" classname="test.java.PlayingWithExcelFiles" />
-                <testcase name="verifyingTheClonnedFile" time="0.048" classname="test.java.PlayingWithExcelFiles" />
+            <testcase name="verifyingTheClonedFile" time="0.068" classname="test.java.PlayingWithExcelFiles" />
+                <testcase name="verifyingTheClonedFile" time="0.065" classname="test.java.PlayingWithExcelFiles" />
+                <testcase name="verifyingTheClonedFile" time="0.044" classname="test.java.PlayingWithExcelFiles" />
+                <testcase name="verifyingTheClonedFile" time="0.120" classname="test.java.PlayingWithExcelFiles" />
+                <testcase name="verifyingTheClonedFile" time="0.051" classname="test.java.PlayingWithExcelFiles" />
+                <testcase name="verifyingTheClonedFile" time="0.048" classname="test.java.PlayingWithExcelFiles" />
 
 </testsuite>
