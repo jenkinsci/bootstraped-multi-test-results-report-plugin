@@ -150,7 +150,7 @@ public class JUnitTestReportPublisher extends Recorder {
                 if (featuresResult) {
                     result = Result.SUCCESS;
                 } else {
-                    result = markAsUnstable ? Result.UNSTABLE : Result.FAILURE;
+                    result = isMarkAsUnstable() ? Result.UNSTABLE : Result.FAILURE;
                 }
             } catch (Exception e) {
                 result = Result.FAILURE;
