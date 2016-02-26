@@ -12,3 +12,4 @@ testng-reporting-handlebars/target/
 junit-reporting-handlebars/target/
 cucumber-reporting-handlebars/target/
 *.prefs
+commons-reporting-handlebars/src/main/resources/web/
