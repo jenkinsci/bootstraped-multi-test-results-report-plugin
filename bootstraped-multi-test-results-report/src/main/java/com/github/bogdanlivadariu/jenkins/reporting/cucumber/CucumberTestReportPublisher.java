@@ -40,15 +40,32 @@ public class CucumberTestReportPublisher extends Recorder {
     private final String fileIncludePattern;
 
     private final String fileExcludePattern;
-    
+
     private final boolean markAsUnstable;
 
     @DataBoundConstructor
-    public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern, boolean markAsUnstable) {
+    public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
+        boolean markAsUnstable) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
+    }
+
+    public String getJsonReportDirectory() {
+        return this.jsonReportDirectory;
+    }
+
+    public String getFileIncludePattern() {
+        return fileIncludePattern;
+    }
+
+    public String getFileExcludePattern() {
+        return fileExcludePattern;
+    }
+
+    public boolean isMarkAsUnstable() {
+        return markAsUnstable;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
@@ -74,10 +91,10 @@ public class CucumberTestReportPublisher extends Recorder {
 
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
-        if (jsonReportDirectory.isEmpty()) {
+        if (getJsonReportDirectory().isEmpty()) {
             workspaceJsonReportDirectory = build.getWorkspace();
         } else {
-            workspaceJsonReportDirectory = new FilePath(build.getWorkspace(), jsonReportDirectory);
+            workspaceJsonReportDirectory = new FilePath(build.getWorkspace(), getJsonReportDirectory());
         }
 
         // target directory (always on master)
@@ -87,25 +104,25 @@ public class CucumberTestReportPublisher extends Recorder {
         }
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
-            listener.getLogger().println(
-                "[Cucumber test report builder] Copying all json files from slave: "
+            listener.getLogger()
+                .println("[Cucumber test report builder] Copying all json files from slave: "
                     + workspaceJsonReportDirectory.getRemote() + " to master reports directory: "
                     + targetBuildDirectory);
         } else {
-            listener.getLogger().println(
-                "[Cucumber test report builder] Copying all json files from: "
-                    + workspaceJsonReportDirectory.getRemote()
-                    + " to reports directory: " + targetBuildDirectory);
+            listener.getLogger().println("[Cucumber test report builder] Copying all json files from: "
+                + workspaceJsonReportDirectory.getRemote() + " to reports directory: " + targetBuildDirectory);
         }
-        File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath()+"/jsonData");
-        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN, new FilePath(targetBuildJsonDirectory));
+        File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/jsonData");
+        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN,
+            new FilePath(targetBuildJsonDirectory));
 
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
-        String[] jsonReportFiles = findJsonFiles(targetBuildJsonDirectory, fileIncludePattern, fileExcludePattern);
+        String[] jsonReportFiles =
+            findJsonFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
         if (jsonReportFiles.length > 0) {
-            listener.getLogger().println(
-                String.format("[CucumberReportPublisher] Found %d json files.", jsonReportFiles.length));
+            listener.getLogger()
+                .println(String.format("[CucumberReportPublisher] Found %d json files.", jsonReportFiles.length));
             int jsonIndex = 0;
             for (String jsonReportFile : jsonReportFiles) {
                 listener.getLogger().println(
@@ -124,17 +141,18 @@ public class CucumberTestReportPublisher extends Recorder {
                     listener.getLogger().println("processing: " + ss);
                 }
                 CucumberReportBuilder rep = new CucumberReportBuilder(
-                    fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory), targetBuildDirectory.getAbsolutePath());
+                    fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    targetBuildDirectory.getAbsolutePath());
                 boolean featuresResult = rep.writeReportsOnDisk();
                 if (featuresResult) {
                     result = Result.SUCCESS;
                 } else {
-                    result = markAsUnstable ? Result.UNSTABLE : Result.FAILURE;
+                    result = isMarkAsUnstable() ? Result.UNSTABLE : Result.FAILURE;
                 }
             } catch (Exception e) {
                 result = Result.FAILURE;
-                listener.getLogger().println(
-                    "[Cucumber test report builder] there was an error generating the reports: " + e);
+                listener.getLogger()
+                    .println("[Cucumber test report builder] there was an error generating the reports: " + e);
                 for (StackTraceElement error : e.getStackTrace()) {
                     listener.getLogger().println(error);
                 }
@@ -172,8 +190,8 @@ public class CucumberTestReportPublisher extends Recorder {
         }
 
         // Performs on-the-fly validation on the file mask wildcard.
-        public FormValidation doCheck(@AncestorInPath AbstractProject project,
-            @QueryParameter String value) throws IOException, ServletException {
+        public FormValidation doCheck(@AncestorInPath AbstractProject project, @QueryParameter String value)
+            throws IOException, ServletException {
             FilePath ws = project.getSomeWorkspace();
             return ws != null ? ws.validateRelativeDirectory(value) : FormValidation.ok();
         }

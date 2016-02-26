@@ -52,6 +52,22 @@ public class JUnitTestReportPublisher extends Recorder {
         this.markAsUnstable = markAsUnstable;
     }
 
+    public String getJsonReportDirectory() {
+        return jsonReportDirectory;
+    }
+
+    public String getFileIncludePattern() {
+        return fileIncludePattern;
+    }
+
+    public String getFileExcludePattern() {
+        return fileExcludePattern;
+    }
+
+    public boolean isMarkAsUnstable() {
+        return markAsUnstable;
+    }
+
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
         DirectoryScanner scanner = new DirectoryScanner();
         if (fileIncludePattern == null || fileIncludePattern.isEmpty()) {
@@ -75,10 +91,10 @@ public class JUnitTestReportPublisher extends Recorder {
 
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
-        if (jsonReportDirectory.isEmpty()) {
+        if (getJsonReportDirectory().isEmpty()) {
             workspaceJsonReportDirectory = build.getWorkspace();
         } else {
-            workspaceJsonReportDirectory = new FilePath(build.getWorkspace(), jsonReportDirectory);
+            workspaceJsonReportDirectory = new FilePath(build.getWorkspace(), getJsonReportDirectory());
         }
 
         // target directory (always on master)
@@ -104,7 +120,8 @@ public class JUnitTestReportPublisher extends Recorder {
 
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
-        String[] jsonReportFiles = findJsonFiles(targetBuildJsonDirectory, fileIncludePattern, fileExcludePattern);
+        String[] jsonReportFiles =
+            findJsonFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
         if (jsonReportFiles.length > 0) {
             listener.getLogger().println(
                 String.format("[JUnitReportPublisher] Found %d xml files.", jsonReportFiles.length));
