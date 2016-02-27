@@ -1,3 +1,5 @@
+package com.github.bogdanlivadariu.reporting.commons;
+
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
