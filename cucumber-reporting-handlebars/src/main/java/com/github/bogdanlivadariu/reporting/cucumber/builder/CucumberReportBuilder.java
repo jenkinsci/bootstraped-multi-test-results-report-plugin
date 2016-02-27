@@ -54,9 +54,13 @@ public class CucumberReportBuilder {
         processedFeatures = prepareData(jsonReports);
     }
 
+    public List<Feature> getProcessedFeatures() {
+        return processedFeatures;
+    }
+
     private void writeFeatureSummaryReports() throws IOException {
         Template template = bars.compile(FEATURE_SUMMARY_REPORT);
-        for (Feature feature : processedFeatures) {
+        for (Feature feature : getProcessedFeatures()) {
             String generatedFeatureHtmlContent = template.apply(feature);
             // generatedFeatureSummaryReports.put(feature.getUniqueID(), generatedFeatureHtmlContent);
             FileUtils.writeStringToFile(new File(REPORTS_SUMMARY_PATH + feature.getUniqueID() + ".html"),
@@ -66,7 +70,7 @@ public class CucumberReportBuilder {
 
     private void writeFeatureOverviewReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
-        AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_OVERVIEW, processedFeatures);
+        AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_OVERVIEW, getProcessedFeatures());
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresOverview.html"),
             template.apply(allFeatures));
     }
@@ -79,7 +83,7 @@ public class CucumberReportBuilder {
                 return t.getOverall_status().equalsIgnoreCase(Constants.PASSED);
             }
         };
-        List<Feature> onlyPassed = cast(processedFeatures.stream()
+        List<Feature> onlyPassed = cast(getProcessedFeatures().stream()
             .filter(p)
             .collect(Collectors.toList()));
 
@@ -96,7 +100,7 @@ public class CucumberReportBuilder {
                 return t.getOverall_status().equalsIgnoreCase(Constants.FAILED);
             }
         };
-        List<Feature> onlyFailed = cast(processedFeatures.stream()
+        List<Feature> onlyFailed = cast(getProcessedFeatures().stream()
             .filter(p)
             .collect(Collectors.toList()));
 
@@ -107,7 +111,7 @@ public class CucumberReportBuilder {
 
     private void writeFeatureTagsReport() throws IOException {
         LinkedHashMap<String, List<Feature>> allTags = new LinkedHashMap<>();
-        for (Feature feature : processedFeatures) {
+        for (Feature feature : getProcessedFeatures()) {
             // move the outputFileLocation one folder up for all the features that will be built
             feature.setOutputFileLocation("../" + feature.getOutputFileLocation());
             // put the tags in the proper place
@@ -174,7 +178,7 @@ public class CucumberReportBuilder {
         writeFeaturePassedReport();
         writeFeatureFailedReport();
         writeFeatureTagsReport();
-        for (Feature feature : processedFeatures) {
+        for (Feature feature : getProcessedFeatures()) {
             if (feature.getOverall_status().equals(Constants.FAILED)) {
                 return false;
             }
