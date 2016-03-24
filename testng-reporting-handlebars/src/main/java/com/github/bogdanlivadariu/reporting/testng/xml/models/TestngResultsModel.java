@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,7 +27,7 @@ public class TestngResultsModel {
     private Long totalTime = (long) 0;
 
     @XmlElement(name = "suite")
-    private List<SuiteModel> suites;
+    private List<SuiteModel> suites = new ArrayList<>();
 
     private int totalClasses;
 

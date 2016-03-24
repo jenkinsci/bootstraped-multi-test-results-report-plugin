@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,7 +16,7 @@ public class GroupModel {
     private String name;
 
     @XmlElement(name = "method")
-    private List<MethodModel> methods;
+    private List<MethodModel> methods = new ArrayList<>();
 
     public GroupModel(String name) {
         this.name = name;

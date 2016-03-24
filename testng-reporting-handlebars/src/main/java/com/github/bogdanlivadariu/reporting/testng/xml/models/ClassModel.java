@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +18,7 @@ public class ClassModel {
     private String name;
 
     @XmlElement(name = "test-method")
-    private List<TestMethodModel> testMethods;
+    private List<TestMethodModel> testMethods = new ArrayList<>();
 
     private String overallStatus = XMLReporterConfig.TEST_PASSED;
 
