@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,7 +26,7 @@ public class TestModel {
     private String finishedAt;
 
     @XmlElement(name = "class")
-    private List<ClassModel> classes;
+    private List<ClassModel> classes = new ArrayList<>();
 
     private int totalPassed = 0;
 

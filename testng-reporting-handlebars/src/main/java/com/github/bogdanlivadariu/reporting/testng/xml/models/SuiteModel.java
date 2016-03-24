@@ -31,11 +31,11 @@ public class SuiteModel {
     private String finishedAt;
 
     @XmlElement(name = "test")
-    private List<TestModel> tests;
+    private List<TestModel> tests = new ArrayList<>();
 
     @XmlElementWrapper(name = "groups")
     @XmlElement(name = "group")
-    private List<GroupModel> groups;
+    private List<GroupModel> groups = new ArrayList<>();
 
     private int totalPassed = 0;
 
