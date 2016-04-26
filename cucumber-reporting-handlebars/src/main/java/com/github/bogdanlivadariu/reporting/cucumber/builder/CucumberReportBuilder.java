@@ -83,9 +83,8 @@ public class CucumberReportBuilder {
                 return t.getOverall_status().equalsIgnoreCase(Constants.PASSED);
             }
         };
-        List<Feature> onlyPassed = cast(getProcessedFeatures().stream()
-            .filter(p)
-            .collect(Collectors.toList()));
+        List<Feature> onlyPassed = getProcessedFeatures();
+        onlyPassed.removeIf(p);
 
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_PASSED_OVERVIEW, onlyPassed);
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresPassed.html"),
@@ -100,9 +99,8 @@ public class CucumberReportBuilder {
                 return t.getOverall_status().equalsIgnoreCase(Constants.FAILED);
             }
         };
-        List<Feature> onlyFailed = cast(getProcessedFeatures().stream()
-            .filter(p)
-            .collect(Collectors.toList()));
+        List<Feature> onlyFailed = getProcessedFeatures();
+        onlyFailed.removeIf(p);
 
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_FAILED_OVERVIEW, onlyFailed);
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresFailed.html"),
