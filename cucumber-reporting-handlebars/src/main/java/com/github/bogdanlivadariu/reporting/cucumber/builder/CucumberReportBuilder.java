@@ -9,12 +9,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -77,15 +75,15 @@ public class CucumberReportBuilder {
 
     private void writeFeaturePassedReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
-        Predicate<Feature> p = new Predicate<Feature>() {
-            @Override
-            public boolean test(Feature t) {
-                return t.getOverall_status().equalsIgnoreCase(Constants.PASSED);
+
+        List<Feature> onlyPassed = new ArrayList<>(getProcessedFeatures());
+        for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext();) {
+
+            Feature f = it.next();
+            if (f.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
+                it.remove();
             }
-        };
-        List<Feature> onlyPassed = cast(getProcessedFeatures().stream()
-            .filter(p)
-            .collect(Collectors.toList()));
+        }
 
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_PASSED_OVERVIEW, onlyPassed);
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresPassed.html"),
@@ -94,16 +92,14 @@ public class CucumberReportBuilder {
 
     private void writeFeatureFailedReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
-        Predicate<Feature> p = new Predicate<Feature>() {
-            @Override
-            public boolean test(Feature t) {
-                return t.getOverall_status().equalsIgnoreCase(Constants.FAILED);
-            }
-        };
-        List<Feature> onlyFailed = cast(getProcessedFeatures().stream()
-            .filter(p)
-            .collect(Collectors.toList()));
 
+        List<Feature> onlyFailed = new ArrayList<>(getProcessedFeatures());
+        for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext();) {
+            Feature f = it.next();
+            if (f.getOverall_status().equalsIgnoreCase(Constants.PASSED)) {
+                it.remove();
+            }
+        }
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_FAILED_OVERVIEW, onlyFailed);
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresFailed.html"),
             template.apply(allFeatures));
@@ -179,15 +175,11 @@ public class CucumberReportBuilder {
         writeFeatureFailedReport();
         writeFeatureTagsReport();
         for (Feature feature : getProcessedFeatures()) {
-            if (feature.getOverall_status().equals(Constants.FAILED)) {
+            if (feature.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
                 return false;
             }
         }
         return true;
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends List< ? >> T cast(Object obj) {
-        return (T) obj;
-    }
 }

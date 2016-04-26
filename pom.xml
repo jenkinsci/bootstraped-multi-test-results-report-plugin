@@ -17,7 +17,7 @@
   <version>0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-    <module>commons-reporting-handlebars</module>
+    <!-- <module>commons-reporting-handlebars</module> -->
     <module>cucumber-reporting-handlebars</module>
     <module>junit-reporting-handlebars</module>
     <module>testng-reporting-handlebars</module>
