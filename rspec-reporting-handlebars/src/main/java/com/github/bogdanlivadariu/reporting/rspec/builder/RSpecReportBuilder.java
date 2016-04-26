@@ -72,7 +72,7 @@ public class RSpecReportBuilder {
     private void writeTestsPassedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
-        List<TestSuiteModel> onlyPassed = processedTestSuites;
+        List<TestSuiteModel> onlyPassed = new ArrayList<>(processedTestSuites);
 
         for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext();) {
             TestSuiteModel f = it.next();
@@ -89,7 +89,8 @@ public class RSpecReportBuilder {
     private void writeTestsFailedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
-        List<TestSuiteModel> onlyFailed = processedTestSuites;
+        List<TestSuiteModel> onlyFailed = new ArrayList<>(processedTestSuites);
+
         for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext();) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {

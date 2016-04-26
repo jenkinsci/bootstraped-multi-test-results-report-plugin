@@ -87,7 +87,7 @@ public class JUnitReportBuilder {
     private void writeTestsPassedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
-        List<TestSuiteModel> onlyPassed = getProcessedTestSuites();
+        List<TestSuiteModel> onlyPassed = new ArrayList<>(getProcessedTestSuites());
         for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext();) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
@@ -103,7 +103,7 @@ public class JUnitReportBuilder {
     private void writeTestsFailedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
-        List<TestSuiteModel> onlyFailed = getProcessedTestSuites();
+        List<TestSuiteModel> onlyFailed = new ArrayList<>(getProcessedTestSuites());
         for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext();) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {

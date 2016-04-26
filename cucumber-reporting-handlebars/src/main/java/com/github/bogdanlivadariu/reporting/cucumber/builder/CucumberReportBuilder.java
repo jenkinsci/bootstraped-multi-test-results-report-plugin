@@ -76,8 +76,9 @@ public class CucumberReportBuilder {
     private void writeFeaturePassedReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
 
-        List<Feature> onlyPassed = getProcessedFeatures();
+        List<Feature> onlyPassed = new ArrayList<>(getProcessedFeatures());
         for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext();) {
+
             Feature f = it.next();
             if (f.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
                 it.remove();
@@ -92,7 +93,7 @@ public class CucumberReportBuilder {
     private void writeFeatureFailedReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
 
-        List<Feature> onlyFailed = getProcessedFeatures();
+        List<Feature> onlyFailed = new ArrayList<>(getProcessedFeatures());
         for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext();) {
             Feature f = it.next();
             if (f.getOverall_status().equalsIgnoreCase(Constants.PASSED)) {
@@ -174,15 +175,11 @@ public class CucumberReportBuilder {
         writeFeatureFailedReport();
         writeFeatureTagsReport();
         for (Feature feature : getProcessedFeatures()) {
-            if (feature.getOverall_status().equals(Constants.FAILED)) {
+            if (feature.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
                 return false;
             }
         }
         return true;
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends List< ? >> T cast(Object obj) {
-        return (T) obj;
-    }
 }
