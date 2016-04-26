@@ -116,8 +116,4 @@ public class TestNgReportBuilder {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends List< ? >> T cast(Object obj) {
-        return (T) obj;
-    }
 }

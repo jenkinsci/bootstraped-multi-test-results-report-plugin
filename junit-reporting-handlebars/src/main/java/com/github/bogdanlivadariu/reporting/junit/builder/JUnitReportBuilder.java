@@ -4,10 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -87,15 +86,14 @@ public class JUnitReportBuilder {
 
     private void writeTestsPassedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
-        Predicate<TestSuiteModel> p = new Predicate<TestSuiteModel>() {
-            @Override
-            public boolean test(TestSuiteModel t) {
-                return t.getOverallStatus().equalsIgnoreCase(Constants.PASSED);
+
+        List<TestSuiteModel> onlyPassed = getProcessedTestSuites();
+        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext();) {
+            TestSuiteModel f = it.next();
+            if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
+                it.remove();
             }
-        };
-        List<TestSuiteModel> onlyPassed = cast(processedTestSuites.stream()
-            .filter(p)
-            .collect(Collectors.toList()));
+        }
 
         AllJUnitReports allTestSuites = new AllJUnitReports("Passed test suites report", onlyPassed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsPassed.html"),
@@ -104,15 +102,14 @@ public class JUnitReportBuilder {
 
     private void writeTestsFailedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
-        Predicate<TestSuiteModel> p = new Predicate<TestSuiteModel>() {
-            @Override
-            public boolean test(TestSuiteModel t) {
-                return t.getOverallStatus().equalsIgnoreCase(Constants.FAILED);
+
+        List<TestSuiteModel> onlyFailed = getProcessedTestSuites();
+        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext();) {
+            TestSuiteModel f = it.next();
+            if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
+                it.remove();
             }
-        };
-        List<TestSuiteModel> onlyFailed = cast(processedTestSuites.stream()
-            .filter(p)
-            .collect(Collectors.toList()));
+        }
 
         AllJUnitReports allTestSuites = new AllJUnitReports("Failed test suites report", onlyFailed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsFailed.html"),
@@ -134,8 +131,4 @@ public class JUnitReportBuilder {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends List< ? >> T cast(Object obj) {
-        return (T) obj;
-    }
 }
