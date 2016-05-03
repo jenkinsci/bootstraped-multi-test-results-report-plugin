@@ -3,6 +3,7 @@ package com.github.bogdanlivadariu.reporting.testng.xml.models;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -117,7 +118,7 @@ public class SuiteModel {
         return uniqueID;
     }
 
-    public LinkedHashMap<GroupModel, ArrayList<ClassModel>> getGroupedTestMethods() {
+    public Map<GroupModel, ArrayList<ClassModel>> getGroupedTestMethods() {
         return groupedTestMethods;
     }
 

@@ -13,6 +13,8 @@ import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 
 public class Helpers {
+    public static final String UNDEFINED = "undefined";
+
     private Handlebars handlebar;
 
     public Helpers(Handlebars handlebar) {
@@ -28,9 +30,7 @@ public class Helpers {
                 int seconds = totalSecs % 60;
                 int miliSec = (int) arg0.doubleValue() % 1000;
 
-                String timeString =
-                    String.format("%02d h : %02d m : %02d s : %02d ms", hours, minutes, seconds, miliSec);
-                return timeString;
+                return String.format("%02d h : %02d m : %02d s : %02d ms", hours, minutes, seconds, miliSec);
             }
         });
 
@@ -45,7 +45,7 @@ public class Helpers {
                     case XMLReporterConfig.TEST_FAILED:
                         return "danger";
                 }
-                return "undefined";
+                return UNDEFINED;
             }
         });
 
@@ -86,20 +86,19 @@ public class Helpers {
                     case "failed":
                         return "This step has failed";
                 }
-                return "undefined";
+                return UNDEFINED;
             }
         });
 
         handlebar.registerHelper("is-collapsed", new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toLowerCase()) {
-                    case "passed":
-                        return "collapse";
-                    case "failed":
-                        return "collapse in";
+                if ("passed".equalsIgnoreCase(arg0)) {
+                    return "collapse";
+                } else if("failed".equalsIgnoreCase(arg0)) {
+                    return "collapse in";
                 }
-                return "undefined";
+                return UNDEFINED;
             }
         });
 
