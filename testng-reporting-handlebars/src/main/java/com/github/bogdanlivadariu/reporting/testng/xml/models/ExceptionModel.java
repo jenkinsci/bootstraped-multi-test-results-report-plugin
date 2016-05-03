@@ -12,15 +12,15 @@ public class ExceptionModel {
     @XmlAttribute(name = "class")
     private String clazz;
 
-    public String getClazz() {
-        return clazz;
-    }
-
     @XmlElement(name = "message")
     public MessageModel message;
 
     @XmlElement(name = "full-stacktrace")
     public FullStacktraceModel fullStacktrace;
+
+    public String getClazz() {
+        return clazz;
+    }
 
     public MessageModel getMessage() {
         return message;

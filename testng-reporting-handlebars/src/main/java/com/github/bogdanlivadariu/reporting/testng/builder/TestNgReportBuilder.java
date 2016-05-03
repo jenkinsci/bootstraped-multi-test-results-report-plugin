@@ -29,22 +29,22 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 
 public class TestNgReportBuilder {
-    private String TEST_SUMMARY_REPORT = "testng-reporting/testCaseSummaryReport";
+    private String testSummaryReport = "testng-reporting/testCaseSummaryReport";
 
-    private String TEST_OVERVIEW_REPORT = "testng-reporting/testsByClassOverview";
+    private String testOverviewReport = "testng-reporting/testsByClassOverview";
 
-    private String TEST_NAME_OVERVIEW_REPORT = "testng-reporting/testsByNameOverview";
+    private String testNameOverviewReport = "testng-reporting/testsByNameOverview";
 
-    private final String TEST_OVERVIEW_PATH;
+    private final String testOverviewPath;
 
-    private final String CLASSES_SUMMARY_PATH;
+    private final String classesSummaryPath;
 
     private List<TestngResultsModel> processedTestNgReports;
 
     public TestNgReportBuilder(List<String> xmlReports, String targetBuildPath)
         throws JAXBException, XMLStreamException, FactoryConfigurationError, IOException {
-        TEST_OVERVIEW_PATH = targetBuildPath + "/";
-        CLASSES_SUMMARY_PATH = targetBuildPath + "/classes-summary/";
+        testOverviewPath = targetBuildPath + "/";
+        classesSummaryPath = targetBuildPath + "/classes-summary/";
         processedTestNgReports = new ArrayList<>();
 
         JAXBContext cntx = JAXBContext.newInstance(TestngResultsModel.class);
@@ -63,44 +63,48 @@ public class TestNgReportBuilder {
     }
 
     private void writeTestsByClassOverview() throws IOException {
-        Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
+        Template template = new Helpers(new Handlebars()).registerHelpers().compile(testOverviewReport);
         AllTestNgReports allTestNgReports =
             new AllTestNgReports("Tests by class overview report", processedTestNgReports);
-        FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsByClassOverview.html"),
+        FileUtils.writeStringToFile(new File(testOverviewPath + "testsByClassOverview.html"),
             template.apply(allTestNgReports));
     }
 
     private void writeTestsByNameOverview() throws IOException {
-        Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_NAME_OVERVIEW_REPORT);
+        Template template = new Helpers(new Handlebars()).registerHelpers().compile(testNameOverviewReport);
         AllTestNgReports allTestNgReports =
             new AllTestNgReports("Tests by name overview report", processedTestNgReports);
-        FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsByNameOverview.html"),
+        FileUtils.writeStringToFile(new File(testOverviewPath + "testsByNameOverview.html"),
             template.apply(allTestNgReports));
     }
 
     private void writeTestCaseSummaryReport() throws IOException {
         Template templateTestClassReport =
-            new Helpers(new Handlebars()).registerHelpers().compile(TEST_SUMMARY_REPORT);
+            new Helpers(new Handlebars()).registerHelpers().compile(testSummaryReport);
         for (TestngResultsModel tngr : processedTestNgReports) {
             for (SuiteModel sm : tngr.getSuites()) {
                 for (TestModel tm : sm.getTests()) {
-                    for (ClassModel cm : tm.getClasses()) {
-
-                        File file = new File(CLASSES_SUMMARY_PATH + tm.getName() + cm.getName() + ".html");
-                        if (!file.exists()) {
-                            file.getParentFile().mkdirs();
-                            file.createNewFile();
-                        }
-                        OutputStream os =
-                            new FileOutputStream(file);
-
-                        PrintWriter rw = new PrintWriter(os);
-                        rw.print(templateTestClassReport.apply(cm));
-                        rw.close();
-                        os.close();
-                    }
+                    generateHtmlReport(templateTestClassReport, tm);
                 }
             }
+        }
+    }
+
+    private void generateHtmlReport(Template templateTestClassReport, TestModel tm) throws IOException {
+        for (ClassModel cm : tm.getClasses()) {
+
+            File file = new File(classesSummaryPath + tm.getName() + cm.getName() + ".html");
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            OutputStream os =
+                new FileOutputStream(file);
+
+            PrintWriter rw = new PrintWriter(os);
+            rw.print(templateTestClassReport.apply(cm));
+            rw.close();
+            os.close();
         }
     }
 
