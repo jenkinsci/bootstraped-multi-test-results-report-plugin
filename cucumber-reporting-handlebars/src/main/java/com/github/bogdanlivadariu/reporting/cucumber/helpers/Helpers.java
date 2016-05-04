@@ -25,7 +25,18 @@ public class Helpers {
     }
 
     public Handlebars registerHelpers() {
-        handlebar.registerHelper("date", new Helper<Long>() {
+        handlebar.registerHelper("date", dateHelper());
+        handlebar.registerHelper("embedding", embeddingHelper());
+        handlebar.registerHelper("result-color", resultColorHelper());
+        handlebar.registerHelper("resolve-title", resolveTitleHelper());
+        handlebar.registerHelper("is-collapsed", isCollapsedHelper());
+        handlebar.registerHelper("now", nowHelper());
+        handlebar.registerHelper("do_table", doTableHelper());
+        return handlebar;
+    }
+
+    private Helper<Long> dateHelper() {
+        return new Helper<Long>() {
             public CharSequence apply(Long arg0, Options arg1) throws IOException {
                 PeriodFormatter formatter = new PeriodFormatterBuilder()
                     .appendDays()
@@ -39,15 +50,16 @@ public class Helpers {
                     .appendMillis()
                     .appendSuffix(" ms")
                     .toFormatter();
-                String formatted = formatter.print(new Period((arg0 * 1) / 1000000));
-                return formatted;
+                return formatter.print(new Period((arg0 * 1) / 1000000));
             }
-        });
+        };
+    }
 
-        handlebar.registerHelper("embedding", new Helper<String>() {
+    private Helper<String> embeddingHelper() {
+        return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                String toReturn = "";
+                String toReturn;
                 String id = UUID.randomUUID().toString();
                 int index = arg1.param(1);
                 if (arg1.param(0).toString().contains("image")) {
@@ -81,52 +93,38 @@ public class Helpers {
                 }
                 return toReturn;
             }
-        });
+        };
+    }
 
-        handlebar.registerHelper("result-color", new Helper<String>() {
+    private Helper<String> resultColorHelper() {
+        return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toLowerCase()) {
-                    case "skipped":
-                        return "info";
-                    case "passed":
-                        return "success";
-                    case "failed":
-                        return "danger";
-                }
-                return "undefined";
+                return checkState(arg0.toLowerCase(), Constants.INFO, Constants.SUCCESS, Constants.DANGER);
             }
-        });
+        };
+    }
 
-        handlebar.registerHelper("resolve-title", new Helper<String>() {
+    private Helper<String> resolveTitleHelper() {
+        return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toLowerCase()) {
-                    case "skipped":
-                        return "This step has been skipped";
-                    case "passed":
-                        return "This step has passed";
-                    case "failed":
-                        return "This step has failed";
-                }
-                return "undefined";
+                return checkState(arg0.toLowerCase(), Constants.THIS_STEP_HAS_BEEN_SKIPPED, Constants.THIS_STEP_HAS_PASSED, Constants.THIS_STEP_HAS_FAILED);
             }
-        });
+        };
+    }
 
-        handlebar.registerHelper("is-collapsed", new Helper<String>() {
+    private Helper<String> isCollapsedHelper() {
+        return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toLowerCase()) {
-                    case "passed":
-                        return "collapse";
-                    case "failed":
-                        return "collapse in";
-                }
-                return "undefined";
+                return checkState(arg0.toLowerCase(), null, Constants.COLLAPSE, Constants.COLLAPSE_IN);
             }
-        });
+        };
+    }
 
-        handlebar.registerHelper("now", new Helper<Object>() {
+    private Helper<Object> nowHelper() {
+        return new Helper<Object>() {
             @Override
             public CharSequence apply(Object context, Options options) throws IOException {
                 Calendar cal = Calendar.getInstance();
@@ -135,9 +133,11 @@ public class Helpers {
                 TimeZone tz = cal.getTimeZone();
                 return now + " " + tz.getID();
             }
-        });
+        };
+    }
 
-        handlebar.registerHelper("do_table", new Helper<List<Row>>() {
+    private Helper<List<Row>> doTableHelper() {
+        return new Helper<List<Row>>() {
             @Override
             public CharSequence apply(List<Row> rows, Options arg1) throws IOException {
                 String tableContent = "<table  class='table table-condensed table-hover'>";
@@ -167,7 +167,18 @@ public class Helpers {
                 tableContent += "</tbody></table>";
                 return tableContent;
             }
-        });
-        return handlebar;
+        };
+    }
+
+    private CharSequence checkState(String arg0, String retValue1, String retValue2, String retValue3) {
+        switch (arg0.toLowerCase()) {
+            case Constants.SKIPPED:
+                return retValue1;
+            case Constants.PASSED:
+                return retValue2;
+            case Constants.FAILED:
+                return retValue3;
+        }
+        return Constants.UNDEFINED;
     }
 }

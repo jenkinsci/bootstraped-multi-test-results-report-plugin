@@ -18,4 +18,23 @@ public class Constants {
 
     public static final String UNTAGGED = "untagged";
 
+    public static final String UNDEFINED = "undefined";
+
+    public static final String THIS_STEP_HAS_BEEN_SKIPPED = "This step has been skipped";
+
+    public static final String THIS_STEP_HAS_PASSED = "This step has passed";
+
+    public static final String THIS_STEP_HAS_FAILED = "This step has failed";
+
+    public static final String COLLAPSE = "collapse";
+
+    public static final String COLLAPSE_IN = "collapse in";
+
+    public static final String INFO = "info";
+
+    public static final String SUCCESS = "success";
+
+    public static final String DANGER = "danger";
+
+    private Constants() {}
 }

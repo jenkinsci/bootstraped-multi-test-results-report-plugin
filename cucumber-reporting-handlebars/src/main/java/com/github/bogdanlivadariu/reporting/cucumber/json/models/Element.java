@@ -36,6 +36,8 @@ public class Element {
 
     private String uniqueID;
 
+    private List<Embedding> embeddings;
+
     public void postProcess() {
         uniqueID = UUID.randomUUID().toString();
         List<String> stepStatuses = new ArrayList<>();
@@ -66,8 +68,6 @@ public class Element {
     public long getTotal_duration() {
         return total_duration;
     }
-
-    private List<Embedding> embeddings;
 
     public void appendEmbedding(Embedding embedding) {
         if (embeddings == null) {
