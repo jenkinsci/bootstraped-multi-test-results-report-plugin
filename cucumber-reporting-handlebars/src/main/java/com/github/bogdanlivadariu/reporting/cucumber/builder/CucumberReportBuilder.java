@@ -27,9 +27,9 @@ import com.google.gson.Gson;
 
 public class CucumberReportBuilder {
 
-    private final String FEATURE_SUMMARY_REPORT = "cucumber-reporting/featureSummaryReport";
+    private static final String FEATURE_SUMMARY_REPORT = "cucumber-reporting/featureSummaryReport";
 
-    private final String FEATURE_OVERVIEW_REPORT = "cucumber-reporting/featureOverviewReport";
+    private static final String FEATURE_OVERVIEW_REPORT = "cucumber-reporting/featureOverviewReport";
 
     private final String FEATURE_TAG_REPORT;
 
@@ -43,8 +43,7 @@ public class CucumberReportBuilder {
 
     private List<Feature> processedFeatures = null;
 
-    public CucumberReportBuilder(List<String> jsonReports, String targetBuildPath) throws FileNotFoundException,
-        IOException {
+    public CucumberReportBuilder(List<String> jsonReports, String targetBuildPath) throws IOException {
         REPORTS_SUMMARY_PATH = targetBuildPath + "/feature-reports/";
 
         REPORTS_OVERVIEW_PATH = targetBuildPath + "/";
@@ -142,13 +141,12 @@ public class CucumberReportBuilder {
         }
     }
 
-    private List<Feature> prepareData(List<String> jsonReports) throws FileNotFoundException, IOException {
+    private List<Feature> prepareData(List<String> jsonReports) throws IOException {
         List<Feature> processedFeatures = new ArrayList<>();
         for (String jsonReport : jsonReports) {
             File jsonFileReport = new File(jsonReport);
-            String gson = null;
             FileInputStream fis = new FileInputStream(jsonFileReport);
-            gson = IOUtils.toString(fis);
+            String gson = IOUtils.toString(fis);
             fis.close();
 
             if (gson.isEmpty()) {

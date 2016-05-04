@@ -80,17 +80,7 @@ public class Feature {
             }
             if (el.getSteps() != null) {
                 for (Step step : el.getSteps()) {
-                    stepResultStatuses.add(step.getResult().getStatus());
-                    try {
-                        for (Embedding emb : step.getEmbeddings()) {
-                            if (emb == null) {
-                                continue;
-                            }
-                            el.appendEmbedding(emb);
-                        }
-                    } catch (Exception e) {
-                        // an exception appeared when extracting the embeddings
-                    }
+                    fillStepResultStatuses(stepResultStatuses, el, step);
                 }
             }
         }
@@ -98,6 +88,20 @@ public class Feature {
             overall_status = FAILED;
         }
         return this;
+    }
+
+    private void fillStepResultStatuses(List<String> stepResultStatuses, Element el, Step step) {
+        stepResultStatuses.add(step.getResult().getStatus());
+        try {
+            for (Embedding emb : step.getEmbeddings()) {
+                if (emb == null) {
+                    continue;
+                }
+                el.appendEmbedding(emb);
+            }
+        } catch (Exception e) {
+            // an exception appeared when extracting the embeddings
+        }
     }
 
     public int getScenariosCount() {
