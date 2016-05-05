@@ -59,6 +59,8 @@ public class ClassModel {
                 case XMLReporterConfig.TEST_SKIPPED:
                     totalSkipped++;
                     break;
+                default:
+                    break;
             }
         }
     }
