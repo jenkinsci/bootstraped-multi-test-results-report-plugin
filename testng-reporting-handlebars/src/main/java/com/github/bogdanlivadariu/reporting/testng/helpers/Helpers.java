@@ -12,8 +12,10 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 
+import static com.github.bogdanlivadariu.reporting.testng.helpers.Constants.*;
+
 public class Helpers {
-    public static final String UNDEFINED = "undefined";
+    public static final String PROBLEM_SETTING_STATUS = "there was a problem setting the tooltip of the test, status might differ, investigate";
 
     private Handlebars handlebar;
 
@@ -37,68 +39,35 @@ public class Helpers {
         handlebar.registerHelper("result-color", new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toUpperCase()) {
-                    case XMLReporterConfig.TEST_SKIPPED:
-                        return "info";
-                    case XMLReporterConfig.TEST_PASSED:
-                        return "success";
-                    case XMLReporterConfig.TEST_FAILED:
-                        return "danger";
-                }
-                return UNDEFINED;
+                return checkStatus(arg0.toLowerCase(), "info", "success", "danger", null);
             }
         });
 
         handlebar.registerHelper("is-config", new Helper<Boolean>() {
             @Override
             public CharSequence apply(Boolean arg0, Options arg1) throws IOException {
-                if (arg0) {
-                    return "collapseMagic2 collapse";
-                } else {
-                    return "nada";
-                }
+                return getIsConfigApplyResult(arg0);
             }
         });
 
         handlebar.registerHelper("resolve-tooltip", new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toUpperCase()) {
-                    case XMLReporterConfig.TEST_PASSED:
-                        return "This test has passed";
-                    case XMLReporterConfig.TEST_FAILED:
-                        return "This test has failed";
-                    case XMLReporterConfig.TEST_SKIPPED:
-                        return "This test has been skipped";
-                }
-                return "there was a problem setting the tooltip of the test, status might differ, investigate";
+                return checkStatus(arg0.toLowerCase(), "This test has been skipped", "This test has passed", "This test has failed", PROBLEM_SETTING_STATUS);
             }
         });
 
         handlebar.registerHelper("resolve-title", new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                switch (arg0.toLowerCase()) {
-                    case "skipped":
-                        return "This step has been skipped";
-                    case "passed":
-                        return "This step has passed";
-                    case "failed":
-                        return "This step has failed";
-                }
-                return UNDEFINED;
+                return checkStatus(arg0.toLowerCase(), "This step has been skipped", "This step has passed", "This step has failed", null);
             }
         });
 
         handlebar.registerHelper("is-collapsed", new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                if ("passed".equalsIgnoreCase(arg0)) {
-                    return "collapse";
-                } else if("failed".equalsIgnoreCase(arg0)) {
-                    return "collapse in";
-                }
-                return UNDEFINED;
+                return checkStatus(arg0.toLowerCase(), null, "collapse", "collapse in", null);
             }
         });
 
@@ -114,5 +83,25 @@ public class Helpers {
         });
 
         return handlebar;
+    }
+
+    private CharSequence getIsConfigApplyResult(Boolean arg0) {
+        if (arg0) {
+            return "collapseMagic2 collapse";
+        } else {
+            return "nada";
+        }
+    }
+
+    private CharSequence checkStatus(String arg0, String retValue1, String retValue2, String retValue3, String retValue4) {
+        switch (arg0.toUpperCase()) {
+            case SKIPPED:
+                return retValue1;
+            case PASSED:
+                return retValue2;
+            case FAILED:
+                return retValue3;
+        }
+        return retValue4 == null ? UNDEFINED : retValue4;
     }
 }
