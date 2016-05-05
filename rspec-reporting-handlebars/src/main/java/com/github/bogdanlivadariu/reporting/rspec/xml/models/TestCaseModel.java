@@ -9,14 +9,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
+import static com.github.bogdanlivadariu.reporting.rspec.xml.models.BaseModel.*;
 
 @XmlRootElement(name = "testcase")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TestCaseModel {
-    public ErrorModel getError() {
-        return error;
-    }
-
     @XmlElement(name = "system-out")
     private String systemOut;
 
@@ -41,6 +38,10 @@ public class TestCaseModel {
     private String overallStatus;
 
     private String uniqueID;
+
+    public ErrorModel getError() {
+        return error;
+    }
 
     public String getUniqueID() {
         return uniqueID;

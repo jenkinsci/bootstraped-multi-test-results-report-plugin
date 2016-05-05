@@ -27,10 +27,6 @@ public class TestSuitesModel {
     @XmlAttribute
     private String errors;
 
-    public String getErrors() {
-        return errors;
-    }
-
     @XmlAttribute
     private String time;
 
@@ -40,6 +36,13 @@ public class TestSuitesModel {
     private String uniqueID;
 
     private String overallStatus;
+
+    @XmlElement(name = "testsuite")
+    private List<TestSuiteModel> testsuites;
+
+    public String getErrors() {
+        return errors;
+    }
 
     public String getOverallStatus() {
         return overallStatus;
@@ -76,9 +79,6 @@ public class TestSuitesModel {
     public List<TestSuiteModel> getTestSuites() {
         return testsuites;
     }
-
-    @XmlElement(name = "testsuite")
-    private List<TestSuiteModel> testsuites;
 
     public void postProcess() {
         uniqueID = UUID.randomUUID().toString();
