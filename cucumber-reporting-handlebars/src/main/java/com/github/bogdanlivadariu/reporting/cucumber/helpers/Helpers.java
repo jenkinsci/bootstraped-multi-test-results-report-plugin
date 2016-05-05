@@ -178,6 +178,8 @@ public class Helpers {
                 return retValue2;
             case Constants.FAILED:
                 return retValue3;
+            default:
+                break;
         }
         return Constants.UNDEFINED;
     }

@@ -33,7 +33,7 @@ import com.github.bogdanlivadariu.reporting.junit.builder.JUnitReportBuilder;
 @SuppressWarnings("unchecked")
 public class JUnitTestReportPublisher extends Recorder {
 
-    private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
+    private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
     private final String jsonReportDirectory;
 

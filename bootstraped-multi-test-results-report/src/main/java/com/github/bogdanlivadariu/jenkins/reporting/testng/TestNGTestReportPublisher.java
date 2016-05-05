@@ -33,7 +33,7 @@ import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 @SuppressWarnings("unchecked")
 public class TestNGTestReportPublisher extends Recorder {
 
-    private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
+    private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
     private final String jsonReportDirectory;
 

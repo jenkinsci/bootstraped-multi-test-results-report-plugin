@@ -101,6 +101,8 @@ public class Helpers {
                 return retValue2;
             case FAILED:
                 return retValue3;
+            default:
+                break;
         }
         return retValue4 == null ? UNDEFINED : retValue4;
     }
