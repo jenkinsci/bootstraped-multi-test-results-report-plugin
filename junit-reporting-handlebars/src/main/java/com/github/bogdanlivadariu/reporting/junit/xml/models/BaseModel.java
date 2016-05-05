@@ -6,9 +6,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-@XmlRootElement(name = "failure")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class FailureModel {
+public class BaseModel {
     @XmlAttribute
     private String message;
 
@@ -30,4 +29,9 @@ public class FailureModel {
         return value;
     }
 
+    @XmlRootElement(name = "error")
+    public static class ErrorModel extends BaseModel {}
+
+    @XmlRootElement(name = "failure")
+    public static class FailureModel extends BaseModel {}
 }
