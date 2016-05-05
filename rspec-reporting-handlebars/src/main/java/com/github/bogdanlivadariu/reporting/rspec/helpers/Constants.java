@@ -9,4 +9,7 @@ public class Constants {
 
     protected static final String SKIPPED = "skipped";
 
+    public static final String UNDEFINED = "undefined";
+
+    private Constants() {}
 }
