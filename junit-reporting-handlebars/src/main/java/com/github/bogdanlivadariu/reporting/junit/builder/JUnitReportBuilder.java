@@ -32,17 +32,16 @@ public class JUnitReportBuilder {
 
     private List<TestSuiteModel> processedTestSuites;
 
-    public List<TestSuiteModel> getProcessedTestSuites() {
-        return processedTestSuites;
-    }
-
-    public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath) throws FileNotFoundException,
-        JAXBException {
+    public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath) throws FileNotFoundException, JAXBException {
         TEST_OVERVIEW_PATH = targetBuildPath + "/";
         TEST_SUMMARY_PATH = targetBuildPath + "/test-summary/";
         processedTestSuites = new ArrayList<>();
 
         processXmlReports(xmlReports);
+    }
+
+    public List<TestSuiteModel> getProcessedTestSuites() {
+        return processedTestSuites;
     }
 
     private List<TestSuiteModel> processXmlReports(List<String> xmlReports) throws JAXBException {
