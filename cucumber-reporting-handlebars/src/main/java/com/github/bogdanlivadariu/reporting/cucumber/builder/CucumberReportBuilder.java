@@ -142,7 +142,7 @@ public class CucumberReportBuilder {
     }
 
     private List<Feature> prepareData(List<String> jsonReports) throws IOException {
-        List<Feature> processedFeatures = new ArrayList<>();
+        List<Feature> processedFeaturesLocal = new ArrayList<>();
         for (String jsonReport : jsonReports) {
             File jsonFileReport = new File(jsonReport);
             FileInputStream fis = new FileInputStream(jsonFileReport);
@@ -155,11 +155,11 @@ public class CucumberReportBuilder {
             Feature[] features = gs.fromJson(gson, Feature[].class);
 
             for (Feature feature : features) {
-                processedFeatures.add(feature.postProcess());
+                processedFeaturesLocal.add(feature.postProcess());
             }
 
         }
-        return processedFeatures;
+        return processedFeaturesLocal;
     }
 
     /**

@@ -82,6 +82,8 @@ public class Helpers {
                 return retVaule3;
             case Constants.FAILED:
                 return retVaule4;
+            default:
+                break;
         }
         return Constants.UNDEFINED;
     }

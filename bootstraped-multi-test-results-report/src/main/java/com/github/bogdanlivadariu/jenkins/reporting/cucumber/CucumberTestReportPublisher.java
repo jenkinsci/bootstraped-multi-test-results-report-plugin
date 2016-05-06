@@ -33,7 +33,7 @@ import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuild
 @SuppressWarnings("unchecked")
 public class CucumberTestReportPublisher extends Recorder {
 
-    private final static String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.json";
+    private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.json";
 
     private final String jsonReportDirectory;
 
