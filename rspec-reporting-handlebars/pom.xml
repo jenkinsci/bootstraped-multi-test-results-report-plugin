@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>rspec-reporting-handlebars</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
   <name>rspec-reporting-handlebars</name>
   <description>Module used to generate RSpec reports using handlebars</description>

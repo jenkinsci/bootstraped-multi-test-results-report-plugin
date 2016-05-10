@@ -11,7 +11,7 @@
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>1.4.10</version>
+  <version>1.4.11</version>
   <packaging>hpi</packaging>
   <scm>
     <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
@@ -115,22 +115,22 @@
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>cucumber-reporting-handlebars</artifactId>
-      <version>1.0.9</version>
+      <version>1.0.10</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>junit-reporting-handlebars</artifactId>
-      <version>1.0.5</version>
+      <version>1.0.6</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>rspec-reporting-handlebars</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.3</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>testng-reporting-handlebars</artifactId>
-      <version>1.0.5</version>
+      <version>1.0.6</version>
     </dependency>
   </dependencies>
 </project>
