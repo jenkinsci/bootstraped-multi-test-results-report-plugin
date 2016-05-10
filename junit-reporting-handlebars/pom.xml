@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>junit-reporting-handlebars</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.5</version>
   <packaging>jar</packaging>
   <name>junit-reporting-handlebars</name>
   <description>Module used to generate JUnit reports using handlebars</description>
@@ -129,7 +129,13 @@
     <dependency>
       <groupId>com.github.jknack</groupId>
       <artifactId>handlebars</artifactId>
-      <version>2.1.0</version>
+      <version>4.0.5</version>
+      <exclusions>
+     <exclusion>
+       <groupId>antlr</groupId>
+       <artifactId>antlr</artifactId>
+       </exclusion>
+    </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
