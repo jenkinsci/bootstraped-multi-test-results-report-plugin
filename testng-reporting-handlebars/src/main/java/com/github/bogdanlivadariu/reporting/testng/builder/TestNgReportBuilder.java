@@ -109,7 +109,7 @@ public class TestNgReportBuilder {
         writeTestsByNameOverview();
         writeTestCaseSummaryReport();
         for (TestngResultsModel ts : processedTestNgReports) {
-            if (ts.getTotalClassesFailed() > 1 || ts.getTotalClassesSkipped() > 1) {
+            if (ts.getTotalClassesFailed() >= 1 || ts.getTotalClassesSkipped() >= 1) {
                 return false;
             }
         }

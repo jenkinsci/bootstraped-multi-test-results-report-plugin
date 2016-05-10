@@ -122,9 +122,9 @@ public class JUnitReportBuilder {
         writeTestsPassedReport();
         writeTestsFailedReport();
         for (TestSuiteModel ts : processedTestSuites) {
-            if (Integer.parseInt(ts.getFailures()) > 1
-                || Integer.parseInt(ts.getErrors()) > 1
-                || Integer.parseInt(ts.getSkipped()) > 1) {
+            if (Integer.parseInt(ts.getFailures()) >= 1
+                || Integer.parseInt(ts.getErrors()) >= 1
+                || Integer.parseInt(ts.getSkipped()) >= 1) {
                 return false;
             }
         }
