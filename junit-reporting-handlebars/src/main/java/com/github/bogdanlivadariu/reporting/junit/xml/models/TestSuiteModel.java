@@ -62,7 +62,7 @@ public class TestSuiteModel {
     }
 
     public String getTime() {
-        return time.replace(",", "");
+        return time == null ? "0" : time.replace(",", "");
     }
 
     public String getErrors() {
