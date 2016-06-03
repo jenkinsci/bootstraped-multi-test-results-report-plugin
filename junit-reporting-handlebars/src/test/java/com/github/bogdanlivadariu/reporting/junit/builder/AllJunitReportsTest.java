@@ -31,7 +31,7 @@ public class AllJunitReportsTest {
     @Test
     public void restSuitesSizeTest() throws FileNotFoundException, JAXBException {
 
-        assertEquals("reports cound is not right", reports.getAllTestSuites().size(), 1);
+        assertEquals("reports count is not right", reports.getAllTestSuites().size(), 1);
 
         assertEquals(reports.getSuitesCount(), 1);
         assertEquals(reports.getTotalErrors(), 0);
