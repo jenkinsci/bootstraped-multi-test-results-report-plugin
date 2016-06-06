@@ -33,4 +33,17 @@ public class JUnitReportBuilderTest {
         builder = new JUnitReportBuilder(xmlReports, "out");
         assertEquals("reports count is not right", 0, builder.getProcessedTestSuites().size());
     }
+
+    @Test
+    public void processedReportsSuitesTest() throws FileNotFoundException, JAXBException {
+        List<String> xmlReports = new ArrayList<>();
+        String report = this.getClass().getClassLoader().getResource("valid-report-2.xml").getPath();
+        xmlReports.add(report);
+        JUnitReportBuilder builder = new JUnitReportBuilder(xmlReports, "out");
+        assertEquals("reports count is not right", 1, builder.getProcessedTestSuites().size());
+        xmlReports.clear();
+        builder = new JUnitReportBuilder(xmlReports, "out");
+        assertEquals("reports count is not right", 0, builder.getProcessedTestSuites().size());
+    }
 }
+

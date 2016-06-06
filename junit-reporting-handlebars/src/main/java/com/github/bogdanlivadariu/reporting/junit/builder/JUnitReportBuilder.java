@@ -18,6 +18,7 @@ import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.junit.helpers.Helpers;
 import com.github.bogdanlivadariu.reporting.junit.xml.models.TestCaseModel;
 import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuiteModel;
+import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuitesModel;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 
@@ -44,25 +45,32 @@ public class JUnitReportBuilder {
         return processedTestSuites;
     }
 
+    private void processSuite(TestSuiteModel ts) {
+        for (TestCaseModel tc : ts.getTestcase()) {
+            tc.postProcess();
+        }
+        ts.postProcess();
+        processedTestSuites.add(ts);
+    }
+
     private List<TestSuiteModel> processXmlReports(List<String> xmlReports) throws JAXBException {
-        JAXBContext cntx = JAXBContext.newInstance(TestSuiteModel.class);
-
-        Unmarshaller unm = cntx.createUnmarshaller();
-
         for (String xml : xmlReports) {
-
             Logger.getGlobal().info("Processing: " + xml);
-            TestSuiteModel ts = (TestSuiteModel) unm.unmarshal(new File(xml));
-            for (TestCaseModel tc : ts.getTestcase()) {
-                if (tc.getError() != null) {
-                    System.out.println();
+            try {
+                /* we may found <testsuites> or <testsuite> as root element */
+                JAXBContext cntx = JAXBContext.newInstance(TestSuitesModel.class);
+                Unmarshaller unm = cntx.createUnmarshaller();
+                TestSuitesModel tss = (TestSuitesModel) unm.unmarshal(new File(xml));
+                for (TestSuiteModel ts : tss.getTestsuite()) {
+                    processSuite(ts);
                 }
+                tss.postProcess();
+            } catch (ClassCastException e) {
+                JAXBContext cntx2 = JAXBContext.newInstance(TestSuiteModel.class);
+                Unmarshaller unm2 = cntx2.createUnmarshaller();
+                TestSuiteModel ts = (TestSuiteModel) unm2.unmarshal(new File(xml));
+                processSuite(ts);
             }
-            ts.postProcess();
-            for (TestCaseModel tc : ts.getTestcase()) {
-                tc.postProcess();
-            }
-            processedTestSuites.add(ts);
         }
         return processedTestSuites;
     }

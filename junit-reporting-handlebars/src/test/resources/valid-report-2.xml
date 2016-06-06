@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cloning Excel file and verifying" tests="13" failures="7" errors="0" skipped="0" time="0.813">
-  <properties />
-  <testcase name="verifyingTheClonedFile" time="0.048" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+<testsuites name="Excel">
+  <testsuite name="Cloning Excel file and verifying" tests="13" failures="7" errors="0" skipped="0" time="0.813">
+    <properties />
+    <testcase name="verifyingTheClonedFile" time="0.048" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -35,9 +36,9 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.113" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.113" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -70,9 +71,9 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.068" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.068" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -105,9 +106,9 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.040" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.040" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -140,9 +141,9 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.046" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.046" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -175,9 +176,9 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.050" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.050" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -210,9 +211,9 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.052" classname="test.java.PlayingWithExcelFiles">
-    <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.052" classname="test.java.PlayingWithExcelFiles">
+      <failure type="java.lang.AssertionError" message="Test failed as 'pass' was not found expected [true] but found [false]"><![CDATA[java.lang.AssertionError: Test failed as 'pass' was not found expected [true] but found [false]
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:496)
   org.testng.Assert.assertTrue(Assert.java:42)
@@ -245,12 +246,13 @@
   org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
   org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
   org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)]]></failure>
-  </testcase>
-  <testcase name="verifyingTheClonedFile" time="0.068" classname="test.java.PlayingWithExcelFiles" />
-  <testcase name="verifyingTheClonedFile" time="0.065" classname="test.java.PlayingWithExcelFiles" />
-  <testcase name="verifyingTheClonedFile" time="0.044" classname="test.java.PlayingWithExcelFiles" />
-  <testcase name="verifyingTheClonedFile" time="0.120" classname="test.java.PlayingWithExcelFiles" />
-  <testcase name="verifyingTheClonedFile" time="0.051" classname="test.java.PlayingWithExcelFiles" />
-  <testcase name="verifyingTheClonedFile" time="0.048" classname="test.java.PlayingWithExcelFiles" />
-</testsuite>
+    </testcase>
+    <testcase name="verifyingTheClonedFile" time="0.068" classname="test.java.PlayingWithExcelFiles" />
+    <testcase name="verifyingTheClonedFile" time="0.065" classname="test.java.PlayingWithExcelFiles" />
+    <testcase name="verifyingTheClonedFile" time="0.044" classname="test.java.PlayingWithExcelFiles" />
+    <testcase name="verifyingTheClonedFile" time="0.120" classname="test.java.PlayingWithExcelFiles" />
+    <testcase name="verifyingTheClonedFile" time="0.051" classname="test.java.PlayingWithExcelFiles" />
+    <testcase name="verifyingTheClonedFile" time="0.048" classname="test.java.PlayingWithExcelFiles" />
+  </testsuite>
+</testsuites>
 
