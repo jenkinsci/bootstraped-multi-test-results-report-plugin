@@ -44,8 +44,48 @@ public class TestSuiteModel {
     @XmlElement(name = "testcase")
     private List<TestCaseModel> testcase;
 
+    private Boolean hasMissingAttributes() {
+        return failures == null || time == null || errors == null || tests == null || skipped == null;
+    }
+
     public void postProcess() {
         uniqueID = UUID.randomUUID().toString();
+
+        if (hasMissingAttributes()) {
+            int failuresCount = 0;
+            int skippedCount = 0;
+            int errorsCount = 0;
+            Double totalTime = 0.0;
+
+            for (TestCaseModel test : testcase) {
+                if (test.getOverallStatus().equals(Constants.FAILED)) {
+                    failuresCount++;
+                } else if (test.getOverallStatus().equals(Constants.ERRORED)) {
+                    errorsCount++;
+                } else if (test.getOverallStatus().equals(Constants.SKIPPED)) {
+                    skippedCount++;
+                }
+                totalTime += Double.parseDouble(test.getTime());
+            }
+
+            // update fields if necessary
+            if (failures == null) {
+                failures = Integer.toString(failuresCount);
+            }
+            if (skipped == null) {
+                skipped = Integer.toString(skippedCount);
+            }
+            if (tests == null) {
+                tests = Integer.toString(testcase.size());
+            }
+            if (time == null) {
+                time = Double.toString(totalTime);
+            }
+            if (errors == null) {
+                errors = Integer.toString(errorsCount);
+            }
+        }
+
         if (Integer.parseInt(failures) > 0 || Integer.parseInt(errors) > 0) {
             overallStatus = Constants.FAILED;
         } else {
@@ -58,23 +98,23 @@ public class TestSuiteModel {
     }
 
     public String getFailures() {
-        return failures == null ? "0" : failures;
+        return failures;
     }
 
     public String getTime() {
-        return time == null ? "0" : time.replace(",", "");
+        return time.replace(",", "");
     }
 
     public String getErrors() {
-        return errors == null ? "0" : errors;
+        return errors;
     }
 
     public String getTests() {
-        return tests == null ? "0" : tests;
+        return tests;
     }
 
     public String getSkipped() {
-        return skipped == null ? "0" : skipped;
+        return skipped;
     }
 
     public String getName() {
