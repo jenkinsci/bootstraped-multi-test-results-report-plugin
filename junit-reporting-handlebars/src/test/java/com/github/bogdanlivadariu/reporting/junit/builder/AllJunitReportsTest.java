@@ -12,13 +12,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AllJunitReportsTest {
-    List<String> xmlReports;
+    private List<String> xmlReports;
 
-    String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
+    private String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
 
-    JUnitReportBuilder builder;
+    private JUnitReportBuilder builder;
 
-    AllJUnitReports reports;
+    private AllJUnitReports reports;
 
     @Before
     public void setup() throws FileNotFoundException, JAXBException {
@@ -30,12 +30,10 @@ public class AllJunitReportsTest {
 
     @Test
     public void restSuitesSizeTest() throws FileNotFoundException, JAXBException {
-
-        assertEquals("reports count is not right", reports.getAllTestSuites().size(), 1);
-
+        assertEquals("reports count is not right",
+            reports.getAllTestSuites().size(), 1);
         assertEquals(reports.getSuitesCount(), 1);
         assertEquals(reports.getTotalErrors(), 0);
-
     }
 
     @Test
@@ -67,5 +65,4 @@ public class AllJunitReportsTest {
     public void totalTimeTest() {
         assertEquals(reports.getTotalTime(), "0.813");
     }
-
 }
