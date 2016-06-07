@@ -36,10 +36,43 @@ public class TestSuitesModel {
     @XmlElement(name = "testsuite")
     private List<TestSuiteModel> testsuite;
 
+    private Boolean hasMissingAttributes() {
+        return failures == null || time == null || errors == null || tests == null;
+    }
+
     public void postProcess() {
         uniqueID = UUID.randomUUID().toString();
 
-        if ((failures != null && Integer.parseInt(failures) > 0) || (errors != null && Integer.parseInt(errors) > 0)) {
+        if (hasMissingAttributes()) {
+            int failuresCount = 0;
+            int errorsCount = 0;
+            Double totalTime = 0.0;
+
+            for (TestSuiteModel suite : testsuite) {
+                if (suite.getOverallStatus().equals(Constants.FAILED)) {
+                    failuresCount++;
+                } else if (suite.getOverallStatus().equals(Constants.ERRORED)) {
+                    errorsCount++;
+                }
+                totalTime += Double.parseDouble(suite.getTime());
+            }
+
+            // update fields if necessary
+            if (failures == null) {
+                failures = Integer.toString(failuresCount);
+            }
+            if (tests == null) {
+                tests = Integer.toString(testsuite.size());
+            }
+            if (time == null) {
+                time = Double.toString(totalTime);
+            }
+            if (errors == null) {
+                errors = Integer.toString(errorsCount);
+            }
+        }
+
+        if (Integer.parseInt(failures) > 0 || Integer.parseInt(errors) > 0) {
             overallStatus = Constants.FAILED;
         } else {
             overallStatus = Constants.PASSED;
@@ -51,19 +84,19 @@ public class TestSuitesModel {
     }
 
     public String getFailures() {
-        return failures == null ? "0" : failures;
+        return failures;
     }
 
     public String getTime() {
-        return time == null ? "0" : time.replace(",", "");
+        return time.replace(",", "");
     }
 
     public String getErrors() {
-        return errors == null ? "0" : errors;
+        return errors;
     }
 
     public String getTests() {
-        return tests == null ? "0" : tests;
+        return tests;
     }
 
     public String getName() {

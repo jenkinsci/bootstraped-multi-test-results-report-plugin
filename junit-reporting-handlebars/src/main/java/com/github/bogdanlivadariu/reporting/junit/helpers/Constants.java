@@ -7,7 +7,7 @@ public class Constants {
 
     public static final String ERRORED = "errored";
 
-    protected static final String SKIPPED = "skipped";
+    public static final String SKIPPED = "skipped";
 
     public static final String UNDEFINED = "undefined";
 

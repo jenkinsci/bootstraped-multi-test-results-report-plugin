@@ -40,7 +40,7 @@ public class JUnitReportBuilderTest {
         String report = this.getClass().getClassLoader().getResource("valid-report-2.xml").getPath();
         xmlReports.add(report);
         JUnitReportBuilder builder = new JUnitReportBuilder(xmlReports, "out");
-        assertEquals("reports count is not right", 1, builder.getProcessedTestSuites().size());
+        assertEquals("reports count is not right", 2, builder.getProcessedTestSuites().size());
         xmlReports.clear();
         builder = new JUnitReportBuilder(xmlReports, "out");
         assertEquals("reports count is not right", 0, builder.getProcessedTestSuites().size());
