@@ -60,12 +60,13 @@ public class JUnitReportBuilder {
                 /* we may found <testsuites> or <testsuite> as root element */
                 JAXBContext cntx = JAXBContext.newInstance(TestSuitesModel.class);
                 Unmarshaller unm = cntx.createUnmarshaller();
+                // may throw UnmarshalException OR ClassCastException
                 TestSuitesModel tss = (TestSuitesModel) unm.unmarshal(new File(xml));
                 for (TestSuiteModel ts : tss.getTestsuite()) {
                     processSuite(ts);
                 }
                 tss.postProcess();
-            } catch (ClassCastException e) {
+            } catch (Exception e) {
                 JAXBContext cntx2 = JAXBContext.newInstance(TestSuiteModel.class);
                 Unmarshaller unm2 = cntx2.createUnmarshaller();
                 TestSuiteModel ts = (TestSuiteModel) unm2.unmarshal(new File(xml));
