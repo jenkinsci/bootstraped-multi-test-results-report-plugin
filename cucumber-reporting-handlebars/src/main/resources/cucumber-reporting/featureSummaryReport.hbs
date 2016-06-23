@@ -58,6 +58,13 @@
                 list-group-item 
                 list-group-item-{{#result-color overallStatus}}{{/result-color}}">
               <span class="forDrop" data-target="#{{uniqueID}}" data-toggle="collapse">
+                {{#if tags}}
+                  <span class="badge badge-success">Tags:
+                    {{#each tags}}
+                      {{name}}
+                    {{/each}}
+                  </span>
+                {{/if}}
                 <i class="glyphicon glyphicon-chevron-right"></i>
                 {{keyword}}: {{name}}
                 {{#if description}}
