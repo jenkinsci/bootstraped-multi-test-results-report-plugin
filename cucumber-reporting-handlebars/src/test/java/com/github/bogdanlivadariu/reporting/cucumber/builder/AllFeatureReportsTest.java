@@ -24,7 +24,7 @@ public class AllFeatureReportsTest {
     private AllFeatureReports reports;
 
     @Before
-    public void setup() throws JAXBException, IOException {
+    public void setUp() throws JAXBException, IOException {
         jsonReports = new ArrayList<>();
 
         firstReport = AllFeatureReportsTest.class.getResource("/result.json").getPath();

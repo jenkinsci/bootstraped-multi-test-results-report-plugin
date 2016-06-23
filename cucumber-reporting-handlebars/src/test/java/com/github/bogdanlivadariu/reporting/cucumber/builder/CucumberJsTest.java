@@ -19,7 +19,7 @@ public class CucumberJsTest {
     private AllFeatureReports reports;
 
     @Before
-    public void setup() throws JAXBException, IOException {
+    public void setUp() throws JAXBException, IOException {
         List<String> jsonReports = new ArrayList<>();
 
         String cucumberJsReport = AllFeatureReportsTest.class.getResource("/cucumber-js.json").getPath();
