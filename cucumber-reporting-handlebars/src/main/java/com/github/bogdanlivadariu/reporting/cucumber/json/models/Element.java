@@ -22,6 +22,8 @@ public class Element {
 
     private String type;
 
+    private Tag[] tags;
+
     private Step[] steps;
 
     private long total_duration;
@@ -104,6 +106,10 @@ public class Element {
         return type;
     }
 
+    public Tag[] getTags() {
+        return tags;
+    }
+
     public Step[] getSteps() {
         return steps;
     }
@@ -133,4 +139,5 @@ public class Element {
     public String getUniqueID() {
         return uniqueID;
     }
+
 }
