@@ -31,6 +31,8 @@ public class AllFeatureReports {
 
     private int stepsTotalSkipped;
 
+    private int stepsTotalUndefined;
+
     private long totalDuration;
 
     private Set<String> allTags = new LinkedHashSet<String>();
@@ -47,6 +49,7 @@ public class AllFeatureReports {
             stepsTotalPassed += feature.getStepsPassedCount();
             stepsTotalFailed += feature.getStepsFailedCount();
             stepsTotalSkipped += feature.getStepsSkippedCount();
+            stepsTotalUndefined += feature.getStepsUndefinedCount();
 
             totalDuration += feature.getTotal_duration();
 
@@ -90,6 +93,10 @@ public class AllFeatureReports {
 
     public int getStepsTotalSkipped() {
         return stepsTotalSkipped;
+    }
+
+    public int getStepsTotalUndefined() {
+        return stepsTotalUndefined;
     }
 
     public long getTotalDuration() {

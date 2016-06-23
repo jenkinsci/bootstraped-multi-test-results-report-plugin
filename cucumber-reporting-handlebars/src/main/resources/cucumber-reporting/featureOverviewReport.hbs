@@ -24,6 +24,7 @@
       var stepsTotalPassed = {{stepsTotalPassed}};
       var stepsTotalSkipped = {{stepsTotalSkipped}};
       var stepsTotalFailed = {{stepsTotalFailed}};
+      var stepsTotalUndefined = {{stepsTotalUndefined}};
       var stepsTotal = {{stepsTotal}};
       
       var percentageScenarioPass = ((scenariosTotalPassed / scenariosTotal) * 100).toFixed(2);
@@ -33,7 +34,12 @@
       var percentageStepsPass = ((stepsTotalPassed / stepsTotal) * 100).toFixed(2);
       var percentageStepsFailed = ((stepsTotalFailed / stepsTotal) * 100).toFixed(2);
       var percentageStepsSkipped = ((stepsTotalSkipped / stepsTotal) * 100).toFixed(2);
-      var stepsSubtitle = percentageStepsPass + '% passed, ' + percentageStepsFailed + '% failed, ' + percentageStepsSkipped + '% skipped';
+      var percentageStepsUndefined = ((stepsTotalUndefined / stepsTotal) * 100).toFixed(2);
+      var stepsSubtitle = 
+        percentageStepsPass + '% passed, ' +
+        percentageStepsFailed + '% failed, ' +
+        percentageStepsSkipped + '% skipped, ' +
+        percentageStepsUndefined + '% undefined';
     </script>
     
     <div id="feature-container" class="panel panel-primary table-responsive">
@@ -45,7 +51,7 @@
           <tr class="success">
             <th class="text-center" colspan="2">Feature Name</th>
             <th class="text-center" colspan="3">Scenarios</th>
-            <th class="text-center" colspan="4">Steps</th>
+            <th class="text-center" colspan="5">Steps</th>
             <th class="text-center" style="width:60px;">Duration</th>
           </tr>
           <tr class="success">
@@ -58,11 +64,12 @@
             <th class="text-center">Passed</th>
             <th class="text-center">Failed</th>
             <th class="text-center">Skipped</th>
+            <th class="text-center">Undefined</th>
             <th></th>
           </tr>
 
           {{#each features}}
-          <tr class="{{#result-color overall_status}}{{/result-color}} text-center">
+          <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
             <td class="text-left" style="width:550px;"><a href="{{outputFileLocation}}">{{name}}</a></td>
             <td></td>
             <td>{{scenariosCount}}</td>
@@ -72,6 +79,7 @@
             <td>{{stepsPassedCount}}</td>
             <td>{{stepsFailedCount}}</td>
             <td>{{stepsSkippedCount}}</td>
+            <td>{{stepsUndefinedCount}}</td>
             <td><span class="badge">{{#date total_duration}}{{/date}}</span></td>
           </tr>
           {{/each}}
@@ -85,6 +93,7 @@
             <td>{{stepsTotalPassed}}</td>
             <td>{{stepsTotalFailed}}</td>
             <td>{{stepsTotalSkipped}}</td>
+            <td>{{stepsTotalUndefined}}</td>
             <td class="text-center"><span class="badge">{{#date totalDuration}}{{/date}}</span></td>
           </tr>
         </tbody>

@@ -100,7 +100,12 @@ public class Helpers {
         return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkState(arg0.toLowerCase(), Constants.INFO, Constants.SUCCESS, Constants.DANGER);
+                return checkState(
+                    arg0.toLowerCase(),
+                    Constants.INFO,
+                    Constants.SUCCESS,
+                    Constants.DANGER,
+                    Constants.WARNING);
             }
         };
     }
@@ -109,7 +114,12 @@ public class Helpers {
         return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkState(arg0.toLowerCase(), Constants.THIS_STEP_HAS_BEEN_SKIPPED, Constants.THIS_STEP_HAS_PASSED, Constants.THIS_STEP_HAS_FAILED);
+                return checkState(
+                    arg0.toLowerCase(),
+                    Constants.THIS_STEP_HAS_BEEN_SKIPPED,
+                    Constants.THIS_STEP_HAS_PASSED,
+                    Constants.THIS_STEP_HAS_FAILED,
+                    Constants.THIS_STEP_HAS_NOT_BEEN_DEFINED);
             }
         };
     }
@@ -118,7 +128,12 @@ public class Helpers {
         return new Helper<String>() {
             @Override
             public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkState(arg0.toLowerCase(), null, Constants.COLLAPSE, Constants.COLLAPSE_IN);
+                return checkState(
+                    arg0.toLowerCase(),
+                    Constants.COLLAPSE_IN,
+                    Constants.COLLAPSE,
+                    Constants.COLLAPSE_IN,
+                    Constants.COLLAPSE_IN);
             }
         };
     }
@@ -170,7 +185,8 @@ public class Helpers {
         };
     }
 
-    private CharSequence checkState(String arg0, String retValue1, String retValue2, String retValue3) {
+    private CharSequence checkState(String arg0, String retValue1, String retValue2, String retValue3,
+        String retValue4) {
         switch (arg0.toLowerCase()) {
             case Constants.SKIPPED:
                 return retValue1;
@@ -178,8 +194,8 @@ public class Helpers {
                 return retValue2;
             case Constants.FAILED:
                 return retValue3;
-            default:
-                break;
+            case Constants.UNDEFINED:
+                return retValue4;
         }
         return Constants.UNDEFINED;
     }

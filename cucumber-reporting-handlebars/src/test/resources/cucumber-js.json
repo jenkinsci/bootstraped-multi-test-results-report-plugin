@@ -1,0 +1,95 @@
+[
+  {
+    "id": "Campaign-Letter-Library",
+    "name": "Campaign Letter Library",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/letterlibrary_campaign.feature",
+    "elements": [
+      {
+        "name": "Save with empty Title and Content",
+        "id": "Campaign-Letter-Library;save-with-empty-title-and-content",
+        "line": 16,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@PROD",
+            "line": 3
+          }
+        ],
+        "steps": [
+          {
+            "name": "I am on the login page",
+            "line": 5,
+            "keyword": "Given ",
+            "result": {
+              "status": "skipped",
+              "duration": 2802379579
+            },
+            "match": {
+              "location": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/step_definitions/assessments/assessments_steps.js:40"
+            }
+          },
+          {
+            "name": "User has logged into the System as \"Administrator\" and \"123qweasd\" password",
+            "line": 6,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 14285269526
+            },
+            "match": {
+              "location": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/step_definitions/assessments/assessments_steps.js:51"
+            }
+          },
+          {
+            "name": "User open \"Campaign Letter Library\" page",
+            "line": 7,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 4269813014
+            },
+            "match": {
+              "location": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/step_definitions/letterlibrary/letterlibrary_steps.js:8"
+            }
+          },
+          {
+            "name": "User add population \"Tesha\"",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 101267676
+            },
+            "match": {
+              "location": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/step_definitions/letterlibrary/letterlibrary_steps.js:14"
+            }
+          },
+          {
+            "name": "User click \"Save\" button",
+            "line": 9,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 463463047
+            },
+            "match": {
+              "location": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/step_definitions/support/world.js:11"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

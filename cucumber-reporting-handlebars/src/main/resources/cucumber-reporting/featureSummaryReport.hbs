@@ -13,13 +13,19 @@
       var totalPassed = {{stepsPassedCount}};
       var totalSkipped = {{stepsSkippedCount}};
       var totalFailed = {{stepsFailedCount}};
+      var totalUndefined = {{stepsUndefinedCount}};
       var subTitle = '{{keyword}}: {{name}}';
 
       var totalSteps = {{stepsTotalCount}};
       var percentageTotalPassed = ((totalPassed / totalSteps) * 100).toFixed(2);
       var percentageTotalFailed = ((totalFailed / totalSteps) * 100).toFixed(2);
       var percentageTotalSkipped = ((totalSkipped / totalSteps) * 100).toFixed(2);
-      var overallStatus = percentageTotalPassed + '% passed, ' + percentageTotalFailed + '% failed, ' + percentageTotalSkipped + '% skipped';
+      var percentageTotalUndefined = ((totalUndefined / totalSteps) * 100).toFixed(2);
+      var overallStatus =
+        percentageTotalPassed + '% passed, ' +
+        percentageTotalFailed + '% failed, ' +
+        percentageTotalSkipped + '% skipped, ' +
+        percentageTotalUndefined + '% undefined';
       subTitle += '<br/>' + overallStatus;
     </script>
     {{> cucumber-reporting/highchartsScripts}}

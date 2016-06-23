@@ -65,6 +65,7 @@ public class AllFeatureReportsTest {
         assertEquals(1, reports.getStepsTotalFailed());
         assertEquals(88, reports.getStepsTotalPassed());
         assertEquals(3, reports.getStepsTotalSkipped());
+        assertEquals(0, reports.getStepsTotalUndefined());
     }
 
     @Test

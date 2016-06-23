@@ -3,7 +3,8 @@
   var getColor = {
       'passed': '#E0F0D9',
       'failed': '#F2DDDD',
-      'skipped': '#D9EDF7'
+      'skipped': '#D9EDF7',
+      'undefined': '#FCF8E3'
   };
       $('#container-chart').highcharts({
           chart: {
@@ -42,6 +43,10 @@
             name: 'Skipped',
               y: totalSkipped,
               color: getColor['skipped']
+         }, {
+            name: 'Undefined',
+              y: totalUndefined,
+              color: getColor['undefined']
          }
       ]
           },]

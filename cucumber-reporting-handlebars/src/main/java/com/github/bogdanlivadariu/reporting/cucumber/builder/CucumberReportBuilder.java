@@ -78,7 +78,7 @@ public class CucumberReportBuilder {
         for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext();) {
 
             Feature f = it.next();
-            if (f.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
+            if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
                 it.remove();
             }
         }
@@ -94,7 +94,7 @@ public class CucumberReportBuilder {
         List<Feature> onlyFailed = new ArrayList<>(getProcessedFeatures());
         for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext();) {
             Feature f = it.next();
-            if (f.getOverall_status().equalsIgnoreCase(Constants.PASSED)) {
+            if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
                 it.remove();
             }
         }
@@ -172,7 +172,7 @@ public class CucumberReportBuilder {
         writeFeatureFailedReport();
         writeFeatureTagsReport();
         for (Feature feature : getProcessedFeatures()) {
-            if (feature.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
+            if (feature.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
                 return false;
             }
         }
