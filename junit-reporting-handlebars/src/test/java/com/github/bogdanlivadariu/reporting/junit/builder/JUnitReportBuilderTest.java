@@ -46,4 +46,3 @@ public class JUnitReportBuilderTest {
         assertEquals("reports count is not right", 0, builder.getProcessedTestSuites().size());
     }
 }
-
