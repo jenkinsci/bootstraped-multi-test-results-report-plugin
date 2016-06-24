@@ -15,13 +15,14 @@ import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 
 public class TestNgReportBuilderCli {
 
-    public static void main(String[] args) throws JAXBException, IOException, XMLStreamException, FactoryConfigurationError {
+    public static void main(String[] args)
+        throws FactoryConfigurationError, JAXBException, XMLStreamException, IOException {
         List<String> xmlReports = new ArrayList<String>();
         String[] extensions = {"xml"};
         String xmlPath = System.getProperty("xmlPath");
         String outputPath = System.getProperty("reportsOutputPath");
         if (xmlPath == null || outputPath == null) {
-            throw new RuntimeException("xmlPath or reportsOutputPath variables have not been set");
+            throw new Error("xmlPath or reportsOutputPath variables have not been set");
         }
         Object[] files = FileUtils.listFiles(new File(xmlPath), extensions, false).toArray();
         System.out.println("Found " + files.length + " xml files");

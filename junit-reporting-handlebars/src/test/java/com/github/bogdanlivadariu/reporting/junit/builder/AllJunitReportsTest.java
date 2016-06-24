@@ -21,7 +21,7 @@ public class AllJunitReportsTest {
     private AllJUnitReports reports;
 
     @Before
-    public void setup() throws FileNotFoundException, JAXBException {
+    public void setUp() throws FileNotFoundException, JAXBException {
         xmlReports = new ArrayList<>();
         xmlReports.add(reportPath);
         builder = new JUnitReportBuilder(xmlReports, "out");

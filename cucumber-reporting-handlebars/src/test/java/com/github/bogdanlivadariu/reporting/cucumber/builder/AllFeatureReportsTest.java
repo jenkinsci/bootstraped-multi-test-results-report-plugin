@@ -13,11 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AllFeatureReportsTest {
-    private List<String> jsonReports;
-
-    private String firstReport;
-
-    private String secondReport;
 
     private CucumberReportBuilder builder;
 
@@ -25,10 +20,10 @@ public class AllFeatureReportsTest {
 
     @Before
     public void setUp() throws JAXBException, IOException {
-        jsonReports = new ArrayList<>();
+        List<String> jsonReports = new ArrayList<>();
 
-        firstReport = AllFeatureReportsTest.class.getResource("/result.json").getPath();
-        secondReport = AllFeatureReportsTest.class.getResource("/cucumber.json").getPath();
+        String firstReport = AllFeatureReportsTest.class.getResource("/result.json").getPath();
+        String secondReport = AllFeatureReportsTest.class.getResource("/cucumber.json").getPath();
 
         jsonReports.add(firstReport);
         jsonReports.add(secondReport);
