@@ -3,6 +3,7 @@ package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FAILED;
 import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.PASSED;
 import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.SKIPPED;
+import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.UNDEFINED;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,9 @@ public class Feature {
 
     private int zbang;
 
-    private long total_duration;
+    private long totalDuration;
 
-    private String overall_status = PASSED;
+    private String overallStatus = PASSED;
 
     private int scenariosPassedCount;
 
@@ -49,6 +50,8 @@ public class Feature {
     private int stepsFailedCount;
 
     private int stepsSkippedCount;
+
+    private int stepsUndefinedCount;
 
     private String outputFileLocation;
 
@@ -67,11 +70,12 @@ public class Feature {
         List<String> stepResultStatuses = new ArrayList<>();
         for (Element el : elements) {
             el.postProcess();
-            total_duration += el.getTotal_duration();
+            totalDuration += el.getTotalDuration();
             stepsTotalCount += el.getStepsTotalCount();
             stepsPassedCount += el.getStepsPassedCount();
             stepsFailedCount += el.getStepsFailedCount();
             stepsSkippedCount += el.getStepsSkippedCount();
+            stepsUndefinedCount += el.getStepsUndefinedCount();
 
             if (el.getOverallStatus().equals(PASSED)) {
                 scenariosPassedCount++;
@@ -84,8 +88,10 @@ public class Feature {
                 }
             }
         }
-        if (stepResultStatuses.contains(FAILED) || stepResultStatuses.contains(SKIPPED)) {
-            overall_status = FAILED;
+        if (stepResultStatuses.contains(FAILED) ||
+            stepResultStatuses.contains(SKIPPED) ||
+            stepResultStatuses.contains(UNDEFINED)) {
+            overallStatus = FAILED;
         }
         return this;
     }
@@ -148,6 +154,10 @@ public class Feature {
         return stepsSkippedCount;
     }
 
+    public int getStepsUndefinedCount() {
+        return stepsUndefinedCount;
+    }
+
     public int getStepsFailedCount() {
         return stepsFailedCount;
     }
@@ -164,16 +174,16 @@ public class Feature {
         return stepsTotalCount;
     }
 
-    public long getTotal_duration() {
-        return total_duration;
+    public long getTotalDuration() {
+        return totalDuration;
     }
 
     public int getScenariosPassedCount() {
         return scenariosPassedCount;
     }
 
-    public String getOverall_status() {
-        return overall_status;
+    public String getOverallStatus() {
+        return overallStatus;
     }
 
     public String getUniqueID() {

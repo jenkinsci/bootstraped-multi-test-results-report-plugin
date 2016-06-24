@@ -2,7 +2,6 @@ package com.github.bogdanlivadariu.reporting.cucumber.builder;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +30,8 @@ public class AllFeatureReports {
 
     private int stepsTotalSkipped;
 
+    private int stepsTotalUndefined;
+
     private long totalDuration;
 
     private Set<String> allTags = new LinkedHashSet<String>();
@@ -47,8 +48,9 @@ public class AllFeatureReports {
             stepsTotalPassed += feature.getStepsPassedCount();
             stepsTotalFailed += feature.getStepsFailedCount();
             stepsTotalSkipped += feature.getStepsSkippedCount();
+            stepsTotalUndefined += feature.getStepsUndefinedCount();
 
-            totalDuration += feature.getTotal_duration();
+            totalDuration += feature.getTotalDuration();
 
             if (feature.getTags().length < 1) {
                 allTags.add(Constants.UNTAGGED);
@@ -90,6 +92,10 @@ public class AllFeatureReports {
 
     public int getStepsTotalSkipped() {
         return stepsTotalSkipped;
+    }
+
+    public int getStepsTotalUndefined() {
+        return stepsTotalUndefined;
     }
 
     public long getTotalDuration() {

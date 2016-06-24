@@ -26,6 +26,8 @@ public class Constants {
 
     public static final String THIS_STEP_HAS_FAILED = "This step has failed";
 
+    public static final String THIS_STEP_HAS_NOT_BEEN_DEFINED = "This step has not been defined";
+
     public static final String COLLAPSE = "collapse";
 
     public static final String COLLAPSE_IN = "collapse in";
@@ -35,6 +37,9 @@ public class Constants {
     public static final String SUCCESS = "success";
 
     public static final String DANGER = "danger";
+    
+    public static final String WARNING = "warning";
 
-    private Constants() {}
+    private Constants() {
+    }
 }

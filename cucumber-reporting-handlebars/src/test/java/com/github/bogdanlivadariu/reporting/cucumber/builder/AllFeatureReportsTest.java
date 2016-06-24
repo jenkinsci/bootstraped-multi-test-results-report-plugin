@@ -24,7 +24,7 @@ public class AllFeatureReportsTest {
     private AllFeatureReports reports;
 
     @Before
-    public void setup() throws JAXBException, IOException {
+    public void setUp() throws JAXBException, IOException {
         jsonReports = new ArrayList<>();
 
         firstReport = AllFeatureReportsTest.class.getResource("/result.json").getPath();
@@ -65,6 +65,7 @@ public class AllFeatureReportsTest {
         assertEquals(1, reports.getStepsTotalFailed());
         assertEquals(88, reports.getStepsTotalPassed());
         assertEquals(3, reports.getStepsTotalSkipped());
+        assertEquals(0, reports.getStepsTotalUndefined());
     }
 
     @Test

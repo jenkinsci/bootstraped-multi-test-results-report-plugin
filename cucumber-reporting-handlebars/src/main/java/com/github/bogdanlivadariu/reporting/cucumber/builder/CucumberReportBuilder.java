@@ -22,7 +22,9 @@ import com.github.bogdanlivadariu.reporting.cucumber.json.models.Feature;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Tag;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class CucumberReportBuilder {
 
@@ -36,7 +38,7 @@ public class CucumberReportBuilder {
 
     private final String REPORTS_OVERVIEW_PATH;
 
-    private Gson gs = new Gson();
+    private Gson gs = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 
     private Handlebars bars = new Helpers(new Handlebars()).registerHelpers();
 
@@ -78,7 +80,7 @@ public class CucumberReportBuilder {
         for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext();) {
 
             Feature f = it.next();
-            if (f.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
+            if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
                 it.remove();
             }
         }
@@ -94,7 +96,7 @@ public class CucumberReportBuilder {
         List<Feature> onlyFailed = new ArrayList<>(getProcessedFeatures());
         for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext();) {
             Feature f = it.next();
-            if (f.getOverall_status().equalsIgnoreCase(Constants.PASSED)) {
+            if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
                 it.remove();
             }
         }
@@ -172,7 +174,7 @@ public class CucumberReportBuilder {
         writeFeatureFailedReport();
         writeFeatureTagsReport();
         for (Feature feature : getProcessedFeatures()) {
-            if (feature.getOverall_status().equalsIgnoreCase(Constants.FAILED)) {
+            if (feature.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
                 return false;
             }
         }
