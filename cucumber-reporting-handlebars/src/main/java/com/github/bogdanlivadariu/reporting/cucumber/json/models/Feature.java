@@ -35,7 +35,7 @@ public class Feature {
 
     private int zbang;
 
-    private long total_duration;
+    private long totalDuration;
 
     private String overallStatus = PASSED;
 
@@ -70,7 +70,7 @@ public class Feature {
         List<String> stepResultStatuses = new ArrayList<>();
         for (Element el : elements) {
             el.postProcess();
-            total_duration += el.getTotal_duration();
+            totalDuration += el.getTotalDuration();
             stepsTotalCount += el.getStepsTotalCount();
             stepsPassedCount += el.getStepsPassedCount();
             stepsFailedCount += el.getStepsFailedCount();
@@ -174,8 +174,8 @@ public class Feature {
         return stepsTotalCount;
     }
 
-    public long getTotal_duration() {
-        return total_duration;
+    public long getTotalDuration() {
+        return totalDuration;
     }
 
     public int getScenariosPassedCount() {

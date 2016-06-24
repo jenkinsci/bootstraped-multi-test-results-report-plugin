@@ -1,24 +1,23 @@
 package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 
-
 public class Step {
-    
+
     private String name;
-    
+
     private int line;
-    
+
     private String keyword;
-    
+
     private boolean hidden;
-    
+
     private Result result;
-    
+
     private Match match;
-    
+
     private int[] matchedColumns;
-    
+
     private Row[] rows;
-    
+
     private Embedding[] embeddings;
 
     public String getName() {

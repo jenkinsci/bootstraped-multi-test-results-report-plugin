@@ -46,7 +46,7 @@
           data-off="<span title='Click to collapse all scenarios'>Collapse</span>"
           type="checkbox"
           data-style="slow">
-          <span class="badge badge-success pull-right">{{#date total_duration}}{{/date}}</span>
+          <span class="badge badge-success pull-right">{{#date totalDuration}}{{/date}}</span>
         <h4 class="panel-title">
           <p>
             {{keyword}}: {{name}}
@@ -78,7 +78,7 @@
                 {{/if}}
               </span>
               <span class="label label-{{#result-color overallStatus}}{{/result-color}} pull-right">
-                {{#date total_duration}}{{/date}}
+                {{#date totalDuration}}{{/date}}
               </span>
               <ul id="{{uniqueID}}" class="steps list-group collapseMagic {{#is-collapsed overallStatus}}{{/is-collapsed}}">
                   {{#each steps}}
@@ -96,8 +96,8 @@
                         {{#if rows}}
                           <pre>{{#do_table rows}}{{/do_table}}</pre>
                         {{/if}}
-                        {{#if result.error_message}}
-                          <pre>{{result.error_message}}</pre>
+                        {{#if result.errorMessage}}
+                          <pre>{{result.errorMessage}}</pre>
                         {{/if}}
                       </li>
                     {{/unless}}
@@ -105,7 +105,7 @@
                   {{#if embeddings}}
                     <li class="list-group-item list-group-item-default">
                       {{#each embeddings}}
-                        {{#embedding data mime_type @index}}{{/embedding}}
+                        {{#embedding data mimeType @index}}{{/embedding}}
                       {{/each}}
                     </li>
                   {{/if}}

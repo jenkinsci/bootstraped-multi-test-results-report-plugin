@@ -6,7 +6,7 @@ public class Result {
 
     private String status;
 
-    private String error_message;
+    private String errorMessage;
 
     public long getDuration() {
         return duration;
@@ -16,8 +16,8 @@ public class Result {
         return status;
     }
 
-    public String getError_message() {
-        return error_message;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
 }

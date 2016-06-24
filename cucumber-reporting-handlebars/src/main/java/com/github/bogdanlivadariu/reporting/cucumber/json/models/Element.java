@@ -27,7 +27,7 @@ public class Element {
 
     private Step[] steps;
 
-    private long total_duration;
+    private long totalDuration;
 
     private String overallStatus = PASSED;
 
@@ -49,7 +49,7 @@ public class Element {
         if (steps != null) {
 
             for (Step step : steps) {
-                total_duration += step.getResult().getDuration();
+                totalDuration += step.getResult().getDuration();
                 String actualResultStatus = step.getResult().getStatus();
                 stepStatuses.add(step.getResult().getStatus());
                 if (actualResultStatus.equals(PASSED)) {
@@ -74,8 +74,8 @@ public class Element {
         return overallStatus;
     }
 
-    public long getTotal_duration() {
-        return total_duration;
+    public long getTotalDuration() {
+        return totalDuration;
     }
 
     public void appendEmbedding(Embedding embedding) {
