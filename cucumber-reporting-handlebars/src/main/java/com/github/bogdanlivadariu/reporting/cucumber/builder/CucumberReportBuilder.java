@@ -22,7 +22,9 @@ import com.github.bogdanlivadariu.reporting.cucumber.json.models.Feature;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Tag;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class CucumberReportBuilder {
 
@@ -36,7 +38,7 @@ public class CucumberReportBuilder {
 
     private final String REPORTS_OVERVIEW_PATH;
 
-    private Gson gs = new Gson();
+    private Gson gs = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 
     private Handlebars bars = new Helpers(new Handlebars()).registerHelpers();
 
