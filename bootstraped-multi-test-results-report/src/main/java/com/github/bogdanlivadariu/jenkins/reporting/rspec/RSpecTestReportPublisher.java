@@ -43,13 +43,16 @@ public class RSpecTestReportPublisher extends Recorder {
 
     private final boolean markAsUnstable;
 
+    private final boolean copyHTMLInWorkspace;
+
     @DataBoundConstructor
     public RSpecTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
-        boolean markAsUnstable) {
+        boolean markAsUnstable, boolean copyHTMLInWorkspace) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
+        this.copyHTMLInWorkspace = copyHTMLInWorkspace;
     }
 
     public String getJsonReportDirectory() {
@@ -66,6 +69,10 @@ public class RSpecTestReportPublisher extends Recorder {
 
     public boolean isMarkAsUnstable() {
         return markAsUnstable;
+    }
+
+    public boolean isCopyHTMLInWorkspace() {
+        return copyHTMLInWorkspace;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
@@ -152,6 +159,18 @@ public class RSpecTestReportPublisher extends Recorder {
                 } else {
                     result = isMarkAsUnstable() ? Result.UNSTABLE : Result.FAILURE;
                 }
+
+                // finally copy to workspace, if needed
+                if (isCopyHTMLInWorkspace()) {
+                    FilePath workspaceCopyDirectory = new FilePath(build.getWorkspace(), "rspec-reports-with-handlebars");
+                    if (workspaceCopyDirectory.exists()) {
+                        workspaceCopyDirectory.deleteRecursive();
+                    }
+                    listener.getLogger().println(
+                        "[RSpec test report builder] Copying report to workspace directory: " + workspaceCopyDirectory.toURI());
+                    new FilePath(targetBuildDirectory).copyRecursiveTo("**/*.html", workspaceCopyDirectory);
+                }
+
             } catch (Exception e) {
                 result = Result.FAILURE;
                 listener.getLogger().println(

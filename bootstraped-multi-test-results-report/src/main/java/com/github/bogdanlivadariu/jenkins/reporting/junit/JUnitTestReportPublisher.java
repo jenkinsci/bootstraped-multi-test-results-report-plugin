@@ -43,13 +43,16 @@ public class JUnitTestReportPublisher extends Recorder {
 
     private final boolean markAsUnstable;
 
+    private final boolean copyHTMLInWorkspace;
+
     @DataBoundConstructor
     public JUnitTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
-        boolean markAsUnstable) {
+        boolean markAsUnstable, boolean copyHTMLInWorkspace) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
+        this.copyHTMLInWorkspace = copyHTMLInWorkspace;
     }
 
     public String getJsonReportDirectory() {
@@ -66,6 +69,10 @@ public class JUnitTestReportPublisher extends Recorder {
 
     public boolean isMarkAsUnstable() {
         return markAsUnstable;
+    }
+
+    public boolean isCopyHTMLInWorkspace() {
+        return copyHTMLInWorkspace;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
@@ -151,6 +158,17 @@ public class JUnitTestReportPublisher extends Recorder {
                     result = Result.SUCCESS;
                 } else {
                     result = isMarkAsUnstable() ? Result.UNSTABLE : Result.FAILURE;
+                }
+
+                // finally copy to workspace, if needed
+                if (isCopyHTMLInWorkspace()) {
+                    FilePath workspaceCopyDirectory = new FilePath(build.getWorkspace(), "junit-reports-with-handlebars");
+                    if (workspaceCopyDirectory.exists()) {
+                        workspaceCopyDirectory.deleteRecursive();
+                    }
+                    listener.getLogger().println(
+                        "[JUnit test report builder] Copying report to workspace directory: " + workspaceCopyDirectory.toURI());
+                    new FilePath(targetBuildDirectory).copyRecursiveTo("**/*.html", workspaceCopyDirectory);
                 }
             } catch (Exception e) {
                 result = Result.FAILURE;
