@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>junit-reporting-handlebars</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <packaging>jar</packaging>
   <name>junit-reporting-handlebars</name>
   <description>Module used to generate JUnit reports using handlebars</description>
