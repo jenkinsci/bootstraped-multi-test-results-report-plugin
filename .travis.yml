@@ -11,7 +11,7 @@ cache:
   - $HOME/.m2
 
 before_install:
-  - mvn clean
+  - mvn clean -q
 
 install:
   - mvn install -Dgpg.skip=true -DskipTests=true -q
