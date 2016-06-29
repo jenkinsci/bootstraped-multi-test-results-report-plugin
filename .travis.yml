@@ -19,9 +19,9 @@ install:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - if [[ -n "$TRAVIS_TAG" ]]; then
-    openssl aes-256-cbc -K $encrypted_92692c621ac0_key -iv $encrypted_92692c621ac0_iv -in cd/codesigning.asc.enc -out cd/codesigning.asc -d
-    mvn clean install deploy
-  fi
+      openssl aes-256-cbc -K $encrypted_92692c621ac0_key -iv $encrypted_92692c621ac0_iv -in cd/codesigning.asc.enc -out cd/codesigning.asc -d
+      mvn clean install deploy
+    fi
 
 notifications:
   email:
