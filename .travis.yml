@@ -14,7 +14,7 @@ before_install:
   - mvn clean
 
 install:
-  - mvn install -Dgpg.skip=true -DskipTests=true
+  - mvn install -Dgpg.skip=true -DskipTests=true -q
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
