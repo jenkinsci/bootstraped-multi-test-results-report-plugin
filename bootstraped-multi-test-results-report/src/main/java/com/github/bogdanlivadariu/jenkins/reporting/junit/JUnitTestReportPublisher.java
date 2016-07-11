@@ -96,6 +96,8 @@ public class JUnitTestReportPublisher extends Recorder {
 
         listener.getLogger().println("[JUnitReportPublisher] Compiling JUnit Html Reports ...");
 
+
+
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
         if (getJsonReportDirectory().isEmpty()) {
@@ -112,17 +114,22 @@ public class JUnitTestReportPublisher extends Recorder {
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
             listener.getLogger().println(
-                "[JUnit test report builder] Copying all xml files from slave: "
+                "[JUnit test report builder] Copying XML files from slave: "
                     + workspaceJsonReportDirectory.getRemote() + " to master reports directory: "
                     + targetBuildDirectory);
         } else {
             listener.getLogger().println(
-                "[JUnit test report builder] Copying all xml files from: "
+                "[JUnit test report builder] Copying XML files from: "
                     + workspaceJsonReportDirectory.getRemote()
                     + " to reports directory: " + targetBuildDirectory);
         }
         File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/xmlData");
-        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN, new FilePath(
+        if (!targetBuildJsonDirectory.exists()) {
+            targetBuildJsonDirectory.mkdirs();
+        }
+        String includePattern = (fileIncludePattern == null || fileIncludePattern.isEmpty()) ?
+            DEFAULT_FILE_INCLUDE_PATTERN : fileIncludePattern;
+        workspaceJsonReportDirectory.copyRecursiveTo(includePattern, new FilePath(
             targetBuildJsonDirectory));
 
         // generate the reports from the targetBuildDirectory

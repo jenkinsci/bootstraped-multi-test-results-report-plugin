@@ -112,15 +112,20 @@ public class CucumberTestReportPublisher extends Recorder {
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
             listener.getLogger()
-                .println("[Cucumber test report builder] Copying all json files from slave: "
+                .println("[Cucumber test report builder] Copying JSON files from slave: "
                     + workspaceJsonReportDirectory.getRemote() + " to master reports directory: "
                     + targetBuildDirectory);
         } else {
-            listener.getLogger().println("[Cucumber test report builder] Copying all json files from: "
+            listener.getLogger().println("[Cucumber test report builder] Copying JSON files from: "
                 + workspaceJsonReportDirectory.getRemote() + " to reports directory: " + targetBuildDirectory);
         }
         File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/jsonData");
-        workspaceJsonReportDirectory.copyRecursiveTo(DEFAULT_FILE_INCLUDE_PATTERN,
+        if (!targetBuildJsonDirectory.exists()) {
+            targetBuildJsonDirectory.mkdirs();
+        }
+        String includePattern = (fileIncludePattern == null || fileIncludePattern.isEmpty()) ?
+            DEFAULT_FILE_INCLUDE_PATTERN : fileIncludePattern;
+        workspaceJsonReportDirectory.copyRecursiveTo(includePattern,
             new FilePath(targetBuildJsonDirectory));
 
         // generate the reports from the targetBuildDirectory
