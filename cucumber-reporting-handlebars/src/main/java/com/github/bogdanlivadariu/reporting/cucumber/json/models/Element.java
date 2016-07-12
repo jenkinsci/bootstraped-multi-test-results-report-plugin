@@ -68,7 +68,7 @@ public class Element {
         }
         if (stepStatuses.contains(UNDEFINED)) {
             boolean ignoreUndefinedSteps =
-                props.getProperties().getOrDefault(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, false);
+                props.getPropertyValue(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS);
             overallStatus = ignoreUndefinedSteps ? PASSED : FAILED;
         }
         if (stepStatuses.contains(FAILED) ||

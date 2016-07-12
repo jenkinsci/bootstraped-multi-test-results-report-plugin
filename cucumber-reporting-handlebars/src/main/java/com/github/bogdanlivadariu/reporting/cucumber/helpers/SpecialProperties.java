@@ -15,4 +15,12 @@ public class SpecialProperties {
     public Map<SpecialKeyProperties, Boolean> getProperties() {
         return specialProperties;
     }
+
+    public boolean getPropertyValue(SpecialKeyProperties key) {
+        try {
+            return getProperties().get(key);
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
 }
