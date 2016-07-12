@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 
 public class Feature {
 
@@ -63,13 +64,13 @@ public class Feature {
         this.outputFileLocation = outputFileLocation;
     }
 
-    public Feature postProcess() {
+    public Feature postProcess(SpecialProperties props) {
         pageTitle = Constants.FEATURE_SUMMARY_REPORT;
         uniqueID = UUID.randomUUID().toString();
         outputFileLocation = "feature-reports/" + uniqueID + ".html";
         List<String> stepResultStatuses = new ArrayList<>();
         for (Element el : elements) {
-            el.postProcess();
+            el.postProcess(props);
             totalDuration += el.getTotalDuration();
             stepsTotalCount += el.getStepsTotalCount();
             stepsPassedCount += el.getStepsPassedCount();

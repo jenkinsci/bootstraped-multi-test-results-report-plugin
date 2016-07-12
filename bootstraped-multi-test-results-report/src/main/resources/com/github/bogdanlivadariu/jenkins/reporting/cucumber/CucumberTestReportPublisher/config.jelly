@@ -25,6 +25,9 @@
     <f:entry title="Copy HTML reports in workspace" field="copyHTMLInWorkspace" >
       <f:checkbox title="Reports will be copied in workspace in cucumber-reports-with-handlebars directory."/>
     </f:entry>
+    <f:entry title="Ignore undefined steps" field="copyHTMLInWorkspace" >
+      <f:checkbox title="Undefined steps will not be taken into consideration when evaluating the build status"/>
+    </f:entry>
 
   </f:advanced>
 </j:jelly>
