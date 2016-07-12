@@ -12,6 +12,8 @@ import javax.xml.bind.JAXBException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+
 public class AllFeatureReportsTest {
 
     private CucumberReportBuilder builder;
@@ -28,7 +30,7 @@ public class AllFeatureReportsTest {
         jsonReports.add(firstReport);
         jsonReports.add(secondReport);
 
-        builder = new CucumberReportBuilder(jsonReports, "output");
+        builder = new CucumberReportBuilder(jsonReports, "output", new SpecialProperties());
         reports = new AllFeatureReports("title", builder.getProcessedFeatures());
     }
 

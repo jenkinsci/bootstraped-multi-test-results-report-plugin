@@ -29,6 +29,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
 import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuilder;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
 
 @SuppressWarnings("unchecked")
 public class CucumberTestReportPublisher extends Recorder {
@@ -45,14 +47,21 @@ public class CucumberTestReportPublisher extends Recorder {
 
     private final boolean copyHTMLInWorkspace;
 
+    private final SpecialProperties props;
+
     @DataBoundConstructor
     public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
-        boolean markAsUnstable, boolean copyHTMLInWorkspace) {
+        boolean markAsUnstable, boolean copyHTMLInWorkspace, boolean ignoreUndefinedSteps) {
         this.jsonReportDirectory = jsonReportDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
+
+        SpecialProperties props = new SpecialProperties();
+        props.getProperties().put(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, ignoreUndefinedSteps);
+        this.props = props;
+
     }
 
     public String getJsonReportDirectory() {
@@ -123,8 +132,8 @@ public class CucumberTestReportPublisher extends Recorder {
         if (!targetBuildJsonDirectory.exists()) {
             targetBuildJsonDirectory.mkdirs();
         }
-        String includePattern = (fileIncludePattern == null || fileIncludePattern.isEmpty()) ?
-            DEFAULT_FILE_INCLUDE_PATTERN : fileIncludePattern;
+        String includePattern = (fileIncludePattern == null || fileIncludePattern.isEmpty())
+            ? DEFAULT_FILE_INCLUDE_PATTERN : fileIncludePattern;
         workspaceJsonReportDirectory.copyRecursiveTo(includePattern,
             new FilePath(targetBuildJsonDirectory));
 
@@ -154,7 +163,7 @@ public class CucumberTestReportPublisher extends Recorder {
                 }
                 CucumberReportBuilder rep = new CucumberReportBuilder(
                     fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory),
-                    targetBuildDirectory.getAbsolutePath());
+                    targetBuildDirectory.getAbsolutePath(), props);
                 boolean featuresResult = rep.writeReportsOnDisk();
                 if (featuresResult) {
                     result = Result.SUCCESS;
@@ -164,12 +173,14 @@ public class CucumberTestReportPublisher extends Recorder {
 
                 // finally copy to workspace, if needed
                 if (isCopyHTMLInWorkspace()) {
-                    FilePath workspaceCopyDirectory = new FilePath(build.getWorkspace(), "cucumber-reports-with-handlebars");
+                    FilePath workspaceCopyDirectory =
+                        new FilePath(build.getWorkspace(), "cucumber-reports-with-handlebars");
                     if (workspaceCopyDirectory.exists()) {
                         workspaceCopyDirectory.deleteRecursive();
                     }
                     listener.getLogger().println(
-                        "[Cucumber test report builder] Copying report to workspace directory: " + workspaceCopyDirectory.toURI());
+                        "[Cucumber test report builder] Copying report to workspace directory: "
+                            + workspaceCopyDirectory.toURI());
                     new FilePath(targetBuildDirectory).copyRecursiveTo("**/*.html", workspaceCopyDirectory);
                 }
 

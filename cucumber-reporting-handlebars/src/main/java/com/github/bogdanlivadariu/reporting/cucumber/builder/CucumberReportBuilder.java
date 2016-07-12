@@ -18,6 +18,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Helpers;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Feature;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Tag;
 import com.github.jknack.handlebars.Handlebars;
@@ -44,12 +45,13 @@ public class CucumberReportBuilder {
 
     private List<Feature> processedFeatures = null;
 
-    public CucumberReportBuilder(List<String> jsonReports, String targetBuildPath) throws IOException {
+    public CucumberReportBuilder(List<String> jsonReports, String targetBuildPath, SpecialProperties props)
+        throws IOException {
         REPORTS_SUMMARY_PATH = targetBuildPath + "/feature-reports/";
 
         REPORTS_OVERVIEW_PATH = targetBuildPath + "/";
         FEATURE_TAG_REPORT = targetBuildPath + "/tag-reports/";
-        processedFeatures = prepareData(jsonReports);
+        processedFeatures = prepareData(jsonReports, props);
     }
 
     public List<Feature> getProcessedFeatures() {
@@ -142,7 +144,7 @@ public class CucumberReportBuilder {
         }
     }
 
-    private List<Feature> prepareData(List<String> jsonReports) throws IOException {
+    private List<Feature> prepareData(List<String> jsonReports, SpecialProperties props) throws IOException {
         List<Feature> processedFeaturesLocal = new ArrayList<>();
         for (String jsonReport : jsonReports) {
             File jsonFileReport = new File(jsonReport);
@@ -156,7 +158,7 @@ public class CucumberReportBuilder {
             Feature[] features = gs.fromJson(gson, Feature[].class);
 
             for (Feature feature : features) {
-                processedFeaturesLocal.add(feature.postProcess());
+                processedFeaturesLocal.add(feature.postProcess(props));
             }
 
         }

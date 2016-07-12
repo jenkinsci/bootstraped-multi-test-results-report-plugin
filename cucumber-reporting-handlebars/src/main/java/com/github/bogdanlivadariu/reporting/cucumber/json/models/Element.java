@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
+
 public class Element {
 
     private String name;
@@ -43,7 +46,7 @@ public class Element {
 
     private List<Embedding> embeddings;
 
-    public void postProcess() {
+    public void postProcess(SpecialProperties props) {
         uniqueID = UUID.randomUUID().toString();
         List<String> stepStatuses = new ArrayList<>();
         if (steps != null) {
@@ -63,9 +66,13 @@ public class Element {
                 }
             }
         }
+        if (stepStatuses.contains(UNDEFINED)) {
+            boolean ignoreUndefinedSteps =
+                props.getPropertyValue(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS);
+            overallStatus = ignoreUndefinedSteps ? PASSED : FAILED;
+        }
         if (stepStatuses.contains(FAILED) ||
-            stepStatuses.contains(SKIPPED) ||
-            stepStatuses.contains(UNDEFINED)) {
+            stepStatuses.contains(SKIPPED)) {
             overallStatus = FAILED;
         }
     }
