@@ -12,10 +12,6 @@ public class SpecialProperties {
     private Map<SpecialProperties.SpecialKeyProperties, Boolean> specialProperties =
         new HashMap<>();
 
-    public void addProperty(SpecialKeyProperties key, Boolean value) {
-        specialProperties.put(key, value);
-    }
-
     public Map<SpecialKeyProperties, Boolean> getProperties() {
         return specialProperties;
     }

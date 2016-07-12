@@ -59,7 +59,7 @@ public class CucumberTestReportPublisher extends Recorder {
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
 
         SpecialProperties props = new SpecialProperties();
-        props.addProperty(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, ignoreUndefinedSteps);
+        props.getProperties().put(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, ignoreUndefinedSteps);
         this.props = props;
 
     }
