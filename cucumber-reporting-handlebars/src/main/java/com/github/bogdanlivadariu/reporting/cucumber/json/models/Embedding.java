@@ -1,5 +1,8 @@
 package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 
+/**
+ * Represents an attachment/embedding of a step.
+ */
 public class Embedding {
 
     private String mimeType;

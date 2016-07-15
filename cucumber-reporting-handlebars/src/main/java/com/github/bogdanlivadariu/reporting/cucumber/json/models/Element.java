@@ -12,6 +12,9 @@ import java.util.UUID;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
 
+/**
+ * Represents a Scenario
+ */
 public class Element {
 
     private String name;
