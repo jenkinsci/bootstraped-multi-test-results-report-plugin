@@ -2,16 +2,11 @@ package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 
 import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FAILED;
 import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.PASSED;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.SKIPPED;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.UNDEFINED;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
-import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
 
 public class Feature {
 
@@ -69,7 +64,6 @@ public class Feature {
         pageTitle = Constants.FEATURE_SUMMARY_REPORT;
         uniqueID = UUID.randomUUID().toString();
         outputFileLocation = "feature-reports/" + uniqueID + ".html";
-        List<String> stepResultStatuses = new ArrayList<>();
         for (Element el : elements) {
             el.postProcess(props);
             totalDuration += el.getTotalDuration();
@@ -84,38 +78,12 @@ public class Feature {
             } else {
                 scenariosFailedCount++;
             }
-            if (el.getSteps() != null) {
-                for (Step step : el.getSteps()) {
-                    fillStepResultStatuses(stepResultStatuses, el, step);
-                }
-            }
         }
 
-        if (stepResultStatuses.contains(UNDEFINED)) {
-            boolean ignoreUndefinedSteps =
-                props.getPropertyValue(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS);
-            overallStatus = ignoreUndefinedSteps ? PASSED : FAILED;
-        }
-
-        if (stepResultStatuses.contains(FAILED) ||
-            stepResultStatuses.contains(SKIPPED)) {
+        if (scenariosFailedCount > 0) {
             overallStatus = FAILED;
         }
         return this;
-    }
-
-    private void fillStepResultStatuses(List<String> stepResultStatuses, Element el, Step step) {
-        stepResultStatuses.add(step.getResult().getStatus());
-        try {
-            for (Embedding emb : step.getEmbeddings()) {
-                if (emb == null) {
-                    continue;
-                }
-                el.appendEmbedding(emb);
-            }
-        } catch (Exception e) {
-            // an exception appeared when extracting the embeddings
-        }
     }
 
     public int getScenariosCount() {
