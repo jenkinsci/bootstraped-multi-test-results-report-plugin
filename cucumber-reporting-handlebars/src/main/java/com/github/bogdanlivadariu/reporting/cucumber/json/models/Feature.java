@@ -8,6 +8,9 @@ import java.util.UUID;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 
+/**
+ * Represents a Feature.
+ */
 public class Feature {
 
     private String pageTitle;

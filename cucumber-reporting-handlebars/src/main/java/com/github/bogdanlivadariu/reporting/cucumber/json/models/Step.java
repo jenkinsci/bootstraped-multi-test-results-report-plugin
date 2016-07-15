@@ -1,5 +1,8 @@
 package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 
+/**
+ * Represents a step of a scenario.
+ */
 public class Step {
 
     private String name;

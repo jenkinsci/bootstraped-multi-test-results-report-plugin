@@ -37,7 +37,7 @@ public class Constants {
     public static final String SUCCESS = "success";
 
     public static final String DANGER = "danger";
-    
+
     public static final String WARNING = "warning";
 
     private Constants() {
