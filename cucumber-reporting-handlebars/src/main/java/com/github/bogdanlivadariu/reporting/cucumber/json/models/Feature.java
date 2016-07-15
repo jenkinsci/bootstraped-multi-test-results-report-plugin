@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
 
 public class Feature {
 
@@ -89,9 +90,15 @@ public class Feature {
                 }
             }
         }
+
+        if (stepResultStatuses.contains(UNDEFINED)) {
+            boolean ignoreUndefinedSteps =
+                props.getPropertyValue(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS);
+            overallStatus = ignoreUndefinedSteps ? PASSED : FAILED;
+        }
+
         if (stepResultStatuses.contains(FAILED) ||
-            stepResultStatuses.contains(SKIPPED) ||
-            stepResultStatuses.contains(UNDEFINED)) {
+            stepResultStatuses.contains(SKIPPED)) {
             overallStatus = FAILED;
         }
         return this;
