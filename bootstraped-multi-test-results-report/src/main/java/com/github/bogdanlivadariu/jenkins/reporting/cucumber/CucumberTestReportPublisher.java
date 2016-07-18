@@ -1,21 +1,5 @@
 package com.github.bogdanlivadariu.jenkins.reporting.cucumber;
 
-import hudson.Extension;
-import hudson.FilePath;
-import hudson.Launcher;
-import hudson.model.Action;
-import hudson.model.BuildListener;
-import hudson.model.Result;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.Computer;
-import hudson.slaves.SlaveComputer;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Publisher;
-import hudson.tasks.Recorder;
-import hudson.util.FormValidation;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +16,22 @@ import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuild
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
 
+import hudson.Extension;
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
+import hudson.model.Action;
+import hudson.model.BuildListener;
+import hudson.model.Computer;
+import hudson.model.Result;
+import hudson.slaves.SlaveComputer;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Publisher;
+import hudson.tasks.Recorder;
+import hudson.util.FormValidation;
+
 @SuppressWarnings("unchecked")
 public class CucumberTestReportPublisher extends Recorder {
 
@@ -47,6 +47,8 @@ public class CucumberTestReportPublisher extends Recorder {
 
     private final boolean copyHTMLInWorkspace;
 
+    private final boolean ignoreUndefinedSteps;
+
     private final SpecialProperties props;
 
     @DataBoundConstructor
@@ -57,9 +59,10 @@ public class CucumberTestReportPublisher extends Recorder {
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
+        this.ignoreUndefinedSteps = ignoreUndefinedSteps;
 
         SpecialProperties props = new SpecialProperties();
-        props.getProperties().put(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, ignoreUndefinedSteps);
+        props.getProperties().put(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, isIgnoreUndefinedSteps());
         this.props = props;
 
     }
@@ -82,6 +85,10 @@ public class CucumberTestReportPublisher extends Recorder {
 
     public boolean isCopyHTMLInWorkspace() {
         return copyHTMLInWorkspace;
+    }
+
+    public boolean isIgnoreUndefinedSteps() {
+        return ignoreUndefinedSteps;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
