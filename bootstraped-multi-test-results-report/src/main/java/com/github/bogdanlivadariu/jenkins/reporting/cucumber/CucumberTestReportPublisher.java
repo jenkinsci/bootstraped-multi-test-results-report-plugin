@@ -47,6 +47,8 @@ public class CucumberTestReportPublisher extends Recorder {
 
     private final boolean copyHTMLInWorkspace;
 
+    private final boolean ignoreUndefinedSteps;
+
     private final SpecialProperties props;
 
     @DataBoundConstructor
@@ -57,9 +59,10 @@ public class CucumberTestReportPublisher extends Recorder {
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
+        this.ignoreUndefinedSteps = ignoreUndefinedSteps;
 
         SpecialProperties props = new SpecialProperties();
-        props.getProperties().put(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, ignoreUndefinedSteps);
+        props.getProperties().put(SpecialKeyProperties.IGNORE_UNDEFINED_STEPS, isIgnoreUndefinedSteps());
         this.props = props;
 
     }
@@ -82,6 +85,10 @@ public class CucumberTestReportPublisher extends Recorder {
 
     public boolean isCopyHTMLInWorkspace() {
         return copyHTMLInWorkspace;
+    }
+
+    public boolean isIgnoreUndefinedSteps() {
+        return ignoreUndefinedSteps;
     }
 
     private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
