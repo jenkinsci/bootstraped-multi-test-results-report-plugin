@@ -1,21 +1,5 @@
 package com.github.bogdanlivadariu.jenkins.reporting.cucumber;
 
-import hudson.Extension;
-import hudson.FilePath;
-import hudson.Launcher;
-import hudson.model.Action;
-import hudson.model.BuildListener;
-import hudson.model.Result;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.Computer;
-import hudson.slaves.SlaveComputer;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Publisher;
-import hudson.tasks.Recorder;
-import hudson.util.FormValidation;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +15,22 @@ import org.kohsuke.stapler.QueryParameter;
 import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuilder;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
+
+import hudson.Extension;
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
+import hudson.model.Action;
+import hudson.model.BuildListener;
+import hudson.model.Computer;
+import hudson.model.Result;
+import hudson.slaves.SlaveComputer;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Publisher;
+import hudson.tasks.Recorder;
+import hudson.util.FormValidation;
 
 @SuppressWarnings("unchecked")
 public class CucumberTestReportPublisher extends Recorder {
