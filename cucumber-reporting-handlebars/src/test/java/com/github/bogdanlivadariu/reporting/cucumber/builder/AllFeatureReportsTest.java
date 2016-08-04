@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
@@ -13,6 +14,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+import com.github.bogdanlivadariu.reporting.cucumber.json.models.Element;
+import com.github.bogdanlivadariu.reporting.cucumber.json.models.Feature;
+import com.github.bogdanlivadariu.reporting.cucumber.json.models.Step;
 
 public class AllFeatureReportsTest {
 
@@ -69,6 +73,36 @@ public class AllFeatureReportsTest {
     public void totalDurationTest() {
         long duration = Long.parseLong("206919001170");
         assertEquals(duration, reports.getTotalDuration());
+    }
+
+    @Test
+    public void elementEmbeddingTest() {
+        List<Integer> expected = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0);
+        List<Integer> actualEmbeddingsCount = new ArrayList<>();
+
+        for (Feature f : reports.getFeatures()) {
+            for (Element e : f.getElements()) {
+                actualEmbeddingsCount.add(e.getEmbeddings().size());
+            }
+        }
+        assertEquals(expected, actualEmbeddingsCount);
+    }
+
+    @Test
+    public void stepEmbeddingTest() {
+        List<Integer> expected = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        List<Integer> actualEmbeddingsCount = new ArrayList<>();
+
+        for (Feature f : reports.getFeatures()) {
+            for (Element e : f.getElements()) {
+                for (Step s : e.getSteps()) {
+                    actualEmbeddingsCount.add(s.getEmbeddings().length);
+                }
+            }
+        }
+        assertEquals(expected, actualEmbeddingsCount);
     }
 
     @Test

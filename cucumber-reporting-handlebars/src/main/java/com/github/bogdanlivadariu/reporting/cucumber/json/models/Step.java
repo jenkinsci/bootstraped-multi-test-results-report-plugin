@@ -56,6 +56,9 @@ public class Step {
     }
 
     public Embedding[] getEmbeddings() {
+        if (embeddings == null) {
+            return new Embedding[0];
+        }
         return embeddings;
     }
 
