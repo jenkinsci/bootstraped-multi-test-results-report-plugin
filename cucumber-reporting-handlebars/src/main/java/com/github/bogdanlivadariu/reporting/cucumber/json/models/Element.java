@@ -6,6 +6,7 @@ import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.SK
 import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.UNDEFINED;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,7 +48,7 @@ public class Element {
 
     private String uniqueID;
 
-    private List<Embedding> embeddings;
+    private List<Embedding> embeddings = new ArrayList<>();
 
     public void postProcess(SpecialProperties props) {
         uniqueID = UUID.randomUUID().toString();
@@ -58,14 +59,27 @@ public class Element {
                 totalDuration += step.getResult().getDuration();
                 String actualResultStatus = step.getResult().getStatus();
                 stepStatuses.add(step.getResult().getStatus());
-                if (actualResultStatus.equals(PASSED)) {
-                    stepsPassedCount++;
-                } else if (actualResultStatus.equals(FAILED)) {
-                    stepsFailedCount++;
-                } else if (actualResultStatus.equals(SKIPPED)) {
-                    stepsSkippedCount++;
-                } else if (actualResultStatus.equals(UNDEFINED)) {
-                    stepsUndefinedCount++;
+
+                Embedding[] embeddings = step.getEmbeddings();
+                if (embeddings != null) {
+                    this.embeddings.addAll(Arrays.asList(embeddings));
+                }
+
+                switch (actualResultStatus) {
+                    case PASSED:
+                        stepsPassedCount++;
+                        break;
+                    case FAILED:
+                        stepsFailedCount++;
+                        break;
+                    case SKIPPED:
+                        stepsSkippedCount++;
+                        break;
+                    case UNDEFINED:
+                        stepsUndefinedCount++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -86,13 +100,6 @@ public class Element {
 
     public long getTotalDuration() {
         return totalDuration;
-    }
-
-    public void appendEmbedding(Embedding embedding) {
-        if (embeddings == null) {
-            embeddings = new ArrayList<Embedding>();
-        }
-        embeddings.add(embedding);
     }
 
     public List<Embedding> getEmbeddings() {
