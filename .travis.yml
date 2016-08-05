@@ -19,7 +19,9 @@ cache:
 addons:
   firefox: '45.0'
 before_install:
-- mvn clean -q
+  - 'export DISPLAY=:99.0'
+  - 'sh -e /etc/init.d/xvfb start'
+  - mvn clean -q
 install:
 - mvn install -Dgpg.skip=true -DskipTests=true -q
 after_success:
