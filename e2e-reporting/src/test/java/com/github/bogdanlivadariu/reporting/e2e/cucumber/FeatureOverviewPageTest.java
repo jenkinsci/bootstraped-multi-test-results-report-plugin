@@ -18,29 +18,29 @@ public class FeatureOverviewPageTest extends BaseTestCase {
 
     @Test
     public void featureCountTest() {
-        assertEquals(cucumberReportBuilder.getProcessedFeatures().size(), page.getRows().size());
+        assertEquals(cucumberReportBuilder.getProcessedFeatures().size(), page.getFeatureRows().size());
     }
 
     @Test
     public void featureNameTest() {
-        Comparator<Feature> c = new Comparator<Feature>() {
-
+        Comparator<Feature> featureNameComparator = new Comparator<Feature>() {
             @Override
-            public int compare(Feature o1, Feature o2) {
-                return o1.getName().compareToIgnoreCase(o2.getName());
+            public int compare(Feature first, Feature second) {
+                return first.getName().compareToIgnoreCase(second.getName());
             }
         };
-        Comparator< ? super FeatureRowComponent> d = new Comparator<FeatureRowComponent>() {
+
+        Comparator< ? super FeatureRowComponent> rowFeatureNameComparator = new Comparator<FeatureRowComponent>() {
             @Override
-            public int compare(FeatureRowComponent o1, FeatureRowComponent o2) {
-                return o1.buttonFeatureName().getText().compareToIgnoreCase(o2.buttonFeatureName().getText());
+            public int compare(FeatureRowComponent first, FeatureRowComponent second) {
+                return first.buttonFeatureName().getText().compareToIgnoreCase(second.buttonFeatureName().getText());
             }
         };
 
         List<Feature> sortedFeatures = new ArrayList<>(cucumberReportBuilder.getProcessedFeatures());
-        List<FeatureRowComponent> sortedRows = new ArrayList<>(page.getRows());
-        Collections.sort(sortedFeatures, c);
-        Collections.sort(sortedRows, d);
+        List<FeatureRowComponent> sortedRows = new ArrayList<>(page.getFeatureRows());
+        Collections.sort(sortedFeatures, featureNameComparator);
+        Collections.sort(sortedRows, rowFeatureNameComparator);
 
         for (int i = 0; i < sortedFeatures.size(); i++) {
             String expected = sortedRows.get(i).buttonFeatureName().getText();

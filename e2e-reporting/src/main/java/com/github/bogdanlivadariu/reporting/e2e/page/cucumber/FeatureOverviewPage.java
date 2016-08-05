@@ -15,7 +15,7 @@ public class FeatureOverviewPage {
     @FindBy(css = "#feature-container tbody > tr")
     private List<WebElement> rows;
 
-    public List<FeatureRowComponent> getRows() {
+    public List<FeatureRowComponent> getFeatureRows() {
         List<FeatureRowComponent> rows = new ArrayList<>();
         for (WebElement row : this.rows) {
             rows.add(new FeatureRowComponent(row));
