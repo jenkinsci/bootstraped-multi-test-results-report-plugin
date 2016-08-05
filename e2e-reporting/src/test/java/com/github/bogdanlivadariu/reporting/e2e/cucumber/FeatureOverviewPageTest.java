@@ -4,10 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Helpers;
@@ -18,26 +15,6 @@ import com.github.jknack.handlebars.Handlebars;
 
 public class FeatureOverviewPageTest extends BaseTestCase {
     private static FeatureOverviewPage page = new FeatureOverviewPage();
-
-    @BeforeClass
-    public static void beforeTestSetup() {
-        Comparator<Feature> featureNameComparator = new Comparator<Feature>() {
-            @Override
-            public int compare(Feature first, Feature second) {
-                return first.getName().compareToIgnoreCase(second.getName());
-            }
-        };
-
-        Comparator< ? super FeatureRowComponent> rowFeatureNameComparator = new Comparator<FeatureRowComponent>() {
-            @Override
-            public int compare(FeatureRowComponent first, FeatureRowComponent second) {
-                return first.buttonFeatureName().getText().compareToIgnoreCase(second.buttonFeatureName().getText());
-            }
-        };
-
-        Collections.sort(cucumberReportBuilder.getProcessedFeatures(), featureNameComparator);
-        Collections.sort(page.getFeatureRows(), rowFeatureNameComparator);
-    }
 
     @Test
     public void featureCountTest() {
