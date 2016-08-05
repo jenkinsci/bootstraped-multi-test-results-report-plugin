@@ -1,28 +1,26 @@
 package com.github.bogdanlivadariu.reporting.e2e.cucumber;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.Helpers;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Feature;
 import com.github.bogdanlivadariu.reporting.e2e.components.cucumber.FeatureRowComponent;
 import com.github.bogdanlivadariu.reporting.e2e.page.cucumber.FeatureOverviewPage;
+import com.github.jknack.handlebars.Handlebars;
 
 public class FeatureOverviewPageTest extends BaseTestCase {
-    private FeatureOverviewPage page = new FeatureOverviewPage();
+    private static FeatureOverviewPage page = new FeatureOverviewPage();
 
-    @Test
-    public void featureCountTest() {
-        assertEquals(cucumberReportBuilder.getProcessedFeatures().size(), page.getFeatureRows().size());
-    }
-
-    @Test
-    public void featureNameTest() {
+    @BeforeClass
+    public static void beforeTestSetup() {
         Comparator<Feature> featureNameComparator = new Comparator<Feature>() {
             @Override
             public int compare(Feature first, Feature second) {
@@ -37,16 +35,75 @@ public class FeatureOverviewPageTest extends BaseTestCase {
             }
         };
 
-        List<Feature> sortedFeatures = new ArrayList<>(cucumberReportBuilder.getProcessedFeatures());
-        List<FeatureRowComponent> sortedRows = new ArrayList<>(page.getFeatureRows());
-        Collections.sort(sortedFeatures, featureNameComparator);
-        Collections.sort(sortedRows, rowFeatureNameComparator);
-
-        for (int i = 0; i < sortedFeatures.size(); i++) {
-            String expected = sortedRows.get(i).buttonFeatureName().getText();
-            String actual = sortedRows.get(i).buttonFeatureName().getText();
-            assertEquals(expected, actual);
-        }
+        Collections.sort(cucumberReportBuilder.getProcessedFeatures(), featureNameComparator);
+        Collections.sort(page.getFeatureRows(), rowFeatureNameComparator);
     }
 
+    @Test
+    public void featureCountTest() {
+        assertEquals(cucumberReportBuilder.getProcessedFeatures().size(), page.getFeatureRows().size());
+    }
+
+    @Test
+    public void featureCellsTest() throws IOException {
+        for (int i = 0; i < cucumberReportBuilder.getProcessedFeatures().size(); i++) {
+            Feature expectedFeature = cucumberReportBuilder.getProcessedFeatures().get(i);
+            FeatureRowComponent actualFeatureRow = page.getFeatureRows().get(i);
+
+            assertTrue(
+                "Feature unique id from href is not correct",
+                actualFeatureRow.buttonFeatureName().getAttributeValue("href")
+                    .contains(expectedFeature.getUniqueID()));
+            assertEquals(
+                "Feature name do not match",
+                expectedFeature.getName(),
+                actualFeatureRow.buttonFeatureName().getText());
+
+            assertEquals(
+                "Scenarios total count do not match",
+                expectedFeature.getScenariosCount().toString(),
+                actualFeatureRow.labelScenariosTotal().getText());
+
+            assertEquals(
+                "Scenarios passed count do not match",
+                expectedFeature.getScenariosPassedCount().toString(),
+                actualFeatureRow.labelScenariosPassed().getText());
+
+            assertEquals(
+                "Scenarios failed count do not match",
+                expectedFeature.getScenariosFailedCount().toString(),
+                actualFeatureRow.labelScenariosFailed().getText());
+
+            assertEquals(
+                "Steps total count do not match",
+                expectedFeature.getStepsTotalCount().toString(),
+                actualFeatureRow.labelStepsTotal().getText());
+
+            assertEquals(
+                "Steps passed count do not match",
+                expectedFeature.getStepsPassedCount().toString(),
+                actualFeatureRow.labelStepsPassed().getText());
+
+            assertEquals(
+                "Steps failed count do not match",
+                expectedFeature.getStepsFailedCount().toString(),
+                actualFeatureRow.labelStepsFailed().getText());
+
+            assertEquals(
+                "Steps skipped count do not match",
+                expectedFeature.getStepsSkippedCount().toString(),
+                actualFeatureRow.labelStepsSkipped().getText());
+
+            assertEquals(
+                "Steps undefined count do not match",
+                expectedFeature.getStepsUndefinedCount().toString(),
+                actualFeatureRow.labelStepsUndefined().getText());
+
+            assertEquals(
+                "Duration do not match",
+                new Helpers(new Handlebars()).registerHelpers().helper("date")
+                    .apply(expectedFeature.getTotalDuration(), null),
+                actualFeatureRow.labelDuration().getText());
+        }
+    }
 }
