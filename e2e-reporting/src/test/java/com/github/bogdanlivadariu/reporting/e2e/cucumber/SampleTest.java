@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -73,8 +74,8 @@ public class SampleTest {
 
         List<Feature> sortedFeatures = new ArrayList<>(re.getProcessedFeatures());
         List<IndexRowComponent> sortedRows = new ArrayList<>(page.getRows());
-        sortedFeatures.sort(c);
-        sortedRows.sort(d);
+        Collections.sort(sortedFeatures, c);
+        Collections.sort(sortedRows, d);
 
         for (int i = 0; i < sortedFeatures.size(); i++) {
             String expected = sortedRows.get(i).buttonFeatureName().getText();
