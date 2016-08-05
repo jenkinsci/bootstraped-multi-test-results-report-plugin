@@ -16,23 +16,23 @@ public class AllFeatureReports {
 
     private List<Feature> features;
 
-    private Integer scenariosTotal;
+    private int scenariosTotal;
 
-    private Integer scenariosTotalPassed;
+    private int scenariosTotalPassed;
 
-    private Integer scenariosTotalFailed;
+    private int scenariosTotalFailed;
 
-    private Integer stepsTotal;
+    private int stepsTotal;
 
-    private Integer stepsTotalPassed;
+    private int stepsTotalPassed;
 
-    private Integer stepsTotalFailed;
+    private int stepsTotalFailed;
 
-    private Integer stepsTotalSkipped;
+    private int stepsTotalSkipped;
 
-    private Integer stepsTotalUndefined;
+    private int stepsTotalUndefined;
 
-    private Long totalDuration;
+    private long totalDuration;
 
     private Set<String> allTags = new LinkedHashSet<String>();
 
@@ -66,43 +66,43 @@ public class AllFeatureReports {
         return features;
     }
 
-    public Integer getScenariosTotal() {
+    public int getScenariosTotal() {
         return scenariosTotal;
     }
 
-    public Integer getScenariosTotalPassed() {
+    public int getScenariosTotalPassed() {
         return scenariosTotalPassed;
     }
 
-    public Integer getScenariosTotalFailed() {
+    public int getScenariosTotalFailed() {
         return scenariosTotalFailed;
     }
 
-    public Integer getStepsTotal() {
+    public int getStepsTotal() {
         return stepsTotal;
     }
 
-    public Integer getStepsTotalPassed() {
+    public int getStepsTotalPassed() {
         return stepsTotalPassed;
     }
 
-    public Integer getStepsTotalFailed() {
+    public int getStepsTotalFailed() {
         return stepsTotalFailed;
     }
 
-    public Integer getStepsTotalSkipped() {
+    public int getStepsTotalSkipped() {
         return stepsTotalSkipped;
     }
 
-    public Integer getStepsTotalUndefined() {
+    public int getStepsTotalUndefined() {
         return stepsTotalUndefined;
     }
 
-    public Long getTotalDuration() {
+    public long getTotalDuration() {
         return totalDuration;
     }
 
-    public Integer getFeaturesCount() {
+    public int getFeaturesCount() {
         return features.size();
     }
 
