@@ -29,6 +29,12 @@ import com.google.gson.GsonBuilder;
 
 public class CucumberReportBuilder {
 
+    public static final String FEATURES_OVERVIEW_HTML = "featuresOverview.html";
+
+    private static final String FEATURES_PASSED_HTML = "featuresPassed.html";
+
+    private static final String FEATURES_FAILED_HTML = "featuresFailed.html";
+
     private static final String FEATURE_SUMMARY_REPORT = "cucumber-reporting/featureSummaryReport";
 
     private static final String FEATURE_OVERVIEW_REPORT = "cucumber-reporting/featureOverviewReport";
@@ -71,7 +77,7 @@ public class CucumberReportBuilder {
     private void writeFeatureOverviewReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_OVERVIEW, getProcessedFeatures());
-        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresOverview.html"),
+        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_OVERVIEW_HTML),
             template.apply(allFeatures));
     }
 
@@ -88,7 +94,7 @@ public class CucumberReportBuilder {
         }
 
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_PASSED_OVERVIEW, onlyPassed);
-        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresPassed.html"),
+        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_PASSED_HTML),
             template.apply(allFeatures));
     }
 
@@ -103,7 +109,7 @@ public class CucumberReportBuilder {
             }
         }
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_FAILED_OVERVIEW, onlyFailed);
-        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresFailed.html"),
+        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_FAILED_HTML),
             template.apply(allFeatures));
     }
 
