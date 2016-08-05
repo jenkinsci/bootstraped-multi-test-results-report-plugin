@@ -89,7 +89,7 @@ public class Feature {
         return this;
     }
 
-    public int getScenariosCount() {
+    public Integer getScenariosCount() {
         return elements.length;
     }
 
@@ -129,27 +129,27 @@ public class Feature {
         return zbang;
     }
 
-    public int getStepsSkippedCount() {
+    public Integer getStepsSkippedCount() {
         return stepsSkippedCount;
     }
 
-    public int getStepsUndefinedCount() {
+    public Integer getStepsUndefinedCount() {
         return stepsUndefinedCount;
     }
 
-    public int getStepsFailedCount() {
+    public Integer getStepsFailedCount() {
         return stepsFailedCount;
     }
 
-    public int getStepsPassedCount() {
+    public Integer getStepsPassedCount() {
         return stepsPassedCount;
     }
 
-    public int getScenariosFailedCount() {
+    public Integer getScenariosFailedCount() {
         return scenariosFailedCount;
     }
 
-    public int getStepsTotalCount() {
+    public Integer getStepsTotalCount() {
         return stepsTotalCount;
     }
 
@@ -157,7 +157,7 @@ public class Feature {
         return totalDuration;
     }
 
-    public int getScenariosPassedCount() {
+    public Integer getScenariosPassedCount() {
         return scenariosPassedCount;
     }
 
