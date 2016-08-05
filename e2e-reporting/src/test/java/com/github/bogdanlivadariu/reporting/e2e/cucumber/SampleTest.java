@@ -23,9 +23,9 @@ import com.github.bogdanlivadariu.reporting.e2e.components.cucumber.IndexRowComp
 import com.github.bogdanlivadariu.reporting.e2e.page.cucumber.IndexPage;
 
 public class SampleTest {
-    static CucumberReportBuilder re;
+    private static CucumberReportBuilder re;
 
-    static IndexPage page;
+    private static IndexPage page;
 
     @BeforeClass
     public static void beforeSetup() throws IOException {
