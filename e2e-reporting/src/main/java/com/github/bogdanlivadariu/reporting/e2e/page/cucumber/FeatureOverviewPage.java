@@ -8,22 +8,22 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.github.bogdanlivadariu.java.automation.framework.webdriver.WebDriverInstance;
-import com.github.bogdanlivadariu.reporting.e2e.components.cucumber.IndexRowComponent;
+import com.github.bogdanlivadariu.reporting.e2e.components.cucumber.FeatureRowComponent;
 
-public class IndexPage {
+public class FeatureOverviewPage {
 
     @FindBy(css = "#feature-container tbody > tr")
     private List<WebElement> rows;
 
-    public List<IndexRowComponent> getRows() {
-        List<IndexRowComponent> rows = new ArrayList<>();
+    public List<FeatureRowComponent> getRows() {
+        List<FeatureRowComponent> rows = new ArrayList<>();
         for (WebElement row : this.rows) {
-            rows.add(new IndexRowComponent(row));
+            rows.add(new FeatureRowComponent(row));
         }
         return rows;
     }
 
-    public IndexPage() {
+    public FeatureOverviewPage() {
         PageFactory.initElements(WebDriverInstance.getDriver(), this);
     }
 }

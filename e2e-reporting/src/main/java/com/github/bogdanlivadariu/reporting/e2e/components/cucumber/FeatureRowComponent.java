@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import com.github.bogdanlivadariu.java.automation.framework.components.common.BaseComponent;
 import com.github.bogdanlivadariu.java.automation.framework.components.common.ButtonComponent;
 
-public class IndexRowComponent extends BaseComponent {
+public class FeatureRowComponent extends BaseComponent {
 
     private By featureName = By.xpath("td[1]");
 
-    public IndexRowComponent(WebElement element) {
+    public FeatureRowComponent(WebElement element) {
         super(element);
     }
 
