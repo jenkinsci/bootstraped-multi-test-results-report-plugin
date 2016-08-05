@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -151,6 +153,13 @@ public class CucumberReportBuilder {
     }
 
     private List<Feature> prepareData(List<String> jsonReports, SpecialProperties props) throws IOException {
+        Comparator<Feature> featureNameComparator = new Comparator<Feature>() {
+            @Override
+            public int compare(Feature first, Feature second) {
+                return first.getName().compareToIgnoreCase(second.getName());
+            }
+        };
+
         List<Feature> processedFeaturesLocal = new ArrayList<>();
         for (String jsonReport : jsonReports) {
             File jsonFileReport = new File(jsonReport);
@@ -168,6 +177,7 @@ public class CucumberReportBuilder {
             }
 
         }
+        Collections.sort(processedFeaturesLocal, featureNameComparator);
         return processedFeaturesLocal;
     }
 
