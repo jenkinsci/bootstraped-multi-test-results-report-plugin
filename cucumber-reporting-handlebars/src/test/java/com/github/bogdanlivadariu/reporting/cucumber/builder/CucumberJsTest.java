@@ -39,11 +39,14 @@ public class CucumberJsTest {
     @Test
     public void featureSizeTest() {
         assertEquals(1, reports.getFeatures().size());
-        reports.getPageTitle();
-        reports.getScenariosTotal();
-        reports.getScenariosTotalFailed();
-        reports.getScenariosTotalPassed();
-        reports.getStepsTotal();
+        assertEquals("title", reports.getPageTitle());
+    }
+
+    @Test
+    public void scenariosTest() {
+        assertEquals(Integer.valueOf(1), reports.getScenariosTotal());
+        assertEquals(Integer.valueOf(1), reports.getScenariosTotalFailed());
+        assertEquals(Integer.valueOf(0), reports.getScenariosTotalPassed());
     }
 
     @Test

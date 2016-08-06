@@ -46,11 +46,6 @@ public class AllFeatureReportsTest {
     @Test
     public void featureSizeTest() {
         assertEquals(4, reports.getFeatures().size());
-        reports.getPageTitle();
-        reports.getScenariosTotal();
-        reports.getScenariosTotalFailed();
-        reports.getScenariosTotalPassed();
-        reports.getStepsTotal();
     }
 
     @Test
