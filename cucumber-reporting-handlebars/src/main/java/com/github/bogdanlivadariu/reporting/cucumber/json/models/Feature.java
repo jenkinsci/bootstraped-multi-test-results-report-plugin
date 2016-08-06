@@ -23,7 +23,7 @@ public class Feature {
 
     private String description;
 
-    private int line;
+    private Integer line;
 
     private String keyword;
 
@@ -33,25 +33,23 @@ public class Feature {
 
     private Element[] elements;
 
-    private int zbang;
-
     private long totalDuration;
 
     private String overallStatus = PASSED;
 
-    private int scenariosPassedCount;
+    private Integer scenariosPassedCount = 0;
 
-    private int scenariosFailedCount;
+    private Integer scenariosFailedCount = 0;
 
-    private int stepsTotalCount;
+    private Integer stepsTotalCount = 0;
 
-    private int stepsPassedCount;
+    private Integer stepsPassedCount = 0;
 
-    private int stepsFailedCount;
+    private Integer stepsFailedCount = 0;
 
-    private int stepsSkippedCount;
+    private Integer stepsSkippedCount = 0;
 
-    private int stepsUndefinedCount;
+    private Integer stepsUndefinedCount = 0;
 
     private String outputFileLocation;
 
@@ -89,7 +87,7 @@ public class Feature {
         return this;
     }
 
-    public int getScenariosCount() {
+    public Integer getScenariosCount() {
         return elements.length;
     }
 
@@ -105,7 +103,7 @@ public class Feature {
         return description;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
@@ -125,31 +123,27 @@ public class Feature {
         return elements;
     }
 
-    public int getZbang() {
-        return zbang;
-    }
-
-    public int getStepsSkippedCount() {
+    public Integer getStepsSkippedCount() {
         return stepsSkippedCount;
     }
 
-    public int getStepsUndefinedCount() {
+    public Integer getStepsUndefinedCount() {
         return stepsUndefinedCount;
     }
 
-    public int getStepsFailedCount() {
+    public Integer getStepsFailedCount() {
         return stepsFailedCount;
     }
 
-    public int getStepsPassedCount() {
+    public Integer getStepsPassedCount() {
         return stepsPassedCount;
     }
 
-    public int getScenariosFailedCount() {
+    public Integer getScenariosFailedCount() {
         return scenariosFailedCount;
     }
 
-    public int getStepsTotalCount() {
+    public Integer getStepsTotalCount() {
         return stepsTotalCount;
     }
 
@@ -157,7 +151,7 @@ public class Feature {
         return totalDuration;
     }
 
-    public int getScenariosPassedCount() {
+    public Integer getScenariosPassedCount() {
         return scenariosPassedCount;
     }
 

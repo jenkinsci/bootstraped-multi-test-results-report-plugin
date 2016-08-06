@@ -6,6 +6,12 @@
     "line": 1,
     "keyword": "Feature",
     "uri": "/home/apentsak/Work/AGIT/registry-tests-ui/tests-ui-js/src/test/features/letterlibrary_campaign.feature",
+    "tags": [
+      {
+        "line": 3,
+        "name": "@letter_tag"
+      }
+    ],
     "elements": [
       {
         "name": "Save with empty Title and Content",

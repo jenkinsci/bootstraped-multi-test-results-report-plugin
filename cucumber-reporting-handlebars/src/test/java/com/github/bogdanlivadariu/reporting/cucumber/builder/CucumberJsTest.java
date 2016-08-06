@@ -2,9 +2,11 @@ package com.github.bogdanlivadariu.reporting.cucumber.builder;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
@@ -13,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+import com.github.bogdanlivadariu.reporting.cucumber.json.models.Tag;
 
 public class CucumberJsTest {
 
@@ -36,20 +39,46 @@ public class CucumberJsTest {
     @Test
     public void featureSizeTest() {
         assertEquals(1, reports.getFeatures().size());
-        reports.getPageTitle();
-        reports.getScenariosTotal();
-        reports.getScenariosTotalFailed();
-        reports.getScenariosTotalPassed();
-        reports.getStepsTotal();
+        assertEquals("title", reports.getPageTitle());
+    }
+
+    @Test
+    public void scenariosTest() {
+        assertEquals(Integer.valueOf(1), reports.getScenariosTotal());
+        assertEquals(Integer.valueOf(1), reports.getScenariosTotalFailed());
+        assertEquals(Integer.valueOf(0), reports.getScenariosTotalPassed());
+    }
+
+    @Test
+    public void featureTagTest() {
+        List<String> existingTags = new ArrayList<>();
+        for (Tag t : reports.getFeatures().get(0).getTags()) {
+            existingTags.add(t.getName() + t.getLine());
+        }
+        assertEquals(Arrays.asList("@letter_tag3"), existingTags);
+    }
+
+    @Test
+    public void scenariosTagTest() {
+        List<String> existingTags = new ArrayList<>();
+        for (Tag t : reports.getFeatures().get(0).getElements()[0].getTags()) {
+            existingTags.add(t.getName() + t.getLine());
+        }
+        assertEquals(Arrays.asList("@PROD3"), existingTags);
     }
 
     @Test
     public void stepsTest() {
-        assertEquals(6, reports.getStepsTotal());
-        assertEquals(0, reports.getStepsTotalFailed());
-        assertEquals(4, reports.getStepsTotalPassed());
-        assertEquals(1, reports.getStepsTotalSkipped());
-        assertEquals(1, reports.getStepsTotalUndefined());
+        assertEquals(Integer.valueOf(6), reports.getStepsTotal());
+        assertEquals(Integer.valueOf(0), reports.getStepsTotalFailed());
+        assertEquals(Integer.valueOf(4), reports.getStepsTotalPassed());
+        assertEquals(Integer.valueOf(1), reports.getStepsTotalSkipped());
+        assertEquals(Integer.valueOf(1), reports.getStepsTotalUndefined());
+    }
+
+    @Test
+    public void hidenTest() {
+        assertTrue(reports.getFeatures().get(0).getElements()[0].getSteps()[5].isHidden());
     }
 
     @Test

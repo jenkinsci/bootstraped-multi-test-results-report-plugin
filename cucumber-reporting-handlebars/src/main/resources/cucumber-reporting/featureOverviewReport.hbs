@@ -47,7 +47,7 @@
       <div class="panel-heading">Cucumber report</div>
       <!-- Table -->
       <table class="table table-bordered table-hover ">
-        <tbody>
+        <thead>
           <tr class="success">
             <th class="text-center" colspan="2">Feature Name</th>
             <th class="text-center" colspan="3">Scenarios</th>
@@ -67,6 +67,8 @@
             <th class="text-center">Undefined</th>
             <th></th>
           </tr>
+        </thead>
+        <tbody>
 
           {{#each features}}
           <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
@@ -83,6 +85,8 @@
             <td><span class="badge">{{#date totalDuration}}{{/date}}</span></td>
           </tr>
           {{/each}}
+        </tbody>
+        <tfoot>
           <tr class="info text-center">
             <td>TOTALS</td>
             <td>{{featuresCount}}</td>
@@ -96,7 +100,7 @@
             <td>{{stepsTotalUndefined}}</td>
             <td class="text-center"><span class="badge">{{#date totalDuration}}{{/date}}</span></td>
           </tr>
-        </tbody>
+        </tfoot>
       </table>
     </div>
     <a href="#" class="back-to-top" style="display: none;">

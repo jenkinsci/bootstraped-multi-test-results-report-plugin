@@ -16,21 +16,21 @@ public class AllFeatureReports {
 
     private List<Feature> features;
 
-    private int scenariosTotal;
+    private Integer scenariosTotal = 0;
 
-    private int scenariosTotalPassed;
+    private Integer scenariosTotalPassed = 0;
 
-    private int scenariosTotalFailed;
+    private Integer scenariosTotalFailed = 0;
 
-    private int stepsTotal;
+    private Integer stepsTotal = 0;
 
-    private int stepsTotalPassed;
+    private Integer stepsTotalPassed = 0;
 
-    private int stepsTotalFailed;
+    private Integer stepsTotalFailed = 0;
 
-    private int stepsTotalSkipped;
+    private Integer stepsTotalSkipped = 0;
 
-    private int stepsTotalUndefined;
+    private Integer stepsTotalUndefined = 0;
 
     private long totalDuration;
 
@@ -66,35 +66,35 @@ public class AllFeatureReports {
         return features;
     }
 
-    public int getScenariosTotal() {
+    public Integer getScenariosTotal() {
         return scenariosTotal;
     }
 
-    public int getScenariosTotalPassed() {
+    public Integer getScenariosTotalPassed() {
         return scenariosTotalPassed;
     }
 
-    public int getScenariosTotalFailed() {
+    public Integer getScenariosTotalFailed() {
         return scenariosTotalFailed;
     }
 
-    public int getStepsTotal() {
+    public Integer getStepsTotal() {
         return stepsTotal;
     }
 
-    public int getStepsTotalPassed() {
+    public Integer getStepsTotalPassed() {
         return stepsTotalPassed;
     }
 
-    public int getStepsTotalFailed() {
+    public Integer getStepsTotalFailed() {
         return stepsTotalFailed;
     }
 
-    public int getStepsTotalSkipped() {
+    public Integer getStepsTotalSkipped() {
         return stepsTotalSkipped;
     }
 
-    public int getStepsTotalUndefined() {
+    public Integer getStepsTotalUndefined() {
         return stepsTotalUndefined;
     }
 
@@ -102,7 +102,7 @@ public class AllFeatureReports {
         return totalDuration;
     }
 
-    public int getFeaturesCount() {
+    public Integer getFeaturesCount() {
         return features.size();
     }
 

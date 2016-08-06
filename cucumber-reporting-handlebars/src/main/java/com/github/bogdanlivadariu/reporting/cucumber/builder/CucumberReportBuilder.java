@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,6 +30,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class CucumberReportBuilder {
+
+    public static final String FEATURES_OVERVIEW_HTML = "featuresOverview.html";
+
+    private static final String FEATURES_PASSED_HTML = "featuresPassed.html";
+
+    private static final String FEATURES_FAILED_HTML = "featuresFailed.html";
 
     private static final String FEATURE_SUMMARY_REPORT = "cucumber-reporting/featureSummaryReport";
 
@@ -71,7 +79,7 @@ public class CucumberReportBuilder {
     private void writeFeatureOverviewReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_OVERVIEW, getProcessedFeatures());
-        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresOverview.html"),
+        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_OVERVIEW_HTML),
             template.apply(allFeatures));
     }
 
@@ -88,7 +96,7 @@ public class CucumberReportBuilder {
         }
 
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_PASSED_OVERVIEW, onlyPassed);
-        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresPassed.html"),
+        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_PASSED_HTML),
             template.apply(allFeatures));
     }
 
@@ -103,7 +111,7 @@ public class CucumberReportBuilder {
             }
         }
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_FAILED_OVERVIEW, onlyFailed);
-        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + "featuresFailed.html"),
+        FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_FAILED_HTML),
             template.apply(allFeatures));
     }
 
@@ -145,6 +153,13 @@ public class CucumberReportBuilder {
     }
 
     private List<Feature> prepareData(List<String> jsonReports, SpecialProperties props) throws IOException {
+        Comparator<Feature> featureNameComparator = new Comparator<Feature>() {
+            @Override
+            public int compare(Feature first, Feature second) {
+                return first.getName().compareToIgnoreCase(second.getName());
+            }
+        };
+
         List<Feature> processedFeaturesLocal = new ArrayList<>();
         for (String jsonReport : jsonReports) {
             File jsonFileReport = new File(jsonReport);
@@ -162,6 +177,7 @@ public class CucumberReportBuilder {
             }
 
         }
+        Collections.sort(processedFeaturesLocal, featureNameComparator);
         return processedFeaturesLocal;
     }
 
