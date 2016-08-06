@@ -13,7 +13,7 @@ public class FeatureRowComponent extends BaseComponent {
 
     private By cellsLocator = By.tagName("td");
 
-    private List<WebElement> cells;
+    protected List<WebElement> cells;
 
     public FeatureRowComponent(WebElement element) {
         super(element);
