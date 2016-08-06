@@ -23,7 +23,7 @@ public class Feature {
 
     private String description;
 
-    private int line;
+    private Integer line;
 
     private String keyword;
 
@@ -33,25 +33,23 @@ public class Feature {
 
     private Element[] elements;
 
-    private int zbang;
-
     private long totalDuration;
 
     private String overallStatus = PASSED;
 
-    private int scenariosPassedCount;
+    private Integer scenariosPassedCount = 0;
 
-    private int scenariosFailedCount;
+    private Integer scenariosFailedCount = 0;
 
-    private int stepsTotalCount;
+    private Integer stepsTotalCount = 0;
 
-    private int stepsPassedCount;
+    private Integer stepsPassedCount = 0;
 
-    private int stepsFailedCount;
+    private Integer stepsFailedCount = 0;
 
-    private int stepsSkippedCount;
+    private Integer stepsSkippedCount = 0;
 
-    private int stepsUndefinedCount;
+    private Integer stepsUndefinedCount = 0;
 
     private String outputFileLocation;
 
@@ -105,7 +103,7 @@ public class Feature {
         return description;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
@@ -123,10 +121,6 @@ public class Feature {
 
     public Element[] getElements() {
         return elements;
-    }
-
-    public int getZbang() {
-        return zbang;
     }
 
     public Integer getStepsSkippedCount() {

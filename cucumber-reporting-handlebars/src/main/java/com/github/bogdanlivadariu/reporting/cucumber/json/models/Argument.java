@@ -4,7 +4,7 @@ public class Argument {
 
     private String val;
 
-    private Integer offset;
+    private Integer offset = 0;
 
     public String getVal() {
         return val;

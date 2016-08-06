@@ -4,9 +4,9 @@ public class Row {
 
     private String[] cells;
 
-    private int line;
+    private Integer line;
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 

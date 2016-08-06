@@ -7,13 +7,13 @@ public class Tag {
 
     private String name;
 
-    private int line;
+    private Integer line;
 
     public String getName() {
         return name;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 }

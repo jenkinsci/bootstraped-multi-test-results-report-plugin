@@ -7,17 +7,17 @@ public class Step {
 
     private String name;
 
-    private int line;
+    private Integer line;
 
     private String keyword;
 
-    private boolean hidden;
+    private Boolean hidden;
 
     private Result result;
 
     private Match match;
 
-    private int[] matchedColumns;
+    private Integer[] matchedColumns;
 
     private Row[] rows;
 
@@ -27,7 +27,7 @@ public class Step {
         return name;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
@@ -35,7 +35,7 @@ public class Step {
         return keyword;
     }
 
-    public boolean isHidden() {
+    public Boolean isHidden() {
         return hidden;
     }
 
@@ -47,7 +47,7 @@ public class Step {
         return match;
     }
 
-    public int[] getMatchedColumns() {
+    public Integer[] getMatchedColumns() {
         return matchedColumns;
     }
 
