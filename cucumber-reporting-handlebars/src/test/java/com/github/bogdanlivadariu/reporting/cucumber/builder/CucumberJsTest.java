@@ -14,8 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
-import com.github.bogdanlivadariu.reporting.cucumber.json.models.Element;
-import com.github.bogdanlivadariu.reporting.cucumber.json.models.Step;
 
 public class CucumberJsTest {
 
