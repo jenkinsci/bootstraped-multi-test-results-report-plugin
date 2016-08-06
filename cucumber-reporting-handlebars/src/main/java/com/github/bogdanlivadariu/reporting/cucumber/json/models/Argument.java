@@ -4,13 +4,13 @@ public class Argument {
 
     private String val;
 
-    private int offset;
+    private Integer offset;
 
     public String getVal() {
         return val;
     }
 
-    public int getOffset() {
+    public Integer getOffset() {
         return offset;
     }
 }

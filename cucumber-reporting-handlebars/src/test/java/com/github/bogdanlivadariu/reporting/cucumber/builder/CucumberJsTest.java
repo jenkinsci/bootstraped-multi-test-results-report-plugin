@@ -45,11 +45,11 @@ public class CucumberJsTest {
 
     @Test
     public void stepsTest() {
-        assertEquals(6, reports.getStepsTotal());
-        assertEquals(0, reports.getStepsTotalFailed());
-        assertEquals(4, reports.getStepsTotalPassed());
-        assertEquals(1, reports.getStepsTotalSkipped());
-        assertEquals(1, reports.getStepsTotalUndefined());
+        assertEquals(Integer.valueOf(6), reports.getStepsTotal());
+        assertEquals(Integer.valueOf(0), reports.getStepsTotalFailed());
+        assertEquals(Integer.valueOf(4), reports.getStepsTotalPassed());
+        assertEquals(Integer.valueOf(1), reports.getStepsTotalSkipped());
+        assertEquals(Integer.valueOf(1), reports.getStepsTotalUndefined());
     }
 
     @Test

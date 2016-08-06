@@ -55,18 +55,18 @@ public class AllFeatureReportsTest {
 
     @Test
     public void scenariosTest() {
-        assertEquals(21, reports.getScenariosTotal());
-        assertEquals(1, reports.getScenariosTotalFailed());
-        assertEquals(20, reports.getScenariosTotalPassed());
+        assertEquals(Integer.valueOf(21), reports.getScenariosTotal());
+        assertEquals(Integer.valueOf(1), reports.getScenariosTotalFailed());
+        assertEquals(Integer.valueOf(20), reports.getScenariosTotalPassed());
     }
 
     @Test
     public void stepsTest() {
-        assertEquals(92, reports.getStepsTotal());
-        assertEquals(1, reports.getStepsTotalFailed());
-        assertEquals(88, reports.getStepsTotalPassed());
-        assertEquals(3, reports.getStepsTotalSkipped());
-        assertEquals(0, reports.getStepsTotalUndefined());
+        assertEquals(Integer.valueOf(92), reports.getStepsTotal());
+        assertEquals(Integer.valueOf(1), reports.getStepsTotalFailed());
+        assertEquals(Integer.valueOf(88), reports.getStepsTotalPassed());
+        assertEquals(Integer.valueOf(3), reports.getStepsTotalSkipped());
+        assertEquals(Integer.valueOf(0), reports.getStepsTotalUndefined());
     }
 
     @Test
