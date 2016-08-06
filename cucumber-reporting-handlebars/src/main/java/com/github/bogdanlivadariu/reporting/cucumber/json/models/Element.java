@@ -131,10 +131,16 @@ public class Element {
     }
 
     public Tag[] getTags() {
+        if (tags == null) {
+            return new Tag[0];
+        }
         return tags;
     }
 
     public Step[] getSteps() {
+        if (steps == null) {
+            return new Step[0];
+        }
         return steps;
     }
 
