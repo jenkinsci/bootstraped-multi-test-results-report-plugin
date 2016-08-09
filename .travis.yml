@@ -27,7 +27,7 @@ install:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - if [[ "$TRAVIS_JDK_VERSION" == "oraclejdk7" ]]; then
-      mvn versioneye:update
+      mvn versioneye:update;
     fi
   #- if [[ $TRAVIS_BRANCH == 'master' && "$TRAVIS_JDK_VERSION" == "oraclejdk7" ]]; then
   #    mvn versioneye:update
