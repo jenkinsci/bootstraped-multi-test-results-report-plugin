@@ -12,7 +12,7 @@
   <packaging>jar</packaging>
   <name>e2e-reporting</name>
   <description>e2e module to test the generated reports</description>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/web-innovate/bootstraped-multi-test-results-report/tree/master/e2e-reporting</url>
   <licenses>
     <license>
       <name>MIT</name>
