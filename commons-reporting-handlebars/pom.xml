@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
   <name>commons-reporting-handlebars</name>
   <description>Commons module used by the report builder modules</description>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/web-innovate/bootstraped-multi-test-results-report/tree/master/commons-reporting-handlebars</url>
   <licenses>
     <license>
       <name>MIT</name>

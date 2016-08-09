@@ -12,6 +12,25 @@
     POM's to match the desired parent version. -->
   <version>${parent.version}</version>
   <packaging>pom</packaging>
+  <description>Parent module for com.github.bogdanlivadariu jenkins dependency modules</description>
+  <url>https://github.com/web-innovate/bootstraped-multi-test-results-report</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>http://opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/BogdanLivadariu/cucumber-reporting-handlebars.git</url>
+  </scm>
+  <developers>
+    <developer>
+      <id>bogdanlivadariu</id>
+      <name>Bogdan Livadariu</name>
+      <email>bogdan.livadariu@gmail.com</email>
+    </developer>
+  </developers>
   <properties>
     <parent.version>1.4.20</parent.version>
     <cucumber-reporting-handlebars.version>1.1.5</cucumber-reporting-handlebars.version>

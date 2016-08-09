@@ -12,7 +12,7 @@
   <packaging>jar</packaging>
   <name>testng-reporting-handlebars</name>
   <description>Module used to generate TestNG reports using handlebars</description>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/web-innovate/bootstraped-multi-test-results-report/tree/master/testng-reporting-handlebars</url>
   <licenses>
     <license>
       <name>MIT</name>
