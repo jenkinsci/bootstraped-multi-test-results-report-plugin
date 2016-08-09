@@ -1,21 +1,26 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report-reactor-parent</artifactId>
   <name>Bootstrap multi test report builder</name>
-  <!--
-      Because Maven issues a warning if a child module declares its parent version as a expression/variable,
-      we must set the parent version as a constant/hardcoded.
-
-      To update all the child modules version to match this parent pom, use:
-      mvn versions:update-child-modules -DgenerateBackupPoms=false
-      after updating this pom with the version you want.
-
-      The Versions Plugin will update all the childs POM's to match the desired parent version.
-  -->
-  <version>0.0-SNAPSHOT</version>
+  <!-- Because Maven issues a warning if a child module declares its parent 
+    version as a expression/variable, we must set the parent version as a constant/hardcoded. 
+    To update all the child modules version to match this parent pom, use: mvn 
+    versions:update-child-modules -DgenerateBackupPoms=false after updating this 
+    pom with the version you want. The Versions Plugin will update all the childs 
+    POM's to match the desired parent version. -->
+  <version>${parent.version}</version>
   <packaging>pom</packaging>
+  <properties>
+    <parent.version>1.0.0</parent.version>
+    <cucumber-reporting-handlebars.version>1.1.5</cucumber-reporting-handlebars.version>
+    <junit-reporting-handlebars.version>1.0.8</junit-reporting-handlebars.version>
+    <testng-reporting-handlebars.version>1.0.7</testng-reporting-handlebars.version>
+    <rspec-reporting-handlebars.version>1.0.4</rspec-reporting-handlebars.version>
+    <e2e-reporting.version>1.0.0</e2e-reporting.version>
+    <bootstraped-multi-test-results-report.version>1.4.20</bootstraped-multi-test-results-report.version>
+  </properties>
   <modules>
     <!-- <module>commons-reporting-handlebars</module> -->
     <module>cucumber-reporting-handlebars</module>
@@ -25,16 +30,103 @@
     <module>e2e-reporting</module>
     <module>bootstraped-multi-test-results-report</module>
   </modules>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.3</version>
+          <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.3</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.6</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.versioneye</groupId>
+          <artifactId>versioneye-maven-plugin</artifactId>
+          <version>3.10.2</version>
+          <configuration>
+            <apiKey>af83db84b94c4521a8e1</apiKey>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.7.5.201505241946</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>

@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <name>bootstraped-multi-test-results-report</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report</url>
@@ -33,8 +32,7 @@
       <email>bogdan.livadariu@gmail.com</email>
     </developer>
   </developers>
-  <description>
-    The project offers the possibility to build test reports using a bootstrap components,
+  <description>The project offers the possibility to build test reports using a bootstrap components,
     offering rendering support on a wide range of devices.
   </description>
   <repositories>
@@ -107,6 +105,14 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.versioneye</groupId>
+          <artifactId>versioneye-maven-plugin</artifactId>
+          <version>3.10.2</version>
+          <configuration>
+            <apiKey>af83db84b94c4521a8e1</apiKey>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
