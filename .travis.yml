@@ -26,7 +26,7 @@ install:
 - mvn install -Dgpg.skip=true -DskipTests=true -q
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - if [[ $TRAVIS_BRANCH == 'master' && "$TRAVIS_JDK_VERSION" == "oraclejdk7" ]]; then
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_JDK_VERSION" == "oraclejdk7" ]]; then
       mvn versioneye:update;
     fi
   - if [[ -n "$TRAVIS_TAG" && "$TRAVIS_JDK_VERSION" == "oraclejdk7" ]]; then openssl
