@@ -14,10 +14,10 @@
   <packaging>pom</packaging>
   <properties>
     <parent.version>1.0.0</parent.version>
-    <cucumber-reporting-handlebars.version>1.1.5</cucumber-reporting-handlebars.version>
-    <junit-reporting-handlebars.version>1.0.8</junit-reporting-handlebars.version>
-    <testng-reporting-handlebars.version>1.0.7</testng-reporting-handlebars.version>
-    <rspec-reporting-handlebars.version>1.0.4</rspec-reporting-handlebars.version>
+    <cucumber-reporting-handlebars.version>1.1.6</cucumber-reporting-handlebars.version>
+    <junit-reporting-handlebars.version>1.0.9</junit-reporting-handlebars.version>
+    <testng-reporting-handlebars.version>1.0.8</testng-reporting-handlebars.version>
+    <rspec-reporting-handlebars.version>1.0.5</rspec-reporting-handlebars.version>
     <e2e-reporting.version>1.0.0</e2e-reporting.version>
     <bootstraped-multi-test-results-report.version>1.4.20</bootstraped-multi-test-results-report.version>
     <handlebars.version>4.0.5</handlebars.version>

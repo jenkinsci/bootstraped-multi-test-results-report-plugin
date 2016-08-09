@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <name>bootstraped-multi-test-results-report</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report</url>
@@ -12,6 +13,12 @@
   <artifactId>bootstraped-multi-test-results-report</artifactId>
   <version>1.4.20</version>
   <packaging>hpi</packaging>
+  <properties>
+    <cucumber-reporting-handlebars.version>1.1.6</cucumber-reporting-handlebars.version>
+    <junit-reporting-handlebars.version>1.0.9</junit-reporting-handlebars.version>
+    <testng-reporting-handlebars.version>1.0.8</testng-reporting-handlebars.version>
+    <rspec-reporting-handlebars.version>1.0.5</rspec-reporting-handlebars.version>
+  </properties>
   <scm>
     <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
     <developerConnection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</developerConnection>
@@ -121,22 +128,22 @@
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>cucumber-reporting-handlebars</artifactId>
-      <version>1.1.5</version>
+      <version>${cucumber-reporting-handlebars.version}</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>junit-reporting-handlebars</artifactId>
-      <version>1.0.8</version>
+      <version>${junit-reporting-handlebars.version}</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>rspec-reporting-handlebars</artifactId>
-      <version>1.0.4</version>
+      <version>${rspec-reporting-handlebars.version}</version>
     </dependency>
     <dependency>
       <groupId>com.github.bogdanlivadariu</groupId>
       <artifactId>testng-reporting-handlebars</artifactId>
-      <version>1.0.7</version>
+      <version>${testng-reporting-handlebars.version}</version>
     </dependency>
   </dependencies>
 </project>
