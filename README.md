@@ -11,8 +11,8 @@
 | Modules |[![Dependency Status](https://www.versioneye.com/user/projects/57a88a72c953220013e578d6/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57a88a72c953220013e578d6)|
 | Jenkins HPI |[![Dependency Status](https://www.versioneye.com/user/projects/57a88a7fd3298e001626276d/badge.svg?style=flat-square&label=coo)](https://www.versioneye.com/user/projects/57a88a7fd3298e001626276d)|
 
-| maven module | maven lates version |
-| ------------ | ------------------- |
+| maven module | maven latest versions |
+| ------------ | --------------------- |
 | [cucumber-reporting-handlebars](./cucumber-reporting-handlebars)     | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bogdanlivadariu/cucumber-reporting-handlebars/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bogdanlivadariu/cucumber-reporting-handlebars) |
 | [junit-reporting-handlebars](./junit-reporting-handlebars)     | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bogdanlivadariu/junit-reporting-handlebars/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bogdanlivadariu/junit-reporting-handlebars) |
 | [rspec-reporting-handlebars](./rspec-reporting-handlebars)     | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bogdanlivadariu/rspec-reporting-handlebars/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bogdanlivadariu/rspec-reporting-handlebars) |
