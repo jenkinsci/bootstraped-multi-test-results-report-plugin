@@ -40,7 +40,6 @@ notifications:
   webhooks:
     urls:
     - https://webhooks.gitter.im/e/e93317838b869a9d5014
-    - https://web-innovate-bootstraped-multi-test-results-report.getbadges.io/api/app/webhook/d672d0d9-4efb-4fa7-b15a-a88beaf065e9
     on_success: change
     on_failure: always
     on_start: never
