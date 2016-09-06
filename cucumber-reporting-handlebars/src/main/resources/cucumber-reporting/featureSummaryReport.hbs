@@ -96,6 +96,9 @@
                         {{#if rows}}
                           <pre>{{#do_table rows}}{{/do_table}}</pre>
                         {{/if}}
+                        {{#if docString}}
+                          <pre>{{ docString.value }} </pre>
+                        {{/if}}
                         {{#if result.errorMessage}}
                           <pre>{{result.errorMessage}}</pre>
                         {{/if}}
