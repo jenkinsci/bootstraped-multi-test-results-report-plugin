@@ -11,10 +11,10 @@
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>1.4.20</version>
+  <version>1.4.21</version>
   <packaging>hpi</packaging>
   <properties>
-    <cucumber-reporting-handlebars.version>1.1.5</cucumber-reporting-handlebars.version>
+    <cucumber-reporting-handlebars.version>1.1.6</cucumber-reporting-handlebars.version>
     <junit-reporting-handlebars.version>1.0.9</junit-reporting-handlebars.version>
     <testng-reporting-handlebars.version>1.0.8</testng-reporting-handlebars.version>
     <rspec-reporting-handlebars.version>1.0.5</rspec-reporting-handlebars.version>

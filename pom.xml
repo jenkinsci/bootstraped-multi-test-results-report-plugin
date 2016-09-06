@@ -38,7 +38,7 @@
     <testng-reporting-handlebars.version>1.0.8</testng-reporting-handlebars.version>
     <rspec-reporting-handlebars.version>1.0.5</rspec-reporting-handlebars.version>
     <e2e-reporting.version>1.0.0</e2e-reporting.version>
-    <bootstraped-multi-test-results-report.version>1.4.20</bootstraped-multi-test-results-report.version>
+    <bootstraped-multi-test-results-report.version>1.4.21</bootstraped-multi-test-results-report.version>
     <handlebars.version>4.0.5</handlebars.version>
     <testng.version>6.9.10</testng.version>
     <joda-time.version>2.9.4</joda-time.version>
