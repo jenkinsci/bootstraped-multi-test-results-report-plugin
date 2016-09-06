@@ -16,6 +16,8 @@ public class Step {
     private Result result;
 
     private Match match;
+    
+    private DocString docString;
 
     private Integer[] matchedColumns;
 
@@ -60,6 +62,14 @@ public class Step {
             return new Embedding[0];
         }
         return embeddings;
+    }
+
+    public Boolean getHidden() {
+        return hidden;
+    }
+
+    public DocString getDocString() {
+        return docString;
     }
 
 }
