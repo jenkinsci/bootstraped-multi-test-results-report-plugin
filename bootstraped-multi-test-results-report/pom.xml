@@ -11,12 +11,12 @@
   </parent>
   <groupId>com.github.bogdanlivadariu</groupId>
   <artifactId>bootstraped-multi-test-results-report</artifactId>
-  <version>1.4.21</version>
+  <version>1.4.22</version>
   <packaging>hpi</packaging>
   <properties>
     <cucumber-reporting-handlebars.version>1.1.6</cucumber-reporting-handlebars.version>
     <junit-reporting-handlebars.version>1.0.9</junit-reporting-handlebars.version>
-    <testng-reporting-handlebars.version>1.0.8</testng-reporting-handlebars.version>
+    <testng-reporting-handlebars.version>1.0.9</testng-reporting-handlebars.version>
     <rspec-reporting-handlebars.version>1.0.5</rspec-reporting-handlebars.version>
   </properties>
   <scm>
@@ -54,6 +54,18 @@
       <url>http://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <build>
     <plugins>
       <plugin>
