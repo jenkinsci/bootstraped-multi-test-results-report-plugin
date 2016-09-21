@@ -43,13 +43,17 @@ public class RSpecReportBuilder {
         Unmarshaller unm = cntx.createUnmarshaller();
 
         for (String xml : xmlReports) {
+            Object unmModel = unm.unmarshal(new File(xml));
 
-            Logger.getGlobal().info(">>>>>>>>>>" + xml);
-            TestSuitesModel ts = (TestSuitesModel) unm.unmarshal(new File(xml));
-
-            ts.postProcess();
-
-            processedTestSuites.addAll(ts.getTestsuites());
+            if (unmModel instanceof TestSuiteModel) {
+                TestSuiteModel ts = (TestSuiteModel) unmModel;
+                ts.postProcess();
+                processedTestSuites.add(ts);
+            } else if (unmModel instanceof TestSuitesModel) {
+                TestSuitesModel ts = (TestSuitesModel) unmModel;
+                ts.postProcess();
+                processedTestSuites.addAll(ts.getTestsuites());
+            }
         }
     }
 
