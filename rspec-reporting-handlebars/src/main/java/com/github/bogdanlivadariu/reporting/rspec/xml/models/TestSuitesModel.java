@@ -16,16 +16,16 @@ import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
 public class TestSuitesModel {
 
     @XmlAttribute
-    private String failures;
+    private String failures = "0";
 
     @XmlAttribute
-    private String skipped;
+    private String skipped = "0";
 
     @XmlAttribute
-    private String tests;
+    private String tests = "0";
 
     @XmlAttribute
-    private String errors;
+    private String errors = "0";
 
     @XmlAttribute
     private String time;
