@@ -51,7 +51,7 @@
     <module>junit-reporting-handlebars</module>
     <module>testng-reporting-handlebars</module>
     <module>rspec-reporting-handlebars</module>
-    <module>e2e-reporting</module>
+    <!-- <module>e2e-reporting</module> -->
     <module>bootstraped-multi-test-results-report</module>
   </modules>
   <dependencies>
