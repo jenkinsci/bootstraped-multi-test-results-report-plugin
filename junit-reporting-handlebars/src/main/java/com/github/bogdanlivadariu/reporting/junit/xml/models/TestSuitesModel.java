@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,7 +49,7 @@ public class TestSuitesModel {
             int errorsCount = 0;
             Double totalTime = 0.0;
 
-            for (TestSuiteModel suite : testsuite) {
+            for (TestSuiteModel suite : getTestsuite()) {
                 if (suite.getOverallStatus().equals(Constants.FAILED)) {
                     failuresCount++;
                 } else if (suite.getOverallStatus().equals(Constants.ERRORED)) {
@@ -62,7 +63,7 @@ public class TestSuitesModel {
                 failures = Integer.toString(failuresCount);
             }
             if (tests == null) {
-                tests = Integer.toString(testsuite.size());
+                tests = Integer.toString(getTestsuite().size());
             }
             if (time == null) {
                 time = Double.toString(totalTime);
@@ -104,7 +105,7 @@ public class TestSuitesModel {
     }
 
     public List<TestSuiteModel> getTestsuite() {
-        return testsuite;
+        return testsuite == null ? new ArrayList<TestSuiteModel>() : testsuite;
     }
 
     public String getOverallStatus() {
