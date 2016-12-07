@@ -13,6 +13,7 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Row;
+import com.github.bogdanlivadariu.reporting.cucumber.json.models.StepRow;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
@@ -32,6 +33,7 @@ public class Helpers {
         handlebar.registerHelper("is-collapsed", isCollapsedHelper());
         handlebar.registerHelper("now", nowHelper());
         handlebar.registerHelper("do_table", doTableHelper());
+        handlebar.registerHelper("do_table_step", doTableHelperForStep());
         return handlebar;
     }
 
@@ -151,6 +153,41 @@ public class Helpers {
         };
     }
 
+    private Helper<List<StepRow>> doTableHelperForStep() {
+        return new Helper<List<StepRow>>() {
+            @Override
+            public CharSequence apply(List<StepRow> rows, Options arg1) throws IOException {
+                String tableContent = "<table  class='table table-condensed table-hover'>";
+                int indexRow = 0;
+                for (StepRow row : rows) {
+                    indexRow++;
+                    if (indexRow == 1) {
+                        tableContent += "<thead><tr>";
+                    } else if (indexRow == 2) {
+                        tableContent += "<tbody><tr>";
+                    } else {
+                        tableContent += "<tr>";
+                    }
+                    for (String cell : row.getCells()) {
+                        if (indexRow == 1) {
+                            tableContent += "<th>" + cell + "</th>";
+                        } else {
+                            tableContent += "<td>" + cell + "</td>";
+                        }
+                    }
+                    if (indexRow == 1) {
+                        tableContent += "</tr></thead>";
+                    } else {
+                        tableContent += "</tr>";
+                    }
+                }
+                tableContent += "</tbody></table>";
+                return tableContent;
+            }
+        };
+    }
+    
+    
     private Helper<List<Row>> doTableHelper() {
         return new Helper<List<Row>>() {
             @Override

@@ -22,6 +22,8 @@ public class Step {
     private Integer[] matchedColumns;
 
     private Row[] rows;
+    
+    private StepArgument[] arguments;
 
     private Embedding[] embeddings;
 
@@ -70,6 +72,10 @@ public class Step {
 
     public DocString getDocString() {
         return docString;
+    }
+    
+    public StepArgument[] getArguments() {
+    	return arguments;
     }
 
 }
