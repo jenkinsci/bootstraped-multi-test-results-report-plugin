@@ -93,6 +93,9 @@
                             #{{match.location}}
                           </span>
                         </p>
+                        {{#if arguments}}
+                          <pre>{{#do_table_step arguments.0.rows}}{{/do_table_step}}</pre>
+                        {{/if}}
                         {{#if rows}}
                           <pre>{{#do_table rows}}{{/do_table}}</pre>
                         {{/if}}

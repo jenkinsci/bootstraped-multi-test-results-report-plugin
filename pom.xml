@@ -32,8 +32,8 @@
     </developer>
   </developers>
   <properties>
-    <parent.version>1.4.23</parent.version>
-    <cucumber-reporting-handlebars.version>1.1.6</cucumber-reporting-handlebars.version>
+    <parent.version>1.4.24</parent.version>
+    <cucumber-reporting-handlebars.version>1.1.7</cucumber-reporting-handlebars.version>
     <junit-reporting-handlebars.version>1.0.10</junit-reporting-handlebars.version>
     <testng-reporting-handlebars.version>1.0.9</testng-reporting-handlebars.version>
     <rspec-reporting-handlebars.version>1.0.6</rspec-reporting-handlebars.version>
