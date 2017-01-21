@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TestNGTestReportPublisher extends Publisher implements SimpleBuildStep {
 
     private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
@@ -115,7 +114,9 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         // target directory (always on master)
         File targetBuildDirectory = new File(build.getRootDir(), "testng-reports-with-handlebars");
         if (!targetBuildDirectory.exists()) {
-            targetBuildDirectory.mkdirs();
+            if (!targetBuildDirectory.mkdirs()) {
+                listener.getLogger().println("target dir was not created !!!");
+            }
         }
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
@@ -154,11 +155,6 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
             listener.getLogger().println("[TestNG test report builder] Generating HTML reports");
 
             try {
-                List<String> fullJsonPaths = new ArrayList<String>();
-                // reportBuilder.generateReports();
-                for (String fi : jsonReportFiles) {
-                    fullJsonPaths.add(targetBuildJsonDirectory + "/" + fi);
-                }
                 for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }

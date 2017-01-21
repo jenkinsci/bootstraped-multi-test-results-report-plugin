@@ -12,6 +12,8 @@ public class TestNGTestReportProjectAction extends TestNGTestReportBaseAction im
     }
 
     public String getUrlName() {
-        return this.project.getLastBuild().getId() + "/testng-reports-with-handlebars/testsByClassOverview.html";
+        return project != null
+            ? project.getLastBuild().getId() + "/testng-reports-with-handlebars/testsByClassOverview.html"
+            : "if-this-happens-contact-dev";
     }
 }
