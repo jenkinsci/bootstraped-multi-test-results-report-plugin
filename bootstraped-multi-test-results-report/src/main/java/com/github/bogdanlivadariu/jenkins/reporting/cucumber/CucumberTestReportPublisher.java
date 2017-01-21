@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.jenkins.reporting.cucumber;
 
+import com.github.bogdanlivadariu.jenkins.reporting.SafeArchiveServingRunAction;
 import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuilder;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
@@ -8,28 +9,24 @@ import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.*;
 import hudson.slaves.SlaveComputer;
-import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
-import hudson.tasks.Recorder;
-import hudson.util.FormValidation;
+import jenkins.tasks.SimpleBuildStep;
 import org.apache.tools.ant.DirectoryScanner;
-import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.QueryParameter;
 
-import javax.servlet.ServletException;
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class CucumberTestReportPublisher extends Recorder {
+public class CucumberTestReportPublisher extends Publisher implements SimpleBuildStep {
 
     private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.json";
 
-    private final String jsonReportDirectory;
+    private final String reportsDirectory;
 
     private final String fileIncludePattern;
 
@@ -44,9 +41,9 @@ public class CucumberTestReportPublisher extends Recorder {
     private final SpecialProperties props;
 
     @DataBoundConstructor
-    public CucumberTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
+    public CucumberTestReportPublisher(String reportsDirectory, String fileIncludePattern, String fileExcludePattern,
         boolean markAsUnstable, boolean copyHTMLInWorkspace, boolean ignoreUndefinedSteps) {
-        this.jsonReportDirectory = jsonReportDirectory;
+        this.reportsDirectory = reportsDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
@@ -59,8 +56,8 @@ public class CucumberTestReportPublisher extends Recorder {
 
     }
 
-    public String getJsonReportDirectory() {
-        return this.jsonReportDirectory;
+    public String getReportsDirectory() {
+        return this.reportsDirectory;
     }
 
     public String getFileIncludePattern() {
@@ -98,18 +95,17 @@ public class CucumberTestReportPublisher extends Recorder {
         return scanner.getIncludedFiles();
     }
 
-    @Override
-    public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener)
+    public boolean generateReport(Run<?, ?> build, FilePath workspace, TaskListener listener)
         throws IOException, InterruptedException {
 
         listener.getLogger().println("[CucumberReportPublisher] Compiling Cucumber Html Reports ...");
 
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
-        if (getJsonReportDirectory().isEmpty()) {
-            workspaceJsonReportDirectory = build.getWorkspace();
+        if (getReportsDirectory().isEmpty()) {
+            workspaceJsonReportDirectory = workspace;
         } else {
-            workspaceJsonReportDirectory = new FilePath(build.getWorkspace(), getJsonReportDirectory());
+            workspaceJsonReportDirectory = new FilePath(workspace, getReportsDirectory());
         }
 
         // target directory (always on master)
@@ -170,7 +166,7 @@ public class CucumberTestReportPublisher extends Recorder {
                 // finally copy to workspace, if needed
                 if (isCopyHTMLInWorkspace()) {
                     FilePath workspaceCopyDirectory =
-                        new FilePath(build.getWorkspace(), "cucumber-reports-with-handlebars");
+                        new FilePath(workspace, "cucumber-reports-with-handlebars");
                     if (workspaceCopyDirectory.exists()) {
                         workspaceCopyDirectory.deleteRecursive();
                     }
@@ -193,8 +189,6 @@ public class CucumberTestReportPublisher extends Recorder {
             listener.getLogger().println(
                 "[Cucumber test report builder] json path for the reports might be wrong, " + targetBuildDirectory);
         }
-
-        build.addAction(new CucumberTestReportBuildAction(build));
         build.setResult(result);
 
         return true;
@@ -217,23 +211,20 @@ public class CucumberTestReportPublisher extends Recorder {
         return BuildStepMonitor.NONE;
     }
 
+    @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath filePath, @Nonnull Launcher launcher,
+        @Nonnull TaskListener taskListener) throws InterruptedException, IOException {
+        generateReport(run, filePath, taskListener);
+
+        SafeArchiveServingRunAction caa = new SafeArchiveServingRunAction(
+            new File(run.getRootDir(), "cucumber-reports-with-handlebars"),
+            "cucumber-reports-with-handlebars",
+            CucumberReportBuilder.FEATURES_OVERVIEW_HTML,
+            CucumberTestReportBaseAction.ICON_LOCATON,
+            CucumberTestReportBaseAction.DISPLAY_NAME);
+        run.addAction(caa);
+    }
+
     @Extension
-    public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
-        @Override
-        public String getDisplayName() {
-            return "Publish cucumber reports generated with handlebars";
-        }
-
-        // Performs on-the-fly validation on the file mask wildcard.
-        public FormValidation doCheck(@AncestorInPath AbstractProject project, @QueryParameter String value)
-            throws IOException, ServletException {
-            FilePath ws = project.getSomeWorkspace();
-            return ws != null ? ws.validateRelativeDirectory(value) : FormValidation.ok();
-        }
-
-        @Override
-        public boolean isApplicable(Class<? extends AbstractProject> jobType) {
-            return true;
-        }
+    public static class DescriptorImpl extends CucumberTestReportBuildStepDescriptor {
     }
 }

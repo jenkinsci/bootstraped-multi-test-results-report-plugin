@@ -10,7 +10,7 @@
     When submitted, it will be passed to the corresponding constructor parameter.
   -->
   <f:advanced>
-    <f:entry title="XML Reports Path" field="jsonReportDirectory" description="The path relative to the workspace of the xml reports - leave empty to scan the whole workspace">
+    <f:entry title="XML Reports Path" field="reportsDirectory" description="The path relative to the workspace of the xml reports - leave empty to scan the whole workspace">
       <f:textbox />
     </f:entry>
     <f:entry title="File Include Pattern" field="fileIncludePattern" description="Default include pattern is '**/*.xml'">

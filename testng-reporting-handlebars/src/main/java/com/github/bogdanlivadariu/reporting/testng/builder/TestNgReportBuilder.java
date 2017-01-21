@@ -1,14 +1,13 @@
 package com.github.bogdanlivadariu.reporting.testng.builder;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import com.github.bogdanlivadariu.reporting.testng.helpers.Helpers;
+import com.github.bogdanlivadariu.reporting.testng.xml.models.ClassModel;
+import com.github.bogdanlivadariu.reporting.testng.xml.models.SuiteModel;
+import com.github.bogdanlivadariu.reporting.testng.xml.models.TestModel;
+import com.github.bogdanlivadariu.reporting.testng.xml.models.TestngResultsModel;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import org.apache.commons.io.FileUtils;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -17,27 +16,22 @@ import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-
-import org.apache.commons.io.FileUtils;
-
-import com.github.bogdanlivadariu.reporting.testng.helpers.Helpers;
-import com.github.bogdanlivadariu.reporting.testng.xml.models.ClassModel;
-import com.github.bogdanlivadariu.reporting.testng.xml.models.SuiteModel;
-import com.github.bogdanlivadariu.reporting.testng.xml.models.TestModel;
-import com.github.bogdanlivadariu.reporting.testng.xml.models.TestngResultsModel;
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestNgReportBuilder {
+    public static final String TESTS_BY_CLASS_OVERVIEW = "testsByClassOverview.html";
+
+    private final String testOverviewPath;
+
+    private final String classesSummaryPath;
+
     private String testSummaryReport = "testng-reporting/testCaseSummaryReport";
 
     private String testOverviewReport = "testng-reporting/testsByClassOverview";
 
     private String testNameOverviewReport = "testng-reporting/testsByNameOverview";
-
-    private final String testOverviewPath;
-
-    private final String classesSummaryPath;
 
     private List<TestngResultsModel> processedTestNgReports;
 
@@ -66,7 +60,7 @@ public class TestNgReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(testOverviewReport);
         AllTestNgReports allTestNgReports =
             new AllTestNgReports("Tests by class overview report", processedTestNgReports);
-        FileUtils.writeStringToFile(new File(testOverviewPath + "testsByClassOverview.html"),
+        FileUtils.writeStringToFile(new File(testOverviewPath + TESTS_BY_CLASS_OVERVIEW),
             template.apply(allTestNgReports));
     }
 
