@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>bootstraped-multi-test-results-report</name>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report</url>
@@ -7,19 +6,19 @@
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
         <version>2.21</version>
-        <relativePath/>
+        <relativePath />
         <!-- which version of Jenkins is this plugin built against? -->
     </parent>
     <groupId>com.github.bogdanlivadariu</groupId>
     <artifactId>bootstraped-multi-test-results-report</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.1-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <properties>
         <jenkins.version>2.32.1</jenkins.version>
-        <cucumber-reporting-handlebars.version>2.0.0-SNAPSHOT</cucumber-reporting-handlebars.version>
-        <junit-reporting-handlebars.version>2.0.0-SNAPSHOT</junit-reporting-handlebars.version>
-        <testng-reporting-handlebars.version>2.0.0-SNAPSHOT</testng-reporting-handlebars.version>
-        <rspec-reporting-handlebars.version>2.0.0-SNAPSHOT</rspec-reporting-handlebars.version>
+        <cucumber-reporting-handlebars.version>2.0.1-SNAPSHOT</cucumber-reporting-handlebars.version>
+        <junit-reporting-handlebars.version>2.0.1-SNAPSHOT</junit-reporting-handlebars.version>
+        <testng-reporting-handlebars.version>2.0.1-SNAPSHOT</testng-reporting-handlebars.version>
+        <rspec-reporting-handlebars.version>2.0.1-SNAPSHOT</rspec-reporting-handlebars.version>
     </properties>
     <scm>
         <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
