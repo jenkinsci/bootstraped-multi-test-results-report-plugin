@@ -8,7 +8,7 @@ public class TestNGTestReportBuildStepDescriptor extends BuildStepDescriptor<Pub
 
     @Override
     public String getDisplayName() {
-        return "TestNG reports with handlebars";
+        return "Publish TestNG reports generated with handlebars";
     }
 
     @Override

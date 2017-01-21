@@ -50,9 +50,9 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         SafeArchiveServingRunAction caa = new SafeArchiveServingRunAction(
             new File(run.getRootDir(), "testng-reports-with-handlebars"),
             "testng-reports-with-handlebars",
-            "testsByClassOverview.html",
+            TestNgReportBuilder.TESTS_BY_CLASS_OVERVIEW,
             TestNGTestReportBaseAction.ICON_LOCATON,
-            "TestNG Reports");
+            "Publish TestNG reports generated with handlebars");
         run.addAction(caa);
     }
 

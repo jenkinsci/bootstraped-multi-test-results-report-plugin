@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.jenkins.reporting.testng;
 
+import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 import hudson.model.Action;
 
 public abstract class TestNGTestReportBaseAction implements Action {
@@ -7,7 +8,7 @@ public abstract class TestNGTestReportBaseAction implements Action {
 
     @Override
     public String getUrlName() {
-        return "testsByClassOverview.html";
+        return TestNgReportBuilder.TESTS_BY_CLASS_OVERVIEW;
     }
 
     @Override
