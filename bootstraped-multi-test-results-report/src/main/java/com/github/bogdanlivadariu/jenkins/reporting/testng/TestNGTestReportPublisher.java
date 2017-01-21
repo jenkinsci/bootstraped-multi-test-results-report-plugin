@@ -1,41 +1,29 @@
 package com.github.bogdanlivadariu.jenkins.reporting.testng;
 
+import com.github.bogdanlivadariu.jenkins.reporting.SafeArchiveServingRunAction;
+import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.Action;
-import hudson.model.BuildListener;
-import hudson.model.Result;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.Computer;
+import hudson.model.*;
 import hudson.slaves.SlaveComputer;
-import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
-import hudson.tasks.Recorder;
-import hudson.util.FormValidation;
+import jenkins.tasks.SimpleBuildStep;
+import org.apache.tools.ant.DirectoryScanner;
+import org.kohsuke.stapler.DataBoundConstructor;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-
-import org.apache.tools.ant.DirectoryScanner;
-import org.kohsuke.stapler.AncestorInPath;
-import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.QueryParameter;
-
-import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
-
-@SuppressWarnings("unchecked")
-public class TestNGTestReportPublisher extends Recorder {
+public class TestNGTestReportPublisher extends Publisher implements SimpleBuildStep {
 
     private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
-    private final String jsonReportDirectory;
+    private final String reportsDirectory;
 
     private final String fileIncludePattern;
 
@@ -46,36 +34,39 @@ public class TestNGTestReportPublisher extends Recorder {
     private final boolean copyHTMLInWorkspace;
 
     @DataBoundConstructor
-    public TestNGTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
+    public TestNGTestReportPublisher(String reportsDirectory, String fileIncludePattern, String fileExcludePattern,
         boolean markAsUnstable, boolean copyHTMLInWorkspace) {
-        this.jsonReportDirectory = jsonReportDirectory;
+        this.reportsDirectory = reportsDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
     }
 
-    public String getJsonReportDirectory() {
-        return jsonReportDirectory;
+    @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath workspace, @Nonnull Launcher launcher,
+        @Nonnull TaskListener listener) throws InterruptedException, IOException {
+        listener.getLogger().println("[TestNGReportPublisher] searching for files ...");
+        generateReports(run, workspace, listener);
+        SafeArchiveServingRunAction caa = new SafeArchiveServingRunAction(
+            new File(run.getRootDir(), "testng-reports-with-handlebars"),
+            "testng-reports-with-handlebars",
+            "testsByClassOverview.html",
+            TestNGTestReportBaseAction.ICON_LOCATON,
+            "TestNG Reports");
+        run.addAction(caa);
     }
 
-    public String getFileIncludePattern() {
-        return fileIncludePattern;
+    @Override
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.NONE;
     }
 
-    public String getFileExcludePattern() {
-        return fileExcludePattern;
+    @Override
+    public Action getProjectAction(AbstractProject<?, ?> project) {
+        return new TestNGTestReportProjectAction(project);
     }
 
-    public boolean isMarkAsUnstable() {
-        return markAsUnstable;
-    }
-
-    public boolean isCopyHTMLInWorkspace() {
-        return copyHTMLInWorkspace;
-    }
-
-    private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
+    private String[] findFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
         DirectoryScanner scanner = new DirectoryScanner();
         if (fileIncludePattern == null || fileIncludePattern.isEmpty()) {
             scanner.setIncludes(new String[] {DEFAULT_FILE_INCLUDE_PATTERN});
@@ -90,24 +81,42 @@ public class TestNGTestReportPublisher extends Recorder {
         return scanner.getIncludedFiles();
     }
 
-    @Override
-    public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener)
+    public String getReportsDirectory() {
+        return reportsDirectory;
+    }
+
+    public boolean isCopyHTMLInWorkspace() {
+        return copyHTMLInWorkspace;
+    }
+
+    public String getFileIncludePattern() {
+        return fileIncludePattern;
+    }
+
+    public String getFileExcludePattern() {
+        return fileExcludePattern;
+    }
+
+    public boolean isMarkAsUnstable() {
+        return markAsUnstable;
+    }
+
+    private void generateReports(Run<?, ?> build, FilePath workspace, TaskListener listener)
         throws IOException, InterruptedException {
-
-        listener.getLogger().println("[TestNGReportPublisher] Compiling TestNG Html Reports ...");
-
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
-        if (getJsonReportDirectory().isEmpty()) {
-            workspaceJsonReportDirectory = build.getWorkspace();
+        if (getReportsDirectory().isEmpty()) {
+            workspaceJsonReportDirectory = workspace;
         } else {
-            workspaceJsonReportDirectory = new FilePath(build.getWorkspace(), getJsonReportDirectory());
+            workspaceJsonReportDirectory = new FilePath(workspace, getReportsDirectory());
         }
 
         // target directory (always on master)
         File targetBuildDirectory = new File(build.getRootDir(), "testng-reports-with-handlebars");
         if (!targetBuildDirectory.exists()) {
-            targetBuildDirectory.mkdirs();
+            if (!targetBuildDirectory.mkdirs()) {
+                listener.getLogger().println("target dir was not created !!!");
+            }
         }
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
@@ -133,7 +142,7 @@ public class TestNGTestReportPublisher extends Recorder {
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
         String[] jsonReportFiles =
-            findJsonFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
+            findFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
         if (jsonReportFiles.length > 0) {
             listener.getLogger().println(
                 String.format("[TestNGReportPublisher] Found %d xml files.", jsonReportFiles.length));
@@ -146,11 +155,6 @@ public class TestNGTestReportPublisher extends Recorder {
             listener.getLogger().println("[TestNG test report builder] Generating HTML reports");
 
             try {
-                List<String> fullJsonPaths = new ArrayList<String>();
-                // reportBuilder.generateReports();
-                for (String fi : jsonReportFiles) {
-                    fullJsonPaths.add(targetBuildJsonDirectory + "/" + fi);
-                }
                 for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
@@ -167,12 +171,14 @@ public class TestNGTestReportPublisher extends Recorder {
 
                 // finally copy to workspace, if needed
                 if (isCopyHTMLInWorkspace()) {
-                    FilePath workspaceCopyDirectory = new FilePath(build.getWorkspace(), "testng-reports-with-handlebars");
+                    FilePath workspaceCopyDirectory =
+                        new FilePath(workspace, "testng-reports-with-handlebars");
                     if (workspaceCopyDirectory.exists()) {
                         workspaceCopyDirectory.deleteRecursive();
                     }
                     listener.getLogger().println(
-                        "[TestNG test report builder] Copying report to workspace directory: " + workspaceCopyDirectory.toURI());
+                        "[TestNG test report builder] Copying report to workspace directory: " + workspaceCopyDirectory
+                            .toURI());
                     new FilePath(targetBuildDirectory).copyRecursiveTo("**/*.html", workspaceCopyDirectory);
                 }
 
@@ -189,11 +195,7 @@ public class TestNGTestReportPublisher extends Recorder {
             listener.getLogger().println(
                 "[TestNG test report builder] xml path for the reports might be wrong, " + targetBuildDirectory);
         }
-
-        build.addAction(new TestNGTestReportBuildAction(build));
         build.setResult(result);
-
-        return true;
     }
 
     private List<String> fullPathToXmlFiles(String[] xmlFiles, File targetBuildDirectory) {
@@ -204,32 +206,7 @@ public class TestNGTestReportPublisher extends Recorder {
         return fullPathList;
     }
 
-    @Override
-    public Action getProjectAction(AbstractProject< ? , ? > project) {
-        return new TestNGTestReportProjectAction(project);
-    }
-
     @Extension
-    public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
-        @Override
-        public String getDisplayName() {
-            return "Publish TestNG reports generated with handlebars";
-        }
-
-        // Performs on-the-fly validation on the file mask wildcard.
-        public FormValidation doCheck(@AncestorInPath AbstractProject project,
-            @QueryParameter String value) throws IOException, ServletException {
-            FilePath ws = project.getSomeWorkspace();
-            return ws != null ? ws.validateRelativeDirectory(value) : FormValidation.ok();
-        }
-
-        @Override
-        public boolean isApplicable(Class< ? extends AbstractProject> jobType) {
-            return true;
-        }
-    }
-
-    public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.NONE;
+    public static class DescriptorImpl extends TestNGTestReportBuildStepDescriptor {
     }
 }

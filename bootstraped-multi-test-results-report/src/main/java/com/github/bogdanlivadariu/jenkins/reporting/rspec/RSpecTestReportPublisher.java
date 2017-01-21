@@ -1,34 +1,26 @@
 package com.github.bogdanlivadariu.jenkins.reporting.rspec;
 
+import com.github.bogdanlivadariu.reporting.rspec.builder.RSpecReportBuilder;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.Action;
-import hudson.model.BuildListener;
-import hudson.model.Result;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.Computer;
+import hudson.model.*;
 import hudson.slaves.SlaveComputer;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import hudson.util.FormValidation;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.ServletException;
-
 import org.apache.tools.ant.DirectoryScanner;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
-import com.github.bogdanlivadariu.reporting.rspec.builder.RSpecReportBuilder;
+import javax.servlet.ServletException;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class RSpecTestReportPublisher extends Recorder {
@@ -107,19 +99,20 @@ public class RSpecTestReportPublisher extends Recorder {
         // target directory (always on master)
         File targetBuildDirectory = new File(build.getRootDir(), "rspec-reports-with-handlebars");
         if (!targetBuildDirectory.exists()) {
-            targetBuildDirectory.mkdirs();
+            if (!targetBuildDirectory.mkdirs()) {
+                listener.getLogger().println("target dir was not created !!!");
+            }
         }
+        String remoteWS = workspaceJsonReportDirectory != null ? workspaceJsonReportDirectory.getRemote() : "";
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
             listener.getLogger().println(
                 "[RSpec test report builder] Copying XML files from slave: "
-                    + workspaceJsonReportDirectory.getRemote() + " to master reports directory: "
-                    + targetBuildDirectory);
+                    + remoteWS + " to master reports directory: " + targetBuildDirectory);
         } else {
             listener.getLogger().println(
                 "[RSpec test report builder] Copying XML files from: "
-                    + workspaceJsonReportDirectory.getRemote()
-                    + " to reports directory: " + targetBuildDirectory);
+                    + remoteWS + " to reports directory: " + targetBuildDirectory);
         }
         File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/xmlData");
         if (!targetBuildJsonDirectory.exists()) {
@@ -146,11 +139,6 @@ public class RSpecTestReportPublisher extends Recorder {
             listener.getLogger().println("[RSpec test report builder] Generating HTML reports");
 
             try {
-                List<String> fullJsonPaths = new ArrayList<String>();
-                // reportBuilder.generateReports();
-                for (String fi : jsonReportFiles) {
-                    fullJsonPaths.add(targetBuildJsonDirectory + "/" + fi);
-                }
                 for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
@@ -167,12 +155,14 @@ public class RSpecTestReportPublisher extends Recorder {
 
                 // finally copy to workspace, if needed
                 if (isCopyHTMLInWorkspace()) {
-                    FilePath workspaceCopyDirectory = new FilePath(build.getWorkspace(), "rspec-reports-with-handlebars");
+                    FilePath workspaceCopyDirectory =
+                        new FilePath(build.getWorkspace(), "rspec-reports-with-handlebars");
                     if (workspaceCopyDirectory.exists()) {
                         workspaceCopyDirectory.deleteRecursive();
                     }
                     listener.getLogger().println(
-                        "[RSpec test report builder] Copying report to workspace directory: " + workspaceCopyDirectory.toURI());
+                        "[RSpec test report builder] Copying report to workspace directory: " + workspaceCopyDirectory
+                            .toURI());
                     new FilePath(targetBuildDirectory).copyRecursiveTo("**/*.html", workspaceCopyDirectory);
                 }
 
@@ -205,8 +195,12 @@ public class RSpecTestReportPublisher extends Recorder {
     }
 
     @Override
-    public Action getProjectAction(AbstractProject< ? , ? > project) {
+    public Action getProjectAction(AbstractProject<?, ?> project) {
         return new RSpecTestReportProjectAction(project);
+    }
+
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.NONE;
     }
 
     @Extension
@@ -224,12 +218,8 @@ public class RSpecTestReportPublisher extends Recorder {
         }
 
         @Override
-        public boolean isApplicable(Class< ? extends AbstractProject> jobType) {
+        public boolean isApplicable(Class<? extends AbstractProject> jobType) {
             return true;
         }
-    }
-
-    public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.NONE;
     }
 }
