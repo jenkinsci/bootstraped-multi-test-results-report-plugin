@@ -19,5 +19,4 @@ public abstract class TestNGTestReportBaseAction implements Action {
     public String getIconFileName() {
         return ICON_LOCATON;
     }
-
 }
