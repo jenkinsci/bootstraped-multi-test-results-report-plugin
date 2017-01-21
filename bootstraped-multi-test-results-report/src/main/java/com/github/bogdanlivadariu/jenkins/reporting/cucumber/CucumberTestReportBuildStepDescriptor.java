@@ -8,7 +8,7 @@ public class CucumberTestReportBuildStepDescriptor extends BuildStepDescriptor<P
 
     @Override
     public String getDisplayName() {
-        return "View Cucumber Reports";
+        return "Publish Cucumber reports generated with handlebars";
     }
 
     @Override

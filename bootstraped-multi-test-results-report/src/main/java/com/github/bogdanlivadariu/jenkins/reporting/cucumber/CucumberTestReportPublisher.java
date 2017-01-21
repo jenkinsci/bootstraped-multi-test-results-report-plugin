@@ -4,6 +4,7 @@ import com.github.bogdanlivadariu.jenkins.reporting.SafeArchiveServingRunAction;
 import com.github.bogdanlivadariu.reporting.cucumber.builder.CucumberReportBuilder;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
+import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.*;
@@ -221,5 +222,9 @@ public class CucumberTestReportPublisher extends Publisher implements SimpleBuil
             CucumberTestReportBaseAction.ICON_LOCATON,
             CucumberTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
+    }
+
+    @Extension
+    public static class DescriptorImpl extends CucumberTestReportBuildStepDescriptor {
     }
 }

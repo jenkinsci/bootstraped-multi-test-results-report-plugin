@@ -8,11 +8,10 @@ public class JUnitTestReportBuildStepDescriptor extends BuildStepDescriptor<Publ
 
     @Override
     public String getDisplayName() {
-        return "View JUnit Reports";
+        return "Publish JUnit reports generated with handlebars";
     }
 
-    @Override
-    public boolean isApplicable(Class<? extends AbstractProject> jobType) {
+    @Override public boolean isApplicable(Class<? extends AbstractProject> aClass) {
         return true;
     }
 }

@@ -2,6 +2,7 @@ package com.github.bogdanlivadariu.jenkins.reporting.junit;
 
 import com.github.bogdanlivadariu.jenkins.reporting.SafeArchiveServingRunAction;
 import com.github.bogdanlivadariu.reporting.junit.builder.JUnitReportBuilder;
+import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.*;
@@ -208,5 +209,9 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
             JUnitTestReportBaseAction.ICON_LOCATON,
             JUnitTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
+    }
+
+    @Extension
+    public static class DescriptorImpl extends JUnitTestReportBuildStepDescriptor {
     }
 }

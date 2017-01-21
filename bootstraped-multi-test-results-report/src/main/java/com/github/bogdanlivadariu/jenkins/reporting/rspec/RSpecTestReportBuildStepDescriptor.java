@@ -8,7 +8,7 @@ public class RSpecTestReportBuildStepDescriptor extends BuildStepDescriptor<Publ
 
     @Override
     public String getDisplayName() {
-        return "View RSpec Reports";
+        return "Publish RSpec reports generated with handlebars";
     }
 
     @Override public boolean isApplicable(Class<? extends AbstractProject> aClass) {
