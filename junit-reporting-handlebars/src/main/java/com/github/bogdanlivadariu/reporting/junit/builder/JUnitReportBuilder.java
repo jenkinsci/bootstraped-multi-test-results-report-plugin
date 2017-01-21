@@ -1,5 +1,17 @@
 package com.github.bogdanlivadariu.reporting.junit.builder;
 
+import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
+import com.github.bogdanlivadariu.reporting.junit.helpers.Helpers;
+import com.github.bogdanlivadariu.reporting.junit.xml.models.TestCaseModel;
+import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuiteModel;
+import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuitesModel;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import org.apache.commons.io.FileUtils;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,32 +20,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
-import org.apache.commons.io.FileUtils;
-
-import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
-import com.github.bogdanlivadariu.reporting.junit.helpers.Helpers;
-import com.github.bogdanlivadariu.reporting.junit.xml.models.TestCaseModel;
-import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuiteModel;
-import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuitesModel;
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
-
 public class JUnitReportBuilder {
-    private String TEST_SUMMARY_REPORT = "junit-reporting/testCaseSummaryReport";
-
-    private String TEST_OVERVIEW_REPORT = "junit-reporting/testOverviewReport";
+    public static String SUITE_OVERVIEW = "testSuitesOverview.html";
 
     private final String TEST_OVERVIEW_PATH;
 
     private final String TEST_SUMMARY_PATH;
 
+    private String TEST_SUMMARY_REPORT = "junit-reporting/testCaseSummaryReport";
+
+    private String TEST_OVERVIEW_REPORT = "junit-reporting/testOverviewReport";
+
     private List<TestSuiteModel> processedTestSuites;
 
-    public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath) throws FileNotFoundException, JAXBException {
+    public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath)
+        throws FileNotFoundException, JAXBException {
         TEST_OVERVIEW_PATH = targetBuildPath + "/";
         TEST_SUMMARY_PATH = targetBuildPath + "/test-summary/";
         processedTestSuites = new ArrayList<>();
@@ -78,7 +79,7 @@ public class JUnitReportBuilder {
     private void writeTestOverviewReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
         AllJUnitReports allFeatures = new AllJUnitReports("Test suites overview", processedTestSuites);
-        FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testSuitesOverview.html"),
+        FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + SUITE_OVERVIEW),
             template.apply(allFeatures));
     }
 
@@ -95,7 +96,7 @@ public class JUnitReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
         List<TestSuiteModel> onlyPassed = new ArrayList<>(getProcessedTestSuites());
-        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext();) {
+        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext(); ) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
                 it.remove();
@@ -111,7 +112,7 @@ public class JUnitReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
         List<TestSuiteModel> onlyFailed = new ArrayList<>(getProcessedTestSuites());
-        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext();) {
+        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext(); ) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
                 it.remove();

@@ -47,6 +47,7 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         @Nonnull TaskListener listener) throws InterruptedException, IOException {
         listener.getLogger().println("[TestNGReportPublisher] searching for files ...");
         generateReports(run, workspace, listener);
+
         SafeArchiveServingRunAction caa = new SafeArchiveServingRunAction(
             new File(run.getRootDir(), "testng-reports-with-handlebars"),
             "testng-reports-with-handlebars",
