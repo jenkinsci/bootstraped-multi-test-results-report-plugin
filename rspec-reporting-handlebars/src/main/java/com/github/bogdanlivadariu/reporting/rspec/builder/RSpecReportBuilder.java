@@ -1,5 +1,16 @@
 package com.github.bogdanlivadariu.reporting.rspec.builder;
 
+import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
+import com.github.bogdanlivadariu.reporting.rspec.helpers.Helpers;
+import com.github.bogdanlivadariu.reporting.rspec.xml.models.TestSuiteModel;
+import com.github.bogdanlivadariu.reporting.rspec.xml.models.TestSuitesModel;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import org.apache.commons.io.FileUtils;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,27 +19,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
-import org.apache.commons.io.FileUtils;
-
-import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
-import com.github.bogdanlivadariu.reporting.rspec.helpers.Helpers;
-import com.github.bogdanlivadariu.reporting.rspec.xml.models.TestSuiteModel;
-import com.github.bogdanlivadariu.reporting.rspec.xml.models.TestSuitesModel;
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
-
 public class RSpecReportBuilder {
-    private String TEST_SUMMARY_REPORT = "rspec-reporting/testCaseSummaryReport";
-
-    private String TEST_OVERVIEW_REPORT = "rspec-reporting/testOverviewReport";
+    public static final String SUITES_OVERVIEW = "testSuitesOverview.html";
 
     private final String TEST_OVERVIEW_PATH;
 
     private final String TEST_SUMMARY_PATH;
+
+    private String TEST_SUMMARY_REPORT = "rspec-reporting/testCaseSummaryReport";
+
+    private String TEST_OVERVIEW_REPORT = "rspec-reporting/testOverviewReport";
 
     private List<TestSuiteModel> processedTestSuites;
 
@@ -53,10 +53,15 @@ public class RSpecReportBuilder {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public static <T extends List<?>> T cast(Object obj) {
+        return (T) obj;
+    }
+
     private void writeTestOverviewReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
         AllRSpecJUnitReports allFeatures = new AllRSpecJUnitReports("Test suites overview", processedTestSuites);
-        FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testSuitesOverview.html"),
+        FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + SUITES_OVERVIEW),
             template.apply(allFeatures));
     }
 
@@ -74,7 +79,7 @@ public class RSpecReportBuilder {
 
         List<TestSuiteModel> onlyPassed = new ArrayList<>(processedTestSuites);
 
-        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext();) {
+        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext(); ) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
                 it.remove();
@@ -91,7 +96,7 @@ public class RSpecReportBuilder {
 
         List<TestSuiteModel> onlyFailed = new ArrayList<>(processedTestSuites);
 
-        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext();) {
+        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext(); ) {
             TestSuiteModel f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
                 it.remove();
@@ -116,10 +121,5 @@ public class RSpecReportBuilder {
             }
         }
         return true;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T extends List< ? >> T cast(Object obj) {
-        return (T) obj;
     }
 }
