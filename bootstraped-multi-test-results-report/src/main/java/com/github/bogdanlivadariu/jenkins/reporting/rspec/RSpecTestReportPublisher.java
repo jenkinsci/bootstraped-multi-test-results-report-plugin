@@ -24,7 +24,7 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
 
     private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
-    private final String jsonReportDirectory;
+    private final String reportsDirectory;
 
     private final String fileIncludePattern;
 
@@ -35,17 +35,17 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
     private final boolean copyHTMLInWorkspace;
 
     @DataBoundConstructor
-    public RSpecTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
+    public RSpecTestReportPublisher(String reportsDirectory, String fileIncludePattern, String fileExcludePattern,
         boolean markAsUnstable, boolean copyHTMLInWorkspace) {
-        this.jsonReportDirectory = jsonReportDirectory;
+        this.reportsDirectory = reportsDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
     }
 
-    public String getJsonReportDirectory() {
-        return jsonReportDirectory;
+    public String getReportsDirectory() {
+        return reportsDirectory;
     }
 
     public String getFileIncludePattern() {
@@ -86,10 +86,10 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
 
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
-        if (getJsonReportDirectory().isEmpty()) {
+        if (getReportsDirectory().isEmpty()) {
             workspaceJsonReportDirectory = workspace;
         } else {
-            workspaceJsonReportDirectory = new FilePath(workspace, getJsonReportDirectory());
+            workspaceJsonReportDirectory = new FilePath(workspace, getReportsDirectory());
         }
 
         // target directory (always on master)
