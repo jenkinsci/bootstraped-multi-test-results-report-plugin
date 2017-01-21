@@ -52,7 +52,7 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
             "testng-reports-with-handlebars",
             TestNgReportBuilder.TESTS_BY_CLASS_OVERVIEW,
             TestNGTestReportBaseAction.ICON_LOCATON,
-            "Publish TestNG reports generated with handlebars");
+            TestNGTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
     }
 

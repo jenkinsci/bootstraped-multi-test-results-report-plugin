@@ -4,6 +4,8 @@ import com.github.bogdanlivadariu.reporting.rspec.builder.RSpecReportBuilder;
 import hudson.model.Action;
 
 public abstract class RSpecTestReportBaseAction implements Action {
+    protected static final String DISPLAY_NAME = "View RSpec Reports";
+
     protected static final String ICON_LOCATON = "/plugin/bootstraped-multi-test-results-report/rspec.png";
 
     public String getUrlName() {
@@ -11,7 +13,7 @@ public abstract class RSpecTestReportBaseAction implements Action {
     }
 
     public String getDisplayName() {
-        return "View RSpec Reports";
+        return DISPLAY_NAME;
     }
 
     public String getIconFileName() {

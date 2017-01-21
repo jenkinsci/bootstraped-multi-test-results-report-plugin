@@ -206,7 +206,7 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
             "rspec-reports-with-handlebars",
             RSpecReportBuilder.SUITES_OVERVIEW,
             RSpecTestReportBaseAction.ICON_LOCATON,
-            "Publish Rspec reports generated with handlebars");
+            RSpecTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
     }
 

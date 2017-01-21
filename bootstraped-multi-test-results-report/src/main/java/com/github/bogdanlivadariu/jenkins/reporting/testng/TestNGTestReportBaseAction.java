@@ -6,6 +6,8 @@ import hudson.model.Action;
 public abstract class TestNGTestReportBaseAction implements Action {
     protected static final String ICON_LOCATON = "/plugin/bootstraped-multi-test-results-report/testng.png";
 
+    protected static final String DISPLAY_NAME = "View TestNG Reports";
+
     @Override
     public String getUrlName() {
         return TestNgReportBuilder.TESTS_BY_CLASS_OVERVIEW;
@@ -13,7 +15,7 @@ public abstract class TestNGTestReportBaseAction implements Action {
 
     @Override
     public String getDisplayName() {
-        return "View TestNG Reports";
+        return DISPLAY_NAME;
     }
 
     @Override
