@@ -24,7 +24,7 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
 
     private static final String DEFAULT_FILE_INCLUDE_PATTERN = "**/*.xml";
 
-    private final String jsonReportDirectory;
+    private final String reportsDirectory;
 
     private final String fileIncludePattern;
 
@@ -35,9 +35,9 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
     private final boolean copyHTMLInWorkspace;
 
     @DataBoundConstructor
-    public TestNGTestReportPublisher(String jsonReportDirectory, String fileIncludePattern, String fileExcludePattern,
+    public TestNGTestReportPublisher(String reportsDirectory, String fileIncludePattern, String fileExcludePattern,
         boolean markAsUnstable, boolean copyHTMLInWorkspace) {
-        this.jsonReportDirectory = jsonReportDirectory;
+        this.reportsDirectory = reportsDirectory;
         this.fileIncludePattern = fileIncludePattern;
         this.fileExcludePattern = fileExcludePattern;
         this.markAsUnstable = markAsUnstable;
@@ -82,8 +82,8 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         return scanner.getIncludedFiles();
     }
 
-    public String getJsonReportDirectory() {
-        return jsonReportDirectory;
+    public String getReportsDirectory() {
+        return reportsDirectory;
     }
 
     public boolean isCopyHTMLInWorkspace() {
@@ -106,10 +106,10 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         throws IOException, InterruptedException {
         // source directory (possibly on slave)
         FilePath workspaceJsonReportDirectory;
-        if (getJsonReportDirectory().isEmpty()) {
+        if (getReportsDirectory().isEmpty()) {
             workspaceJsonReportDirectory = workspace;
         } else {
-            workspaceJsonReportDirectory = new FilePath(workspace, getJsonReportDirectory());
+            workspaceJsonReportDirectory = new FilePath(workspace, getReportsDirectory());
         }
 
         // target directory (always on master)
