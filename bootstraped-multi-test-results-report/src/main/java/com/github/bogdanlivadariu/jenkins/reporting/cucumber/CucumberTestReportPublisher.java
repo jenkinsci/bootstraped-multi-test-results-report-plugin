@@ -12,13 +12,13 @@ import hudson.slaves.SlaveComputer;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import jenkins.tasks.SimpleBuildStep;
-import org.apache.tools.ant.DirectoryScanner;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.findFiles;
 import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 @SuppressWarnings("unchecked")
@@ -80,21 +80,6 @@ public class CucumberTestReportPublisher extends Publisher implements SimpleBuil
         return ignoreUndefinedSteps;
     }
 
-    private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
-        DirectoryScanner scanner = new DirectoryScanner();
-        if (fileIncludePattern == null || fileIncludePattern.isEmpty()) {
-            scanner.setIncludes(new String[] {DEFAULT_FILE_INCLUDE_PATTERN});
-        } else {
-            scanner.setIncludes(new String[] {fileIncludePattern});
-        }
-        if (fileExcludePattern != null) {
-            scanner.setExcludes(new String[] {fileExcludePattern});
-        }
-        scanner.setBasedir(targetDirectory);
-        scanner.scan();
-        return scanner.getIncludedFiles();
-    }
-
     public boolean generateReport(Run<?, ?> build, FilePath workspace, TaskListener listener)
         throws IOException, InterruptedException {
 
@@ -137,7 +122,9 @@ public class CucumberTestReportPublisher extends Publisher implements SimpleBuil
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
         String[] jsonReportFiles =
-            findJsonFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
+            findFiles(targetBuildJsonDirectory, getFileIncludePattern(),
+                getFileExcludePattern(), DEFAULT_FILE_INCLUDE_PATTERN);
+
         if (jsonReportFiles.length > 0) {
             listener.getLogger()
                 .println(String.format("[CucumberReportPublisher] Found %d json files.", jsonReportFiles.length));

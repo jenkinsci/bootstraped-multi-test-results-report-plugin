@@ -10,13 +10,13 @@ import hudson.slaves.SlaveComputer;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import jenkins.tasks.SimpleBuildStep;
-import org.apache.tools.ant.DirectoryScanner;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.findFiles;
 import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 public class TestNGTestReportPublisher extends Publisher implements SimpleBuildStep {
@@ -65,21 +65,6 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
     @Override
     public Action getProjectAction(AbstractProject<?, ?> project) {
         return new TestNGTestReportProjectAction(project);
-    }
-
-    private String[] findFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
-        DirectoryScanner scanner = new DirectoryScanner();
-        if (fileIncludePattern == null || fileIncludePattern.isEmpty()) {
-            scanner.setIncludes(new String[] {DEFAULT_FILE_INCLUDE_PATTERN});
-        } else {
-            scanner.setIncludes(new String[] {fileIncludePattern});
-        }
-        if (fileExcludePattern != null) {
-            scanner.setExcludes(new String[] {fileExcludePattern});
-        }
-        scanner.setBasedir(targetDirectory);
-        scanner.scan();
-        return scanner.getIncludedFiles();
     }
 
     public String getReportsDirectory() {
@@ -142,25 +127,27 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
 
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
-        String[] jsonReportFiles =
-            findFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
-        if (jsonReportFiles.length > 0) {
+        String[] reportFiles =
+            findFiles(targetBuildJsonDirectory, getFileIncludePattern(),
+                getFileExcludePattern(), DEFAULT_FILE_INCLUDE_PATTERN);
+
+        if (reportFiles.length > 0) {
             listener.getLogger().println(
-                String.format("[TestNGReportPublisher] Found %d xml files.", jsonReportFiles.length));
+                String.format("[TestNGReportPublisher] Found %d xml files.", reportFiles.length));
             int jsonIndex = 0;
-            for (String jsonReportFile : jsonReportFiles) {
+            for (String reportFile : reportFiles) {
                 listener.getLogger().println(
-                    "[TestNG test report builder] " + jsonIndex + ". Found a xml file: " + jsonReportFile);
+                    "[TestNG test report builder] " + jsonIndex + ". Found a xml file: " + reportFile);
                 jsonIndex++;
             }
             listener.getLogger().println("[TestNG test report builder] Generating HTML reports");
 
             try {
-                for (String ss : fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToFiles(reportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 TestNgReportBuilder rep =
-                    new TestNgReportBuilder(fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    new TestNgReportBuilder(fullPathToFiles(reportFiles, targetBuildJsonDirectory),
                         targetBuildDirectory.getAbsolutePath());
 
                 boolean featuresResult = rep.writeReportsOnDisk();
