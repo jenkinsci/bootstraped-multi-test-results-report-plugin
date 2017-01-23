@@ -10,14 +10,14 @@ import hudson.slaves.SlaveComputer;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import jenkins.tasks.SimpleBuildStep;
-import org.apache.tools.ant.DirectoryScanner;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.findFiles;
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 @SuppressWarnings("unchecked")
 public class JUnitTestReportPublisher extends Publisher implements SimpleBuildStep {
@@ -64,21 +64,6 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
         return copyHTMLInWorkspace;
     }
 
-    private String[] findJsonFiles(File targetDirectory, String fileIncludePattern, String fileExcludePattern) {
-        DirectoryScanner scanner = new DirectoryScanner();
-        if (fileIncludePattern == null || fileIncludePattern.isEmpty()) {
-            scanner.setIncludes(new String[] {DEFAULT_FILE_INCLUDE_PATTERN});
-        } else {
-            scanner.setIncludes(new String[] {fileIncludePattern});
-        }
-        if (fileExcludePattern != null) {
-            scanner.setExcludes(new String[] {fileExcludePattern});
-        }
-        scanner.setBasedir(targetDirectory);
-        scanner.scan();
-        return scanner.getIncludedFiles();
-    }
-
     public boolean generateReport(Run<?, ?> build, FilePath workspace, TaskListener listener)
         throws IOException, InterruptedException {
 
@@ -123,25 +108,26 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
 
         // generate the reports from the targetBuildDirectory
         Result result = Result.NOT_BUILT;
-        String[] jsonReportFiles =
-            findJsonFiles(targetBuildJsonDirectory, getFileIncludePattern(), getFileExcludePattern());
-        if (jsonReportFiles.length > 0) {
+        String[] reportFiles =
+            findFiles(targetBuildJsonDirectory, getFileIncludePattern(),
+                getFileExcludePattern(), DEFAULT_FILE_INCLUDE_PATTERN);
+        if (reportFiles.length > 0) {
             listener.getLogger().println(
-                String.format("[JUnitReportPublisher] Found %d xml files.", jsonReportFiles.length));
+                String.format("[JUnitReportPublisher] Found %d xml files.", reportFiles.length));
             int jsonIndex = 0;
-            for (String jsonReportFile : jsonReportFiles) {
+            for (String reportFile : reportFiles) {
                 listener.getLogger().println(
-                    "[JUnit test report builder] " + jsonIndex + ". Found a xml file: " + jsonReportFile);
+                    "[JUnit test report builder] " + jsonIndex + ". Found a xml file: " + reportFile);
                 jsonIndex++;
             }
             listener.getLogger().println("[JUnit test report builder] Generating HTML reports");
 
             try {
-                for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToFiles(reportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 JUnitReportBuilder rep =
-                    new JUnitReportBuilder(fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    new JUnitReportBuilder(fullPathToFiles(reportFiles, targetBuildJsonDirectory),
                         targetBuildDirectory.getAbsolutePath());
 
                 boolean featuresResult = rep.writeReportsOnDisk();
@@ -181,23 +167,6 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
         return true;
     }
 
-    private List<String> fullPathToXmlFiles(String[] xmlFiles, File targetBuildDirectory) {
-        List<String> fullPathList = new ArrayList<String>();
-        for (String file : xmlFiles) {
-            fullPathList.add(new File(targetBuildDirectory, file).getAbsolutePath());
-        }
-        return fullPathList;
-    }
-
-    @Override
-    public Action getProjectAction(AbstractProject<?, ?> project) {
-        return new JUnitTestReportProjectAction(project);
-    }
-
-    public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.NONE;
-    }
-
     @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath filePath, @Nonnull Launcher launcher,
         @Nonnull TaskListener taskListener) throws InterruptedException, IOException {
         generateReport(run, filePath, taskListener);
@@ -209,6 +178,15 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
             JUnitTestReportBaseAction.ICON_LOCATON,
             JUnitTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
+    }
+
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.NONE;
+    }
+
+    @Override
+    public Action getProjectAction(AbstractProject<?, ?> project) {
+        return new JUnitTestReportProjectAction(project);
     }
 
     @Extension

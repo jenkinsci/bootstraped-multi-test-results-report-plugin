@@ -87,4 +87,7 @@ public class Helpers {
         }
         return Constants.UNDEFINED;
     }
+    public Handlebars getInstance() {
+        return handlebar;
+    }
 }

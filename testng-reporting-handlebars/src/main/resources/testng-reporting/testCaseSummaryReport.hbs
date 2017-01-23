@@ -39,7 +39,7 @@
           {{#each testMethods}}
           <div class="{{#is-config isConfig}}{{/is-config}}">
             <li data-toggle="tooltip" data-placement="top" title="{{#resolve-tooltip status}}{{/resolve-tooltip}}"
-              class="scenario 
+              class="scenario
                 list-group-item 
                 list-group-item-{{#result-color status}}{{/result-color}}">
               <span class="forDrop" data-target="#{{uniqueID}}" data-toggle="collapse">
@@ -74,11 +74,7 @@
                   <li class="list-group-item
                         list-group-item-{{#result-color status}}{{/result-color}}">
                     <span>Reporter output log</span>
-                      <pre>
-                        {{#each reporterOutput.lines}}
-                          {{value}}
-                        {{/each}}
-                      </pre>
+                      <pre>{{#each reporterOutput.lines}}{{value}}<br />{{/each}}</pre>
                     </li>
                   </ul>
                 {{/if}}
@@ -101,7 +97,7 @@
                   </li>
                 </ul>
                 {{/if}}
-              <div>
+              </div>
             </li>
           </div>
           {{/each}}
