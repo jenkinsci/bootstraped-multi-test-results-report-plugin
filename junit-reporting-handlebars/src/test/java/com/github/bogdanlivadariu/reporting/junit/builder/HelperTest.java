@@ -21,10 +21,12 @@ public class HelperTest {
 
     @Test
     public void resolveTooltipTest() throws IOException {
-
+        String helperName = "resolve-tooltip";
         assertEquals("This test has Failed",
-            instance.helper("resolve-tooltip")
-                .apply("Failed", null));
+            instance.helper(helperName).apply("Failed", null));
+
+        assertEquals("This test has 123!@",
+            instance.helper(helperName).apply("123!@", null));
     }
 
     @Test
