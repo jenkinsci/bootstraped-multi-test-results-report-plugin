@@ -12,6 +12,6 @@ public class LineModel {
     private String value;
 
     public String getValue() {
-        return value.replaceAll("\n", "");
+        return value.replaceAll("\n", "").trim();
     }
 }
