@@ -16,8 +16,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 public class TestNGTestReportPublisher extends Publisher implements SimpleBuildStep {
 
@@ -156,11 +156,11 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
             listener.getLogger().println("[TestNG test report builder] Generating HTML reports");
 
             try {
-                for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 TestNgReportBuilder rep =
-                    new TestNgReportBuilder(fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    new TestNgReportBuilder(fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory),
                         targetBuildDirectory.getAbsolutePath());
 
                 boolean featuresResult = rep.writeReportsOnDisk();
@@ -197,14 +197,6 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
                 "[TestNG test report builder] xml path for the reports might be wrong, " + targetBuildDirectory);
         }
         build.setResult(result);
-    }
-
-    private List<String> fullPathToXmlFiles(String[] xmlFiles, File targetBuildDirectory) {
-        List<String> fullPathList = new ArrayList<String>();
-        for (String file : xmlFiles) {
-            fullPathList.add(new File(targetBuildDirectory, file).getAbsolutePath());
-        }
-        return fullPathList;
     }
 
     @Extension

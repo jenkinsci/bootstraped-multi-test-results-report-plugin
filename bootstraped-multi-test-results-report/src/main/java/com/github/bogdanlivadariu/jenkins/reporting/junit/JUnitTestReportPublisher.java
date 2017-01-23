@@ -16,8 +16,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 @SuppressWarnings("unchecked")
 public class JUnitTestReportPublisher extends Publisher implements SimpleBuildStep {
@@ -137,11 +137,11 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
             listener.getLogger().println("[JUnit test report builder] Generating HTML reports");
 
             try {
-                for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 JUnitReportBuilder rep =
-                    new JUnitReportBuilder(fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    new JUnitReportBuilder(fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory),
                         targetBuildDirectory.getAbsolutePath());
 
                 boolean featuresResult = rep.writeReportsOnDisk();
@@ -179,14 +179,6 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
         build.setResult(result);
 
         return true;
-    }
-
-    private List<String> fullPathToXmlFiles(String[] xmlFiles, File targetBuildDirectory) {
-        List<String> fullPathList = new ArrayList<String>();
-        for (String file : xmlFiles) {
-            fullPathList.add(new File(targetBuildDirectory, file).getAbsolutePath());
-        }
-        return fullPathList;
     }
 
     @Override

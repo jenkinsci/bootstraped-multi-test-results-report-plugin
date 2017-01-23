@@ -18,8 +18,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 @SuppressWarnings("unchecked")
 public class CucumberTestReportPublisher extends Publisher implements SimpleBuildStep {
@@ -150,11 +150,11 @@ public class CucumberTestReportPublisher extends Publisher implements SimpleBuil
             listener.getLogger().println("[Cucumber test report builder] Generating HTML reports");
 
             try {
-                for (String ss : fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 CucumberReportBuilder rep = new CucumberReportBuilder(
-                    fullPathToJsonFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory),
                     targetBuildDirectory.getAbsolutePath(), props);
                 boolean featuresResult = rep.writeReportsOnDisk();
                 if (featuresResult) {
@@ -192,14 +192,6 @@ public class CucumberTestReportPublisher extends Publisher implements SimpleBuil
         build.setResult(result);
 
         return true;
-    }
-
-    private List<String> fullPathToJsonFiles(String[] jsonFiles, File targetBuildDirectory) {
-        List<String> fullPathList = new ArrayList<String>();
-        for (String file : jsonFiles) {
-            fullPathList.add(new File(targetBuildDirectory, file).getAbsolutePath());
-        }
-        return fullPathList;
     }
 
     @Override

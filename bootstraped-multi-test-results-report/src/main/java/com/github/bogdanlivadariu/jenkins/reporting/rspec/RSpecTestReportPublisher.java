@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.jenkins.reporting.rspec;
 
+import com.github.bogdanlivadariu.jenkins.reporting.Helper;
 import com.github.bogdanlivadariu.jenkins.reporting.SafeArchiveServingRunAction;
 import com.github.bogdanlivadariu.reporting.rspec.builder.RSpecReportBuilder;
 import hudson.Extension;
@@ -16,8 +17,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
 
 @SuppressWarnings("unchecked")
 public class RSpecTestReportPublisher extends Publisher implements SimpleBuildStep {
@@ -135,11 +136,11 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
             listener.getLogger().println("[RSpec test report builder] Generating HTML reports");
 
             try {
-                for (String ss : fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory)) {
+                for (String ss : fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory)) {
                     listener.getLogger().println("processing: " + ss);
                 }
                 RSpecReportBuilder rep =
-                    new RSpecReportBuilder(fullPathToXmlFiles(jsonReportFiles, targetBuildJsonDirectory),
+                    new RSpecReportBuilder(fullPathToFiles(jsonReportFiles, targetBuildJsonDirectory),
                         targetBuildDirectory.getAbsolutePath());
 
                 boolean featuresResult = rep.writeReportsOnDisk();
@@ -178,14 +179,6 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
         build.setResult(result);
 
         return true;
-    }
-
-    private List<String> fullPathToXmlFiles(String[] xmlFiles, File targetBuildDirectory) {
-        List<String> fullPathList = new ArrayList<String>();
-        for (String file : xmlFiles) {
-            fullPathList.add(new File(targetBuildDirectory, file).getAbsolutePath());
-        }
-        return fullPathList;
     }
 
     @Override
