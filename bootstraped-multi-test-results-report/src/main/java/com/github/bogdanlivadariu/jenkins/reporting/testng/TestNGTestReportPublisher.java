@@ -43,30 +43,6 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         this.copyHTMLInWorkspace = copyHTMLInWorkspace;
     }
 
-    @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath workspace, @Nonnull Launcher launcher,
-        @Nonnull TaskListener listener) throws InterruptedException, IOException {
-        listener.getLogger().println("[TestNGReportPublisher] searching for files ...");
-        generateReports(run, workspace, listener);
-
-        SafeArchiveServingRunAction caa = new SafeArchiveServingRunAction(
-            new File(run.getRootDir(), "testng-reports-with-handlebars"),
-            "testng-reports-with-handlebars",
-            TestNgReportBuilder.TESTS_BY_CLASS_OVERVIEW,
-            TestNGTestReportBaseAction.ICON_LOCATON,
-            TestNGTestReportBaseAction.DISPLAY_NAME);
-        run.addAction(caa);
-    }
-
-    @Override
-    public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.NONE;
-    }
-
-    @Override
-    public Action getProjectAction(AbstractProject<?, ?> project) {
-        return new TestNGTestReportProjectAction(project);
-    }
-
     public String getReportsDirectory() {
         return reportsDirectory;
     }
@@ -186,7 +162,32 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         build.setResult(result);
     }
 
+    @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath workspace, @Nonnull Launcher launcher,
+        @Nonnull TaskListener listener) throws InterruptedException, IOException {
+        listener.getLogger().println("[TestNGReportPublisher] searching for files ...");
+        generateReports(run, workspace, listener);
+
+        SafeArchiveServingRunAction caa = new SafeArchiveServingRunAction(
+            new File(run.getRootDir(), "testng-reports-with-handlebars"),
+            "testng-reports-with-handlebars",
+            TestNgReportBuilder.TESTS_BY_CLASS_OVERVIEW,
+            TestNGTestReportBaseAction.ICON_LOCATON,
+            TestNGTestReportBaseAction.DISPLAY_NAME);
+        run.addAction(caa);
+    }
+
+    @Override
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.NONE;
+    }
+
+    @Override
+    public Action getProjectAction(AbstractProject<?, ?> project) {
+        return new TestNGTestReportProjectAction(project);
+    }
+
     @Extension
     public static class DescriptorImpl extends TestNGTestReportBuildStepDescriptor {
     }
+
 }

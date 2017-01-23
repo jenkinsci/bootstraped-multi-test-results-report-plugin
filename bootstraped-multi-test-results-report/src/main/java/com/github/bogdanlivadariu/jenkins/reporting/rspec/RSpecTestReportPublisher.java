@@ -167,15 +167,6 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
         return true;
     }
 
-    @Override
-    public Action getProjectAction(AbstractProject<?, ?> project) {
-        return new RSpecTestReportProjectAction(project);
-    }
-
-    public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.NONE;
-    }
-
     @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath workspace, @Nonnull Launcher launcher,
         @Nonnull TaskListener listener) throws InterruptedException, IOException {
         listener.getLogger().println("[RSpecReportPublisher] searching for files ...");
@@ -187,6 +178,15 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
             RSpecTestReportBaseAction.ICON_LOCATON,
             RSpecTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
+    }
+
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.NONE;
+    }
+
+    @Override
+    public Action getProjectAction(AbstractProject<?, ?> project) {
+        return new RSpecTestReportProjectAction(project);
     }
 
     @Extension

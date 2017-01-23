@@ -167,15 +167,6 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
         return true;
     }
 
-    @Override
-    public Action getProjectAction(AbstractProject<?, ?> project) {
-        return new JUnitTestReportProjectAction(project);
-    }
-
-    public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.NONE;
-    }
-
     @Override public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath filePath, @Nonnull Launcher launcher,
         @Nonnull TaskListener taskListener) throws InterruptedException, IOException {
         generateReport(run, filePath, taskListener);
@@ -187,6 +178,15 @@ public class JUnitTestReportPublisher extends Publisher implements SimpleBuildSt
             JUnitTestReportBaseAction.ICON_LOCATON,
             JUnitTestReportBaseAction.DISPLAY_NAME);
         run.addAction(caa);
+    }
+
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.NONE;
+    }
+
+    @Override
+    public Action getProjectAction(AbstractProject<?, ?> project) {
+        return new JUnitTestReportProjectAction(project);
     }
 
     @Extension
