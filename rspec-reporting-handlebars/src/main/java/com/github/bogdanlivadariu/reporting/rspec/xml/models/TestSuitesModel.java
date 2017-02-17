@@ -1,15 +1,11 @@
 package com.github.bogdanlivadariu.reporting.rspec.xml.models;
 
+import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
+
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
 
 @XmlRootElement(name = "testsuites")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -53,7 +49,7 @@ public class TestSuitesModel {
     }
 
     public List<TestSuiteModel> getTestsuites() {
-        return testsuites;
+        return testsuites == null ? new ArrayList<TestSuiteModel>() : testsuites;
     }
 
     public String getFailures() {
@@ -76,13 +72,9 @@ public class TestSuitesModel {
         return timestamp;
     }
 
-    public List<TestSuiteModel> getTestSuites() {
-        return testsuites;
-    }
-
     public void postProcess() {
         uniqueID = UUID.randomUUID().toString();
-        for (TestSuiteModel ts : getTestSuites()) {
+        for (TestSuiteModel ts : getTestsuites()) {
             ts.postProcess();
         }
         if (Integer.parseInt(failures) > 0) {

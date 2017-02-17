@@ -116,9 +116,13 @@ public class RSpecReportBuilder {
         for (TestSuiteModel ts : processedTestSuites) {
             if (Integer.parseInt(ts.getFailures()) >= 1
                 || Integer.parseInt(ts.getErrors()) >= 1
-                || Integer.parseInt(ts.getSkipped()) >= 1) {
+                || Integer.parseInt(ts.getSkipped()) >= 1
+                || Integer.parseInt(ts.getTests()) < 1) {
                 return false;
             }
+        }
+        if (processedTestSuites.size() == 0) {
+            return false;
         }
         return true;
     }
