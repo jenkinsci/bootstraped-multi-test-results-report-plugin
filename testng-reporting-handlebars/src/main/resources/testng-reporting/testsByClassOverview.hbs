@@ -34,7 +34,7 @@
       <div class="panel-heading">TestNG test report</div>
       <!-- Table -->
         <table id="table-container" class="table table-bordered table-hover ">
-            <thead>
+          <thead>
             <tr class="success">
                 <th class="text-center" colspan="2"></th>
                 <th class="text-center" colspan="4">Overall status</th>
@@ -48,9 +48,9 @@
                 <th class="text-center">Skipped</th>
                 <th class="text-center" style="width:60px;">Duration</th>
             </tr>
-            </thead>
+           </thead>
 
-            <tbody>
+          <tbody>
           {{#each allTestSuites}}
             {{#each suites}}
               {{#each tests}}
@@ -71,9 +71,9 @@
               {{/each}}
             {{/each}}
           {{/each}}
-        </tbody>
+          </tbody>
           <tfoot>
-          <tr class="info text-center">
+            <tr class="info text-center">
               <td>TOTALS: {{totalTests}}</td>
               <td>{{totalClasses}}</td>
               <td>{{totalPassed}}</td>
@@ -84,7 +84,7 @@
                 {{#date totalTime}}{{/date}}
               </span>
               </td>
-          </tr>
+            </tr>
           </tfoot>
       </table>
     </div>
