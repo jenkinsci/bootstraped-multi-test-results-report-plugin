@@ -1,23 +1,5 @@
 package com.github.bogdanlivadariu.reporting.cucumber.builder;
 
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FEATURES_FAILED_OVERVIEW;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FEATURES_OVERVIEW;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FEATURES_PASSED_OVERVIEW;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map.Entry;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.Helpers;
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
@@ -28,6 +10,16 @@ import com.github.jknack.handlebars.Template;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
+
+import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.*;
 
 public class CucumberReportBuilder {
 
@@ -87,7 +79,7 @@ public class CucumberReportBuilder {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
 
         List<Feature> onlyPassed = new ArrayList<>(getProcessedFeatures());
-        for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext();) {
+        for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext(); ) {
 
             Feature f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
@@ -104,7 +96,7 @@ public class CucumberReportBuilder {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
 
         List<Feature> onlyFailed = new ArrayList<>(getProcessedFeatures());
-        for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext();) {
+        for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext(); ) {
             Feature f = it.next();
             if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
                 it.remove();
@@ -196,7 +188,6 @@ public class CucumberReportBuilder {
                 return false;
             }
         }
-        return true;
+        return getProcessedFeatures().size() > 0;
     }
-
 }

@@ -132,11 +132,11 @@ public class JUnitReportBuilder {
         for (TestSuiteModel ts : processedTestSuites) {
             if (Integer.parseInt(ts.getFailures()) >= 1
                 || Integer.parseInt(ts.getErrors()) >= 1
-                || Integer.parseInt(ts.getSkipped()) >= 1) {
+                || Integer.parseInt(ts.getSkipped()) >= 1
+                || Integer.parseInt(ts.getTests()) < 1) {
                 return false;
             }
         }
-        return true;
+        return processedTestSuites.size() > 0;
     }
-
 }
