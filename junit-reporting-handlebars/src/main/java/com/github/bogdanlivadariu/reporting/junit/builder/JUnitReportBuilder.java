@@ -136,10 +136,7 @@ public class JUnitReportBuilder {
                 || Integer.parseInt(ts.getTests()) < 1) {
                 return false;
             }
-            if (processedTestSuites.size() == 0) {
-                return false;
-            }
         }
-        return true;
+        return processedTestSuites.size() > 0;
     }
 }

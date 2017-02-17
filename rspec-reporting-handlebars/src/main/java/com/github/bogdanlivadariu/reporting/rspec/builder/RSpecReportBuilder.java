@@ -121,9 +121,6 @@ public class RSpecReportBuilder {
                 return false;
             }
         }
-        if (processedTestSuites.size() == 0) {
-            return false;
-        }
-        return true;
+        return processedTestSuites.size() > 0;
     }
 }
