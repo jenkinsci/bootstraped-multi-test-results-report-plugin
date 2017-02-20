@@ -33,29 +33,30 @@
       <!-- Default panel contents -->
       <div class="panel-heading">TestNG test report</div>
       <!-- Table -->
-      <table class="table table-bordered table-hover ">
-        <tbody>
-          <tr class="success">
-            <th class="text-center" colspan="2">Class name</th>
-            <th class="text-center" colspan="4">Overall status</th>
-            <th class="text-center" style="width:60px;">Duration</th>
-          </tr>
-          <tr class="success">
-            <th></th>
-            <th></th>
-            <th class="text-center">Tests</th>
-            <th class="text-center">Passed</th>
-            <th class="text-center">Failures</th>
-            <th class="text-center">Skipped</th>
-            <th></th>
-          </tr>
+        <table id="table-container" class="table table-bordered table-hover ">
+          <thead>
+            <tr class="success">
+                <th class="text-center" colspan="2"></th>
+                <th class="text-center" colspan="4">Overall status</th>
+
+            </tr>
+            <tr class="success">
+                <th class="text-center">Test name</th>
+                <th class="text-center">Tests</th>
+                <th class="text-center">Passed</th>
+                <th class="text-center">Failures</th>
+                <th class="text-center">Skipped</th>
+                <th class="text-center" style="width:60px;">Duration</th>
+            </tr>
+           </thead>
+
+          <tbody>
           {{#each allTestSuites}}
             {{#each suites}}
               {{#each tests}}
                 {{#each classes}}
                   <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
                     <td class="text-left" style="width:550px;"><a href="classes-summary/{{../name}}{{name}}.html">{{name}}</a></td>
-                    <td></td>
                     <td>{{totalTests}}</td>
                     <td>{{totalPassed}}</td>
                     <td>{{totalFailed}}</td>
@@ -70,25 +71,32 @@
               {{/each}}
             {{/each}}
           {{/each}}
-          <tr class="info text-center">
-            <td>TOTALS</td>
-            <td>{{totalClasses}}</td>
-            <td>{{totalTests}}</td>
-            <td>{{totalPassed}}</td>
-            <td>{{totalFailed}}</td>
-            <td>{{totalSkipped}}</td>
-            <td class="text-center">
+          </tbody>
+          <tfoot>
+            <tr class="info text-center">
+              <td>TOTALS: {{totalClasses}}</td>
+              <td>{{totalTests}}</td>
+              <td>{{totalPassed}}</td>
+              <td>{{totalFailed}}</td>
+              <td>{{totalSkipped}}</td>
+              <td class="text-center">
               <span class="badge">
                 {{#date totalTime}}{{/date}}
               </span>
-            </td>
-          </tr>
-        </tbody>
+              </td>
+            </tr>
+          </tfoot>
       </table>
     </div>
     <a href="#" class="back-to-top" style="display: none;">
       <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
     </a>
+
+    <script>
+        $(document).ready(function() {
+            $('#table-container').DataTable();
+        });
+    </script>
 
     {{> testng-reporting/analitics}}
     {{> testng-reporting/scrollTopScript}}
