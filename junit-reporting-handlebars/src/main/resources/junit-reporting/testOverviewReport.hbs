@@ -35,28 +35,26 @@
       <!-- Default panel contents -->
       <div class="panel-heading">JUnit test report</div>
       <!-- Table -->
-      <table class="table table-bordered table-hover ">
-        <tbody>
+      <table id="table-feature-container" class="table table-bordered table-hover ">
+        <thead>
           <tr class="success">
-            <th class="text-center" colspan="2">Test Suite Name</th>
+            <th class="text-center" colspan="2"></th>
             <th class="text-center" colspan="4">Overall status</th>
-            <th class="text-center" style="width:60px;">Duration</th>
           </tr>
           <tr class="success">
-            <th></th>
-            <th></th>
+            <th class="text-center">Test Suite Name</th>
             <th class="text-center">Tests</th>
             <th class="text-center">Failures</th>
             <th class="text-center">Errors</th>
             <th class="text-center">Skipped</th>
-            <th></th>
+            <th class="text-center" style="width:60px;">Duration</th>
           </tr>
+        </thead>
 
+        <tbody>
           {{#each allTestSuites}}
           <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
             <td class="text-left" style="width:550px;"><a href="test-summary/{{uniqueID}}.html">{{name}}</a></td>
-            <td></td>
-
             <td>{{tests}}</td>
             <td>{{failures}}</td>
             <td>{{errors}}</td>
@@ -65,22 +63,28 @@
             <td><span class="badge">{{#date time}}{{/date}}</span></td>
           </tr>
           {{/each}}
+        </tbody>
+        <tfoot>
           <tr class="info text-center">
-            <td>TOTALS</td>
-
-            <td>{{suitesCount}}</td>
+            <td>TOTALS: {{suitesCount}}</td>
             <td>{{totalTests}}</td>
             <td>{{totalFailures}}</td>
             <td>{{totalErrors}}</td>
             <td>{{totalSkipped}}</td>
             <td class="text-center"><span class="badge">{{#date totalTime}}{{/date}}</span></td>
           </tr>
-        </tbody>
+        </tfoot>
       </table>
     </div>
     <a href="#" class="back-to-top" style="display: none;">
       <i title="Scroll UP" class="glyphicon glyphicon-triangle-top"></i>
     </a>
+
+    <script>
+        $(document).ready(function() {
+            $('#table-feature-container').DataTable();
+        });
+    </script>
 
     {{> junit-reporting/analitics}}
     {{> junit-reporting/scrollTopScript}}
