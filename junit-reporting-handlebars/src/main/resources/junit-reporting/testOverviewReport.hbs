@@ -82,7 +82,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#table-feature-container').DataTable();
+            $('#table-feature-container').DataTable({
+                pageLength: 50
+            });
         });
     </script>
 
