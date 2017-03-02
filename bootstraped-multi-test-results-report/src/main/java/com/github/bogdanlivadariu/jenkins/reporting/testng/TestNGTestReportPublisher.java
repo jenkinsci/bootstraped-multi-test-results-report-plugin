@@ -44,7 +44,7 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
     }
 
     public String getReportsDirectory() {
-        return reportsDirectory;
+        return reportsDirectory == null ? "" : reportsDirectory;
     }
 
     public boolean isCopyHTMLInWorkspace() {

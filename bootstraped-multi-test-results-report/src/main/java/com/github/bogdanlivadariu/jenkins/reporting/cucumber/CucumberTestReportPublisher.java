@@ -57,7 +57,7 @@ public class CucumberTestReportPublisher extends Publisher implements SimpleBuil
     }
 
     public String getReportsDirectory() {
-        return this.reportsDirectory;
+        return reportsDirectory == null ? "" : reportsDirectory;
     }
 
     public String getFileIncludePattern() {
