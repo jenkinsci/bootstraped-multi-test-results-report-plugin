@@ -45,7 +45,7 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
     }
 
     public String getReportsDirectory() {
-        return reportsDirectory;
+        return reportsDirectory == null ? "" : reportsDirectory;
     }
 
     public String getFileIncludePattern() {

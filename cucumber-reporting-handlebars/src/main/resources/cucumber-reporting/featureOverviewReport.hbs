@@ -106,7 +106,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#table-container').DataTable();
+            $('#table-container').DataTable({
+                pageLength: 50
+            });
         });
     </script>
 

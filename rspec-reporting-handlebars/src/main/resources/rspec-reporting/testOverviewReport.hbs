@@ -55,8 +55,6 @@
           {{#each allTestSuites}}
           <tr class="{{#result-color overallStatus}}{{/result-color}} text-center">
             <td class="text-left" style="width:550px;"><a href="test-summary/{{uniqueID}}.html">{{name}}</a></td>
-            <td></td>
-
             <td>{{tests}}</td>
             <td>{{failures}}</td>
             <td>{{errors}}</td>
@@ -84,7 +82,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#table-container').DataTable();
+            $('#table-container').DataTable({
+               pageLength: 50
+            });
         });
     </script>
 
