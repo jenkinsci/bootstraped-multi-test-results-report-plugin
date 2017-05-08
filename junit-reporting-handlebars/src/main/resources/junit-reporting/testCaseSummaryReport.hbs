@@ -65,7 +65,7 @@
                   <li class="list-group-item
                         list-group-item-{{#result-color overallStatus}}{{/result-color}}">
                     <div>
-                      <span>Message:</span>
+                      <span>Message: {{failure.message}}</span>
                       <pre>{{failure.value}}</pre>
                     </div>
                     {{#if systemOut}}
