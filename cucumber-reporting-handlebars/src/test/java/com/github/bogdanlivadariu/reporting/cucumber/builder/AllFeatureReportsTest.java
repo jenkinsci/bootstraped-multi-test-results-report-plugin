@@ -99,7 +99,7 @@ public class AllFeatureReportsTest {
 
     @Test
     public void totalDurationTest() {
-        long duration = Long.parseLong("206919001170");
+        long duration = Long.parseLong("239323852509");
         assertEquals(duration, reports.getTotalDuration());
     }
 

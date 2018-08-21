@@ -1,17 +1,14 @@
 package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.FAILED;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.PASSED;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.SKIPPED;
-import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.UNDEFINED;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
+import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
-import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties.SpecialKeyProperties;
+import static com.github.bogdanlivadariu.reporting.cucumber.helpers.Constants.*;
 
 /**
  * Represents a Scenario
@@ -34,6 +31,10 @@ public class Element {
 
     private Step[] steps;
 
+    private Step[] before;
+
+    private Step[] after;
+
     private long totalDuration;
 
     private String overallStatus = PASSED;
@@ -54,6 +55,22 @@ public class Element {
         uniqueID = UUID.randomUUID().toString();
         List<String> stepStatuses = new ArrayList<>();
         if (steps != null) {
+
+            // pull embeddings from before / after
+
+            for (Step beforeStep : getBefore()) {
+                totalDuration += beforeStep.getResult().getDuration();
+                if (beforeStep.getEmbeddings().length > 0) {
+                    this.embeddings.addAll(Arrays.asList(beforeStep.getEmbeddings()));
+                }
+            }
+
+            for (Step afterStep : getAfter()) {
+                totalDuration += afterStep.getResult().getDuration();
+                if (afterStep.getEmbeddings().length > 0) {
+                    this.embeddings.addAll(Arrays.asList(afterStep.getEmbeddings()));
+                }
+            }
 
             for (Step step : steps) {
                 totalDuration += step.getResult().getDuration();
@@ -142,6 +159,14 @@ public class Element {
             return new Step[0];
         }
         return steps;
+    }
+
+    public Step[] getBefore() {
+        return before != null ? before : new Step[0];
+    }
+
+    public Step[] getAfter() {
+        return after != null ? after : new Step[0];
     }
 
     public Integer getStepsSkippedCount() {
