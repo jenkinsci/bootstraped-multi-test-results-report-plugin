@@ -5,7 +5,12 @@ import com.github.bogdanlivadariu.reporting.rspec.builder.RSpecReportBuilder;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.*;
+import hudson.model.AbstractProject;
+import hudson.model.Action;
+import hudson.model.Computer;
+import hudson.model.Result;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import hudson.slaves.SlaveComputer;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
@@ -15,6 +20,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import static com.github.bogdanlivadariu.jenkins.reporting.Helper.findFiles;
 import static com.github.bogdanlivadariu.jenkins.reporting.Helper.fullPathToFiles;
@@ -84,7 +90,7 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
                 listener.getLogger().println("target dir was not created !!!");
             }
         }
-        String remoteWS = workspaceJsonReportDirectory != null ? workspaceJsonReportDirectory.getRemote() : "";
+        String remoteWS = Optional.ofNullable(workspaceJsonReportDirectory).map(FilePath::getRemote).orElse("");
 
         if (Computer.currentComputer() instanceof SlaveComputer) {
             listener.getLogger().println(
@@ -97,7 +103,9 @@ public class RSpecTestReportPublisher extends Publisher implements SimpleBuildSt
         }
         File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/xmlData");
         if (!targetBuildJsonDirectory.exists()) {
-            targetBuildJsonDirectory.mkdirs();
+            if (targetBuildJsonDirectory.mkdirs()) {
+                listener.getLogger().println("Created " + targetBuildJsonDirectory);
+            }
         }
         String includePattern = (fileIncludePattern == null || fileIncludePattern.isEmpty()) ?
             DEFAULT_FILE_INCLUDE_PATTERN : fileIncludePattern;

@@ -5,7 +5,12 @@ import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.*;
+import hudson.model.AbstractProject;
+import hudson.model.Action;
+import hudson.model.Computer;
+import hudson.model.Result;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import hudson.slaves.SlaveComputer;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
@@ -94,7 +99,9 @@ public class TestNGTestReportPublisher extends Publisher implements SimpleBuildS
         }
         File targetBuildJsonDirectory = new File(targetBuildDirectory.getAbsolutePath() + "/xmlData");
         if (!targetBuildJsonDirectory.exists()) {
-            targetBuildJsonDirectory.mkdirs();
+            if (targetBuildJsonDirectory.mkdirs()) {
+                listener.getLogger().println("Created " + targetBuildJsonDirectory);
+            }
         }
         String includePattern = (fileIncludePattern == null || fileIncludePattern.isEmpty()) ?
             DEFAULT_FILE_INCLUDE_PATTERN : fileIncludePattern;
