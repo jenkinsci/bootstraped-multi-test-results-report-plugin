@@ -2,6 +2,9 @@ package com.github.bogdanlivadariu.jenkins.reporting.junit;
 
 import hudson.model.AbstractProject;
 import hudson.model.ProminentProjectAction;
+import hudson.model.Run;
+
+import java.util.Optional;
 
 public class JUnitTestReportProjectAction extends JUnitTestReportBaseAction implements ProminentProjectAction {
 
@@ -12,8 +15,10 @@ public class JUnitTestReportProjectAction extends JUnitTestReportBaseAction impl
     }
 
     public String getUrlName() {
-        return project != null
-            ? project.getLastBuild().getId() + "/junit-reports-with-handlebars/testSuitesOverview.html"
-            : "if-this-happens-contact-dev";
+        return Optional.ofNullable(project)
+                .map(AbstractProject::getLastBuild)
+                .map(Run::getId)
+                .map(it -> it + "/junit-reports-with-handlebars/testSuitesOverview.html")
+                .orElse("if-this-happens-contact-dev");
     }
 }

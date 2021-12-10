@@ -2,6 +2,9 @@ package com.github.bogdanlivadariu.jenkins.reporting.cucumber;
 
 import hudson.model.AbstractProject;
 import hudson.model.ProminentProjectAction;
+import hudson.model.Run;
+
+import java.util.Optional;
 
 public class CucumberTestReportProjectAction extends CucumberTestReportBaseAction implements ProminentProjectAction {
 
@@ -12,8 +15,10 @@ public class CucumberTestReportProjectAction extends CucumberTestReportBaseActio
     }
 
     public String getUrlName() {
-        return project != null
-            ? project.getLastBuild().getId() + "/cucumber-reports-with-handlebars/featuresOverview.html"
-            : "if-this-happens-contact-dev";
+        return Optional.ofNullable(project)
+                .map(AbstractProject::getLastBuild)
+                .map(Run::getId)
+                .map(it -> it + "/cucumber-reports-with-handlebars/featuresOverview.html")
+                .orElse("if-this-happens-contact-dev");
     }
 }

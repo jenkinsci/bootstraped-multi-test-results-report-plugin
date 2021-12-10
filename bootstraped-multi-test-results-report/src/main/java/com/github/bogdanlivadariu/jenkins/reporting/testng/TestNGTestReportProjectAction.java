@@ -2,6 +2,9 @@ package com.github.bogdanlivadariu.jenkins.reporting.testng;
 
 import hudson.model.AbstractProject;
 import hudson.model.ProminentProjectAction;
+import hudson.model.Run;
+
+import java.util.Optional;
 
 public class TestNGTestReportProjectAction extends TestNGTestReportBaseAction implements ProminentProjectAction {
 
@@ -12,8 +15,10 @@ public class TestNGTestReportProjectAction extends TestNGTestReportBaseAction im
     }
 
     public String getUrlName() {
-        return project != null
-            ? project.getLastBuild().getId() + "/testng-reports-with-handlebars/testsByClassOverview.html"
-            : "if-this-happens-contact-dev";
+        return Optional.ofNullable(project)
+                .map(AbstractProject::getLastBuild)
+                .map(Run::getId)
+                .map(it -> it + "/testng-reports-with-handlebars/testsByClassOverview.html")
+                .orElse("if-this-happens-contact-dev");
     }
 }
