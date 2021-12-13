@@ -46,6 +46,7 @@
         <joda-time.version>2.9.4</joda-time.version>
         <log4j-core.version>2.15.0</log4j-core.version>
         <gson.version>2.7</gson.version>
+        <jaxb-version>2.3.0</jaxb-version>
     </properties>
     <modules>
         <!-- <module>commons-reporting-handlebars</module> -->
@@ -144,7 +145,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.7.201606060606</version>
+                <version>0.8.6</version>
                 <executions>
                     <execution>
                         <goals>
