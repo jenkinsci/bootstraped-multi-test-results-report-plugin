@@ -2,6 +2,9 @@ package com.github.bogdanlivadariu.jenkins.reporting.rspec;
 
 import hudson.model.AbstractProject;
 import hudson.model.ProminentProjectAction;
+import hudson.model.Run;
+
+import java.util.Optional;
 
 public class RSpecTestReportProjectAction extends RSpecTestReportBaseAction implements ProminentProjectAction {
 
@@ -12,8 +15,10 @@ public class RSpecTestReportProjectAction extends RSpecTestReportBaseAction impl
     }
 
     public String getUrlName() {
-        return project != null
-            ? project.getLastBuild().getId() + "/rspec-reports-with-handlebars/testsByClassOverview.html"
-            : "if-this-happens-contact-dev";
+        return Optional.ofNullable(project)
+                .map(AbstractProject::getLastBuild)
+                .map(Run::getId)
+                .map(it -> it + "/rspec-reports-with-handlebars/testsByClassOverview.html")
+                .orElse("if-this-happens-contact-dev");
     }
 }
