@@ -11,23 +11,23 @@
     </parent>
     <groupId>com.github.bogdanlivadariu</groupId>
     <artifactId>bootstraped-multi-test-results-report</artifactId>
-    <version>2.2.3-SNAPSHOT</version>
+    <version>2.2.3</version>
     <packaging>hpi</packaging>
     <properties>
         <enforcer.skip>true</enforcer.skip>
         <java.level>8</java.level>
         <jenkins.version>2.164</jenkins.version>
-        <cucumber-reporting-handlebars.version>2.2.3-SNAPSHOT</cucumber-reporting-handlebars.version>
-        <junit-reporting-handlebars.version>2.2.3-SNAPSHOT</junit-reporting-handlebars.version>
-        <testng-reporting-handlebars.version>2.2.3-SNAPSHOT</testng-reporting-handlebars.version>
-        <rspec-reporting-handlebars.version>2.2.3-SNAPSHOT</rspec-reporting-handlebars.version>
+        <cucumber-reporting-handlebars.version>2.2.3</cucumber-reporting-handlebars.version>
+        <junit-reporting-handlebars.version>2.2.3</junit-reporting-handlebars.version>
+        <testng-reporting-handlebars.version>2.2.3</testng-reporting-handlebars.version>
+        <rspec-reporting-handlebars.version>2.2.3</rspec-reporting-handlebars.version>
     </properties>
     <scm>
         <connection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</connection>
         <developerConnection>scm:git:git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git
         </developerConnection>
         <url>git@github.com:BogdanLivadariu/bootstraped-multi-test-results-report.git</url>
-        <tag>2.2.0</tag>
+        <tag>2.2.3</tag>
     </scm>
     <licenses>
         <license>
