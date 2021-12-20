@@ -2,11 +2,7 @@ package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
 import java.util.UUID;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.*;
 
 import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
 

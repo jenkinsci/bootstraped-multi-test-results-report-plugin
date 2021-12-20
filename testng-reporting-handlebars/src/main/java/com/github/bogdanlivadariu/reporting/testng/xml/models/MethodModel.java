@@ -1,9 +1,6 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.*;
 
 @XmlRootElement(name = "method")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -1,11 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.bogdanlivadariu</groupId>
         <artifactId>bootstraped-multi-test-results-report-reactor-parent</artifactId>
         <version>2.1.4-SNAPSHOT</version>
     </parent>
-    <groupId>com.github.bogdanlivadariu</groupId>
     <artifactId>junit-reporting-handlebars</artifactId>
     <packaging>jar</packaging>
     <name>junit-reporting-handlebars</name>
@@ -21,8 +21,8 @@
     </licenses>
     <scm>
         <url>https://github.com/BogdanLivadariu/junit-reporting-handlebars.git</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
     <developers>
         <developer>
             <id>bogdanlivadariu</id>
@@ -38,7 +38,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
-            <scope>compile</scope>
+            <!--            <scope>compile</scope>-->
         </dependency>
         <dependency>
             <groupId>com.github.jknack</groupId>
@@ -56,20 +56,22 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j-core.version}</version>
         </dependency>
+
+
+        <!-- JAXB API only -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!-- JAXB RI, Jakarta XML Binding -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.2.11</version>
+            <version>3.0.1</version>
+            <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>2.2.11</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-libs</artifactId>
-            <version>1.0.6</version>
-        </dependency>
+
     </dependencies>
 </project>

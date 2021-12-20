@@ -5,18 +5,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.stream.FactoryConfigurationError;
-import javax.xml.stream.XMLStreamException;
 
+import jakarta.xml.bind.JAXBException;
 import org.apache.commons.io.FileUtils;
 
 import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 
+import javax.xml.stream.FactoryConfigurationError;
+import javax.xml.stream.XMLStreamException;
+
 public class TestNgReportBuilderCli {
 
     public static void main(String[] args)
-        throws FactoryConfigurationError, JAXBException, XMLStreamException, IOException {
+            throws FactoryConfigurationError, JAXBException, XMLStreamException, IOException {
         List<String> xmlReports = new ArrayList<String>();
         String[] extensions = {"xml"};
         String xmlPath = System.getProperty("xmlPath");

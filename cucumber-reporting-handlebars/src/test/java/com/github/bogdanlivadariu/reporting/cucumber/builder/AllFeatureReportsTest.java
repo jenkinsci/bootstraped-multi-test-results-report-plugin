@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +24,7 @@ public class AllFeatureReportsTest {
     private AllFeatureReports reports;
 
     @Before
-    public void setUp() throws JAXBException, IOException {
+    public void setUp() throws IOException {
         List<String> jsonReports = new ArrayList<>();
 
         String firstReport = AllFeatureReportsTest.class.getResource("/result.json").getPath();
@@ -57,19 +55,14 @@ public class AllFeatureReportsTest {
                 existingTags.add(t.getName() + t.getLine());
             }
         }
-        List<String> expectedTags = new ArrayList<String>(Arrays.asList(
-            "@super1", "@editor1", "@formatting1", "@formattingBlocks1", "@formattingSpacer1",
-            "@all3", "@ControleDeBens3", "@Patrimonio3"));
+        List<String> expectedTags = new ArrayList<String>(Arrays.asList("@super1", "@editor1", "@formatting1", "@formattingBlocks1", "@formattingSpacer1", "@all3", "@ControleDeBens3", "@Patrimonio3"));
         assertEquals(expectedTags, existingTags);
     }
 
     @Test
     public void scenariosTagTest() {
         List<String> existingTags = new ArrayList<>();
-        List<String> expectedTags = new ArrayList<>(Arrays.asList("@super1", "@fast12", "@super1", "@checkout12",
-            "@fast12", "@super1", "@checkout12", "@super28", "@formattingBlocks1", "@editor1", "@formattingSpacer1",
-            "@formatting1", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1",
-            "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1"));
+        List<String> expectedTags = new ArrayList<>(Arrays.asList("@super1", "@fast12", "@super1", "@checkout12", "@fast12", "@super1", "@checkout12", "@super28", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1"));
 
         for (Feature f : reports.getFeatures()) {
             for (Element e : f.getElements()) {
@@ -118,9 +111,7 @@ public class AllFeatureReportsTest {
 
     @Test
     public void stepEmbeddingTest() {
-        List<Integer> expected = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
-            1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        List<Integer> expected = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         List<Integer> actualEmbeddingsCount = new ArrayList<>();
 
         for (Feature f : reports.getFeatures()) {

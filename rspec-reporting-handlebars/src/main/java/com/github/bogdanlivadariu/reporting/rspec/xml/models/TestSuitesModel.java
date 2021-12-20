@@ -2,7 +2,7 @@ package com.github.bogdanlivadariu.reporting.rspec.xml.models;
 
 import com.github.bogdanlivadariu.reporting.rspec.helpers.Constants;
 
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

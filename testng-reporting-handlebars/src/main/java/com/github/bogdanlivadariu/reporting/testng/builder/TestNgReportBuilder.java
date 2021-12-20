@@ -7,11 +7,12 @@ import com.github.bogdanlivadariu.reporting.testng.xml.models.TestModel;
 import com.github.bogdanlivadariu.reporting.testng.xml.models.TestngResultsModel;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import org.apache.commons.io.FileUtils;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -36,7 +37,7 @@ public class TestNgReportBuilder {
     private List<TestngResultsModel> processedTestNgReports;
 
     public TestNgReportBuilder(List<String> xmlReports, String targetBuildPath)
-        throws JAXBException, XMLStreamException, FactoryConfigurationError, IOException {
+            throws XMLStreamException, FactoryConfigurationError, IOException, JAXBException {
         testOverviewPath = targetBuildPath + "/";
         classesSummaryPath = targetBuildPath + "/classes-summary/";
         processedTestNgReports = new ArrayList<>();
@@ -59,22 +60,22 @@ public class TestNgReportBuilder {
     private void writeTestsByClassOverview() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(testOverviewReport);
         AllTestNgReports allTestNgReports =
-            new AllTestNgReports("Tests by class overview report", processedTestNgReports);
+                new AllTestNgReports("Tests by class overview report", processedTestNgReports);
         FileUtils.writeStringToFile(new File(testOverviewPath + TESTS_BY_CLASS_OVERVIEW),
-            template.apply(allTestNgReports));
+                template.apply(allTestNgReports));
     }
 
     private void writeTestsByNameOverview() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(testNameOverviewReport);
         AllTestNgReports allTestNgReports =
-            new AllTestNgReports("Tests by name overview report", processedTestNgReports);
+                new AllTestNgReports("Tests by name overview report", processedTestNgReports);
         FileUtils.writeStringToFile(new File(testOverviewPath + "testsByNameOverview.html"),
-            template.apply(allTestNgReports));
+                template.apply(allTestNgReports));
     }
 
     private void writeTestCaseSummaryReport() throws IOException {
         Template templateTestClassReport =
-            new Helpers(new Handlebars()).registerHelpers().compile(testSummaryReport);
+                new Helpers(new Handlebars()).registerHelpers().compile(testSummaryReport);
         for (TestngResultsModel tngr : processedTestNgReports) {
             for (SuiteModel sm : tngr.getSuites()) {
                 for (TestModel tm : sm.getTests()) {
@@ -93,7 +94,7 @@ public class TestNgReportBuilder {
                 file.createNewFile();
             }
             OutputStream os =
-                new FileOutputStream(file);
+                    new FileOutputStream(file);
 
             PrintWriter rw = new PrintWriter(os);
             rw.print(templateTestClassReport.apply(cm));
@@ -108,7 +109,7 @@ public class TestNgReportBuilder {
         writeTestCaseSummaryReport();
         for (TestngResultsModel ts : processedTestNgReports) {
             if (ts.getTotalClassesFailed() >= 1
-                || ts.getTotalClassesSkipped() >= 1) {
+                    || ts.getTotalClassesSkipped() >= 1) {
                 return false;
             }
         }

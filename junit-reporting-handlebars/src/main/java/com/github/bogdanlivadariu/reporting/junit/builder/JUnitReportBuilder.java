@@ -7,11 +7,11 @@ import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuiteModel;
 import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuitesModel;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import org.apache.commons.io.FileUtils;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
