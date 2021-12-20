@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>bootstraped-multi-test-results-report</name>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/Bootstraped+Multi+Test+Results+Report</url>
@@ -6,7 +7,7 @@
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
         <version>3.43</version>
-        <relativePath />
+        <relativePath/>
         <!-- which version of Jenkins is this plugin built against? -->
     </parent>
     <groupId>com.github.bogdanlivadariu</groupId>
@@ -14,9 +15,9 @@
     <version>2.1.4-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <properties>
-  			<enforcer.skip>true</enforcer.skip>
+        <enforcer.skip>true</enforcer.skip>
         <java.level>8</java.level>
-        <jenkins.version>2.32.1</jenkins.version>
+        <jenkins.version>2.164</jenkins.version>
         <cucumber-reporting-handlebars.version>2.1.4-SNAPSHOT</cucumber-reporting-handlebars.version>
         <junit-reporting-handlebars.version>2.1.4-SNAPSHOT</junit-reporting-handlebars.version>
         <testng-reporting-handlebars.version>2.1.4-SNAPSHOT</testng-reporting-handlebars.version>
@@ -75,7 +76,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.4.0</version>
+                <version>3.0.4</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
