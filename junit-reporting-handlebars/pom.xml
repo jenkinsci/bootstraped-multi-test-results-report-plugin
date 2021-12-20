@@ -6,7 +6,6 @@
         <artifactId>bootstraped-multi-test-results-report-reactor-parent</artifactId>
         <version>2.1.4-SNAPSHOT</version>
     </parent>
-    <groupId>com.github.bogdanlivadariu</groupId>
     <artifactId>junit-reporting-handlebars</artifactId>
     <packaging>jar</packaging>
     <name>junit-reporting-handlebars</name>
@@ -39,7 +38,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
-<!--            <scope>compile</scope>-->
+            <!--            <scope>compile</scope>-->
         </dependency>
         <dependency>
             <groupId>com.github.jknack</groupId>
@@ -57,27 +56,22 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j-core.version}</version>
         </dependency>
-        <!--jdk 11 compat start -->
+
+
+        <!-- JAXB API only -->
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb-version}</version>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>${jaxb-version}</version>
-        </dependency>
+
+        <!-- JAXB RI, Jakarta XML Binding -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>${jaxb-version}</version>
+            <version>3.0.1</version>
+            <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <!--jdk 11 compat end-->
+
     </dependencies>
 </project>

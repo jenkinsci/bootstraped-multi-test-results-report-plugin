@@ -6,11 +6,12 @@ import com.github.bogdanlivadariu.reporting.rspec.xml.models.TestSuiteModel;
 import com.github.bogdanlivadariu.reporting.rspec.xml.models.TestSuitesModel;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import org.apache.commons.io.FileUtils;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class RSpecReportBuilder {
     private List<TestSuiteModel> processedTestSuites;
 
     public RSpecReportBuilder(List<String> xmlReports, String targetBuildPath) throws FileNotFoundException,
-        JAXBException {
+            JAXBException {
         TEST_OVERVIEW_PATH = targetBuildPath + "/";
         TEST_SUMMARY_PATH = targetBuildPath + "/test-summary/";
         processedTestSuites = new ArrayList<>();

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class CucumberJsTest {
     private AllFeatureReports reports;
 
     @Before
-    public void setUp() throws JAXBException, IOException {
+    public void setUp() throws IOException {
         List<String> jsonReports = new ArrayList<>();
 
         String cucumberJsReport = AllFeatureReportsTest.class.getResource("/cucumber-js.json").getPath();

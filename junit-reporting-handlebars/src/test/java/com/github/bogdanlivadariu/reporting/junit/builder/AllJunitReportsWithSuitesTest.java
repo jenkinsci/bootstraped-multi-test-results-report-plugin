@@ -6,8 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
 
+import jakarta.xml.bind.JAXBException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class AllJunitReportsWithSuitesTest {
     @Test
     public void restSuitesSizeTest() throws FileNotFoundException, JAXBException {
         assertEquals("reports count is not right",
-            reports.getAllTestSuites().size(), 2);
+                reports.getAllTestSuites().size(), 2);
         assertEquals(reports.getSuitesCount(), 2);
         assertEquals(reports.getTotalErrors(), 0);
     }
