@@ -18,6 +18,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class TestNgReportBuilder {
         AllTestNgReports allTestNgReports =
                 new AllTestNgReports("Tests by class overview report", processedTestNgReports);
         FileUtils.writeStringToFile(new File(testOverviewPath + TESTS_BY_CLASS_OVERVIEW),
-                template.apply(allTestNgReports));
+                template.apply(allTestNgReports), StandardCharsets.UTF_8);
     }
 
     private void writeTestsByNameOverview() throws IOException {
@@ -70,7 +71,7 @@ public class TestNgReportBuilder {
         AllTestNgReports allTestNgReports =
                 new AllTestNgReports("Tests by name overview report", processedTestNgReports);
         FileUtils.writeStringToFile(new File(testOverviewPath + "testsByNameOverview.html"),
-                template.apply(allTestNgReports));
+                template.apply(allTestNgReports), StandardCharsets.UTF_8);
     }
 
     private void writeTestCaseSummaryReport() throws IOException {

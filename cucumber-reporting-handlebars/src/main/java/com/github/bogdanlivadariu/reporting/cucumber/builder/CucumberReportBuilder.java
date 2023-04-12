@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -64,7 +65,7 @@ public class CucumberReportBuilder {
             String generatedFeatureHtmlContent = template.apply(feature);
             // generatedFeatureSummaryReports.put(feature.getUniqueID(), generatedFeatureHtmlContent);
             FileUtils.writeStringToFile(new File(REPORTS_SUMMARY_PATH + feature.getUniqueID() + ".html"),
-                generatedFeatureHtmlContent);
+                generatedFeatureHtmlContent, StandardCharsets.UTF_8);
         }
     }
 
@@ -72,39 +73,28 @@ public class CucumberReportBuilder {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_OVERVIEW, getProcessedFeatures());
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_OVERVIEW_HTML),
-            template.apply(allFeatures));
+            template.apply(allFeatures), StandardCharsets.UTF_8);
     }
 
     private void writeFeaturePassedReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
 
         List<Feature> onlyPassed = new ArrayList<>(getProcessedFeatures());
-        for (Iterator<Feature> it = onlyPassed.listIterator(); it.hasNext(); ) {
-
-            Feature f = it.next();
-            if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
-                it.remove();
-            }
-        }
+        onlyPassed.removeIf(f -> f.getOverallStatus().equalsIgnoreCase(Constants.FAILED));
 
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_PASSED_OVERVIEW, onlyPassed);
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_PASSED_HTML),
-            template.apply(allFeatures));
+            template.apply(allFeatures), StandardCharsets.UTF_8);
     }
 
     private void writeFeatureFailedReport() throws IOException {
         Template template = bars.compile(FEATURE_OVERVIEW_REPORT);
 
         List<Feature> onlyFailed = new ArrayList<>(getProcessedFeatures());
-        for (Iterator<Feature> it = onlyFailed.listIterator(); it.hasNext(); ) {
-            Feature f = it.next();
-            if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
-                it.remove();
-            }
-        }
+        onlyFailed.removeIf(f -> f.getOverallStatus().equalsIgnoreCase(Constants.PASSED));
         AllFeatureReports allFeatures = new AllFeatureReports(FEATURES_FAILED_OVERVIEW, onlyFailed);
         FileUtils.writeStringToFile(new File(REPORTS_OVERVIEW_PATH + FEATURES_FAILED_HTML),
-            template.apply(allFeatures));
+            template.apply(allFeatures), StandardCharsets.UTF_8);
     }
 
     private void writeFeatureTagsReport() throws IOException {
@@ -139,24 +129,19 @@ public class CucumberReportBuilder {
                 AllFeatureReports specificTagFeatures =
                     new AllFeatureReports(entry.getKey(), entry.getValue());
                 FileUtils.writeStringToFile(new File(FEATURE_TAG_REPORT + entry.getKey() + ".html"),
-                    template.apply(specificTagFeatures));
+                    template.apply(specificTagFeatures), StandardCharsets.UTF_8);
             }
         }
     }
 
     private List<Feature> prepareData(List<String> jsonReports, SpecialProperties props) throws IOException {
-        Comparator<Feature> featureNameComparator = new Comparator<Feature>() {
-            @Override
-            public int compare(Feature first, Feature second) {
-                return first.getName().compareToIgnoreCase(second.getName());
-            }
-        };
+        Comparator<Feature> featureNameComparator = (first, second) -> first.getName().compareToIgnoreCase(second.getName());
 
         List<Feature> processedFeaturesLocal = new ArrayList<>();
         for (String jsonReport : jsonReports) {
             File jsonFileReport = new File(jsonReport);
             FileInputStream fis = new FileInputStream(jsonFileReport);
-            String gson = IOUtils.toString(fis);
+            String gson = IOUtils.toString(fis, StandardCharsets.UTF_8);
             fis.close();
 
             if (gson.isEmpty()) {
@@ -169,13 +154,13 @@ public class CucumberReportBuilder {
             }
 
         }
-        Collections.sort(processedFeaturesLocal, featureNameComparator);
+        processedFeaturesLocal.sort(featureNameComparator);
         return processedFeaturesLocal;
     }
 
     /**
      * @return true if all the features have passed, false if at least one has failed.
-     * @throws IOException
+     * @throws IOException if the reports cannot be written on disk
      */
     public boolean writeReportsOnDisk() throws IOException {
         writeFeatureSummaryReports();

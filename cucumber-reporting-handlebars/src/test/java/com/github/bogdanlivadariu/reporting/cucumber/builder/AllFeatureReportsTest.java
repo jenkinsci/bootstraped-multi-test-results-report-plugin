@@ -1,21 +1,20 @@
 package com.github.bogdanlivadariu.reporting.cucumber.builder;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import com.github.bogdanlivadariu.reporting.cucumber.helpers.SpecialProperties;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Element;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Feature;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Step;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Tag;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class AllFeatureReportsTest {
 
@@ -23,7 +22,7 @@ public class AllFeatureReportsTest {
 
     private AllFeatureReports reports;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException {
         List<String> jsonReports = new ArrayList<>();
 

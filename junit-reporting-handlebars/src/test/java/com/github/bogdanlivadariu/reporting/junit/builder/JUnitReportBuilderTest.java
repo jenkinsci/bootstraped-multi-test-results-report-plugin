@@ -1,25 +1,26 @@
 package com.github.bogdanlivadariu.reporting.junit.builder;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jakarta.xml.bind.JAXBException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit test for simple App.
  */
 public class JUnitReportBuilderTest {
 
-    @Test(expected = NullPointerException.class)
-    public void npeTest() throws IOException, JAXBException {
-        List<String> xmlReports = null;
-        new JUnitReportBuilder(xmlReports, "out");
+    @Test
+    public void npeTest() throws Exception {
+        assertThrows(NullPointerException.class, () -> {
+            List<String> xmlReports = null;
+            new JUnitReportBuilder(xmlReports, "out");
+        });
     }
 
     @Test
@@ -28,10 +29,10 @@ public class JUnitReportBuilderTest {
         String report = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
         xmlReports.add(report);
         JUnitReportBuilder builder = new JUnitReportBuilder(xmlReports, "out");
-        assertEquals("reports count is not right", 1, builder.getProcessedTestSuites().size());
+        assertEquals(1, builder.getProcessedTestSuites().size(), "reports count is not right");
         xmlReports.clear();
         builder = new JUnitReportBuilder(xmlReports, "out");
-        assertEquals("reports count is not right", 0, builder.getProcessedTestSuites().size());
+        assertEquals(0, builder.getProcessedTestSuites().size(), "reports count is not right");
     }
 
     @Test
@@ -40,9 +41,9 @@ public class JUnitReportBuilderTest {
         String report = this.getClass().getClassLoader().getResource("valid-report-2.xml").getPath();
         xmlReports.add(report);
         JUnitReportBuilder builder = new JUnitReportBuilder(xmlReports, "out");
-        assertEquals("reports count is not right", 2, builder.getProcessedTestSuites().size());
+        assertEquals(2, builder.getProcessedTestSuites().size(), "reports count is not right");
         xmlReports.clear();
         builder = new JUnitReportBuilder(xmlReports, "out");
-        assertEquals("reports count is not right", 0, builder.getProcessedTestSuites().size());
+        assertEquals(0, builder.getProcessedTestSuites().size(), "reports count is not right");
     }
 }

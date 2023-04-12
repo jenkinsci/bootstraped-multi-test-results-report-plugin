@@ -15,8 +15,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -80,7 +80,7 @@ public class JUnitReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
         AllJUnitReports allFeatures = new AllJUnitReports("Test suites overview", processedTestSuites);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + SUITE_OVERVIEW),
-            template.apply(allFeatures));
+            template.apply(allFeatures), StandardCharsets.UTF_8);
     }
 
     private void writeTestCaseSummaryReport() throws IOException {
@@ -88,7 +88,7 @@ public class JUnitReportBuilder {
         for (TestSuiteModel ts : processedTestSuites) {
             String content = template.apply(ts);
             FileUtils.writeStringToFile(new File(TEST_SUMMARY_PATH + ts.getUniqueID() + ".html"),
-                content);
+                content, StandardCharsets.UTF_8);
         }
     }
 
@@ -96,32 +96,22 @@ public class JUnitReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
         List<TestSuiteModel> onlyPassed = new ArrayList<>(getProcessedTestSuites());
-        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext(); ) {
-            TestSuiteModel f = it.next();
-            if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
-                it.remove();
-            }
-        }
+        onlyPassed.removeIf(f -> f.getOverallStatus().equalsIgnoreCase(Constants.FAILED));
 
         AllJUnitReports allTestSuites = new AllJUnitReports("Passed test suites report", onlyPassed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsPassed.html"),
-            template.apply(allTestSuites));
+            template.apply(allTestSuites), StandardCharsets.UTF_8);
     }
 
     private void writeTestsFailedReport() throws IOException {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
 
         List<TestSuiteModel> onlyFailed = new ArrayList<>(getProcessedTestSuites());
-        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext(); ) {
-            TestSuiteModel f = it.next();
-            if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
-                it.remove();
-            }
-        }
+        onlyFailed.removeIf(f -> f.getOverallStatus().equalsIgnoreCase(Constants.PASSED));
 
         AllJUnitReports allTestSuites = new AllJUnitReports("Failed test suites report", onlyFailed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsFailed.html"),
-            template.apply(allTestSuites));
+            template.apply(allTestSuites), StandardCharsets.UTF_8);
     }
 
     public boolean writeReportsOnDisk() throws IOException {
