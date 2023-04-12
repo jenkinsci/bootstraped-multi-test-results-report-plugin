@@ -14,11 +14,3 @@ The project offers the possibility to build test reports using a bootstrap compo
 
 Once you have installed this plugin, and configured it with the proper location of your json test report files,
 after the build is finished, then the following menu will be present on your build/project.
-
-and this will allow you to view reports as they are described in the readme from the following project:
-[cucumber-reporting-handlebars](https://github.com/web-innovate/bootstraped-multi-test-results-report/tree/master/cucumber-reporting-handlebars)
-
-## Maven compatibility
-
-This is known to work with maven 3.3.9.
-It doesn't build with 3.8.4.

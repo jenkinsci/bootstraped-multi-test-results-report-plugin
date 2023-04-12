@@ -2,18 +2,18 @@ package com.github.bogdanlivadariu.reporting.junit.builder;
 
 import com.github.bogdanlivadariu.reporting.junit.helpers.Helpers;
 import com.github.jknack.handlebars.Handlebars;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static com.github.bogdanlivadariu.reporting.junit.helpers.Constants.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HelperTest {
     private static Handlebars instance;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         Helpers a = new Helpers(new Handlebars());
         instance = a.registerHelpers();

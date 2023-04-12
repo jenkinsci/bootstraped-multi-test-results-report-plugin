@@ -15,8 +15,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -63,7 +63,7 @@ public class RSpecReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
         AllRSpecJUnitReports allFeatures = new AllRSpecJUnitReports("Test suites overview", processedTestSuites);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + SUITES_OVERVIEW),
-            template.apply(allFeatures));
+            template.apply(allFeatures), StandardCharsets.UTF_8);
     }
 
     private void writeTestCaseSummaryReport() throws IOException {
@@ -71,7 +71,7 @@ public class RSpecReportBuilder {
         for (TestSuiteModel ts : processedTestSuites) {
             String content = template.apply(ts);
             FileUtils.writeStringToFile(new File(TEST_SUMMARY_PATH + ts.getUniqueID() + ".html"),
-                content);
+                content, StandardCharsets.UTF_8);
         }
     }
 
@@ -80,16 +80,11 @@ public class RSpecReportBuilder {
 
         List<TestSuiteModel> onlyPassed = new ArrayList<>(processedTestSuites);
 
-        for (Iterator<TestSuiteModel> it = onlyPassed.listIterator(); it.hasNext(); ) {
-            TestSuiteModel f = it.next();
-            if (f.getOverallStatus().equalsIgnoreCase(Constants.FAILED)) {
-                it.remove();
-            }
-        }
+        onlyPassed.removeIf(f -> f.getOverallStatus().equalsIgnoreCase(Constants.FAILED));
 
         AllRSpecJUnitReports allTestSuites = new AllRSpecJUnitReports("Passed test suites report", onlyPassed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsPassed.html"),
-            template.apply(allTestSuites));
+            template.apply(allTestSuites), StandardCharsets.UTF_8);
     }
 
     private void writeTestsFailedReport() throws IOException {
@@ -97,16 +92,11 @@ public class RSpecReportBuilder {
 
         List<TestSuiteModel> onlyFailed = new ArrayList<>(processedTestSuites);
 
-        for (Iterator<TestSuiteModel> it = onlyFailed.listIterator(); it.hasNext(); ) {
-            TestSuiteModel f = it.next();
-            if (f.getOverallStatus().equalsIgnoreCase(Constants.PASSED)) {
-                it.remove();
-            }
-        }
+        onlyFailed.removeIf(f -> f.getOverallStatus().equalsIgnoreCase(Constants.PASSED));
 
         AllRSpecJUnitReports allTestSuites = new AllRSpecJUnitReports("Failed test suites report", onlyFailed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsFailed.html"),
-            template.apply(allTestSuites));
+            template.apply(allTestSuites), StandardCharsets.UTF_8);
     }
 
     public boolean writeReportsOnDisk() throws IOException {

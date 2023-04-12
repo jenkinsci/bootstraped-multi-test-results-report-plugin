@@ -1,15 +1,14 @@
 package com.github.bogdanlivadariu.reporting.junit.builder;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jakarta.xml.bind.JAXBException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AllJunitReportsWithSuitesTest {
     private List<String> xmlReports;
@@ -20,7 +19,7 @@ public class AllJunitReportsWithSuitesTest {
 
     private AllJUnitReports reports;
 
-    @Before
+    @BeforeEach
     public void setUp() throws FileNotFoundException, JAXBException {
         xmlReports = new ArrayList<>();
         xmlReports.add(reportPath);
@@ -30,8 +29,7 @@ public class AllJunitReportsWithSuitesTest {
 
     @Test
     public void restSuitesSizeTest() throws FileNotFoundException, JAXBException {
-        assertEquals("reports count is not right",
-                reports.getAllTestSuites().size(), 2);
+        assertEquals(reports.getAllTestSuites().size(), 2, "reports count is not right");
         assertEquals(reports.getSuitesCount(), 2);
         assertEquals(reports.getTotalErrors(), 0);
     }

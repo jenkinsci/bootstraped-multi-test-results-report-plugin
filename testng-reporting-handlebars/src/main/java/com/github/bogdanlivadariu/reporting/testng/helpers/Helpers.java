@@ -5,7 +5,6 @@ import static com.github.bogdanlivadariu.reporting.testng.helpers.Constants.PASS
 import static com.github.bogdanlivadariu.reporting.testng.helpers.Constants.SKIPPED;
 import static com.github.bogdanlivadariu.reporting.testng.helpers.Constants.UNDEFINED;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +12,6 @@ import java.util.TimeZone;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
-import com.github.jknack.handlebars.Options;
 
 public class Helpers {
     public static final String PROBLEM_SETTING_STATUS =
@@ -26,64 +24,34 @@ public class Helpers {
     }
 
     public Handlebars registerHelpers() {
-        handlebar.registerHelper("date", new Helper<Long>() {
-            public CharSequence apply(Long arg0, Options arg1) throws IOException {
-                int totalSecs = (int) arg0.doubleValue() / 1000;
-                int hours = totalSecs / 3600;
-                int minutes = (totalSecs % 3600) / 60;
-                int seconds = totalSecs % 60;
-                int miliSec = (int) arg0.doubleValue() % 1000;
+        handlebar.registerHelper("date", (Helper<Long>) (arg0, arg1) -> {
+            int totalSecs = (int) arg0.doubleValue() / 1000;
+            int hours = totalSecs / 3600;
+            int minutes = (totalSecs % 3600) / 60;
+            int seconds = totalSecs % 60;
+            int miliSec = (int) arg0.doubleValue() % 1000;
 
-                return String.format("%02d h : %02d m : %02d s : %02d ms", hours, minutes, seconds, miliSec);
-            }
+            return String.format("%02d h : %02d m : %02d s : %02d ms", hours, minutes, seconds, miliSec);
         });
 
-        handlebar.registerHelper("result-color", new Helper<String>() {
-            @Override
-            public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkStatus(arg0.toLowerCase(), "info", "success", "danger", null);
-            }
-        });
+        handlebar.registerHelper("result-color", (Helper<String>) (arg0, arg1) -> checkStatus(arg0.toLowerCase(), "info", "success", "danger", null));
 
-        handlebar.registerHelper("is-config", new Helper<Boolean>() {
-            @Override
-            public CharSequence apply(Boolean arg0, Options arg1) throws IOException {
-                return getIsConfigApplyResult(arg0);
-            }
-        });
+        handlebar.registerHelper("is-config", (Helper<Boolean>) (arg0, arg1) -> getIsConfigApplyResult(arg0));
 
-        handlebar.registerHelper("resolve-tooltip", new Helper<String>() {
-            @Override
-            public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkStatus(arg0.toLowerCase(), "This test has been skipped", "This test has passed",
-                    "This test has failed", PROBLEM_SETTING_STATUS);
-            }
-        });
+        handlebar.registerHelper("resolve-tooltip", (Helper<String>) (arg0, arg1) -> checkStatus(arg0.toLowerCase(), "This test has been skipped", "This test has passed",
+            "This test has failed", PROBLEM_SETTING_STATUS));
 
-        handlebar.registerHelper("resolve-title", new Helper<String>() {
-            @Override
-            public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkStatus(arg0.toLowerCase(), "This step has been skipped", "This step has passed",
-                    "This step has failed", null);
-            }
-        });
+        handlebar.registerHelper("resolve-title", (Helper<String>) (arg0, arg1) -> checkStatus(arg0.toLowerCase(), "This step has been skipped", "This step has passed",
+            "This step has failed", null));
 
-        handlebar.registerHelper("is-collapsed", new Helper<String>() {
-            @Override
-            public CharSequence apply(String arg0, Options arg1) throws IOException {
-                return checkStatus(arg0.toLowerCase(), null, "collapse", "collapse in", null);
-            }
-        });
+        handlebar.registerHelper("is-collapsed", (Helper<String>) (arg0, arg1) -> checkStatus(arg0.toLowerCase(), null, "collapse", "collapse in", null));
 
-        handlebar.registerHelper("now", new Helper<Object>() {
-            @Override
-            public CharSequence apply(Object context, Options options) throws IOException {
-                Calendar cal = Calendar.getInstance();
-                Date date = cal.getTime();
-                String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(date);
-                TimeZone tz = cal.getTimeZone();
-                return now + " " + tz.getID();
-            }
+        handlebar.registerHelper("now", (context, options) -> {
+            Calendar cal = Calendar.getInstance();
+            Date date = cal.getTime();
+            String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(date);
+            TimeZone tz = cal.getTimeZone();
+            return now + " " + tz.getID();
         });
 
         return handlebar;

@@ -1,7 +1,8 @@
 package com.github.bogdanlivadariu.reporting.cucumber.json.models;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
+
+import static com.google.gson.JsonParser.parseString;
 
 public class DocString {
 
@@ -12,8 +13,7 @@ public class DocString {
     private Integer line;
 
     public String getValue() {
-        JsonParser jp = new JsonParser();
-        return new GsonBuilder().setPrettyPrinting().create().toJson(jp.parse(value));
+        return new GsonBuilder().setPrettyPrinting().create().toJson(parseString(value));
     }
 
     public String getContentType() {
