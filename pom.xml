@@ -40,7 +40,7 @@
         <testng-reporting-handlebars.version>2.2.1</testng-reporting-handlebars.version>
         <rspec-reporting-handlebars.version>2.2.1</rspec-reporting-handlebars.version>
         <handlebars.version>4.3.1</handlebars.version>
-        <testng.version>6.9.10</testng.version>
+        <testng.version>7.7.1</testng.version>
         <joda-time.version>2.12.5</joda-time.version>
         <log4j-core.version>2.20.0</log4j-core.version>
         <gson.version>2.10.1</gson.version>
