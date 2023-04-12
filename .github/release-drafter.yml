@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: bootstraped-multi-test-results-report-$NEXT_MINOR_VERSION

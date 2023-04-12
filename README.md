@@ -1,12 +1,6 @@
 # bootstraped-multi-test-results-report
 
-[![Gitter](https://badges.gitter.im/web-innovate/bootstraped-multi-test-results-report.svg)](https://gitter.im/web-innovate/bootstraped-multi-test-results-report?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![codecov.io](https://codecov.io/github/web-innovate/bootstraped-multi-test-results-report/coverage.svg?branch=master)](https://codecov.io/github/web-innovate/bootstraped-multi-test-results-report?branch=master)
-
-| module name | dependency status |
-| ----------- | ----------------- |
-| Modules |[![Dependency Status](https://www.versioneye.com/user/projects/57a88a72c953220013e578d6/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57a88a72c953220013e578d6)|
-| Jenkins HPI |[![Dependency Status](https://www.versioneye.com/user/projects/57a88a7fd3298e001626276d/badge.svg?style=flat-square&label=coo)](https://www.versioneye.com/user/projects/57a88a7fd3298e001626276d)|
 
 | maven module | maven latest versions |
 | ------------ | --------------------- |
