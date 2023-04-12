@@ -6,6 +6,10 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    ignore:
+      # Must be updated together with jakarta.xml.bind:jakarta.xml.bind-api
+      - dependency-name: com.sun.xml.bind:jaxb-impl
+        versions: [">=4.0.1"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
