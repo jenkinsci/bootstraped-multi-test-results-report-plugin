@@ -7,7 +7,6 @@
         <artifactId>plugin</artifactId>
         <version>3.43</version>
         <relativePath />
-        <!-- which version of Jenkins is this plugin built against? -->
     </parent>
     <groupId>com.github.bogdanlivadariu</groupId>
     <artifactId>bootstraped-multi-test-results-report</artifactId>
