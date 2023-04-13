@@ -1,35 +1,32 @@
 package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
-import java.util.UUID;
-
-import jakarta.xml.bind.annotation.*;
-
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
 
-import static com.github.bogdanlivadariu.reporting.junit.xml.models.BaseModel.*;
+import java.util.UUID;
 
-@XmlRootElement(name = "testcase")
-@XmlAccessorType(XmlAccessType.FIELD)
+import static com.github.bogdanlivadariu.reporting.junit.xml.models.BaseModel.ErrorModel;
+import static com.github.bogdanlivadariu.reporting.junit.xml.models.BaseModel.FailureModel;
+
+//@XmlRootElement(name = "testcase")
+//@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "testcase")
 public class TestCaseModel {
-    @XmlElement(name = "system-out")
+    //    @XmlElement(name = "system-out")
     private String systemOut;
 
-    @XmlAttribute
     private String time;
 
-    @XmlElement(name = "failure")
     private FailureModel failure;
 
-    @XmlAttribute
     private String classname;
 
-    @XmlAttribute
     private String name;
 
-    @XmlElement(name = "system-err")
+    //    @XmlElement(name = "system-err")
     private String systemErr;
 
-    @XmlElement(name = "error")
+    //    @XmlElement(name = "error")
     private ErrorModel error;
 
     private String overallStatus;

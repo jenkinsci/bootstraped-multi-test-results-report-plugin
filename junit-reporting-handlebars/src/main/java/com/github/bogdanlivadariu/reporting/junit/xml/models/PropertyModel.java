@@ -1,15 +1,15 @@
 package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@XmlRootElement(name = "property")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class PropertyModel
-{
-    @XmlAttribute
+//@XmlRootElement(name = "property")
+//@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "property")
+public class PropertyModel {
+//    @XmlAttribute
     private String name;
 
-    @XmlAttribute
+//    @XmlAttribute
     private String value;
 
     public String getName() {
