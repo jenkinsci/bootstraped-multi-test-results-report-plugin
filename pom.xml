@@ -9,7 +9,7 @@
       versions:update-child-modules -DgenerateBackupPoms=false after updating this
       pom with the version you want. The Versions Plugin will update all the childs
       POM's to match the desired parent version. -->
-    <version>2.2.2</version>
+    <version>2.2.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Parent module for com.github.bogdanlivadariu jenkins dependency modules</description>
     <url>https://github.com/jenkinsci/bootstraped-multi-test-results-report-plugin</url>
@@ -25,7 +25,7 @@
         <connection>scm:git:https://github.com/jenkinsci/bootstraped-multi-test-results-report-plugin.git</connection>
         <url>https://github.com/jenkinsci/bootstraped-multi-test-results-report-plugin.git</url>
         <developerConnection>scm:git:git@github.com:jenkinsci/bootstraped-multi-test-results-report-plugin.git</developerConnection>
-        <tag>bootstraped-multi-test-results-report-reactor-parent-2.2.2</tag>
+        <tag>${scmTag}</tag>
     </scm>
     <developers>
         <developer>
