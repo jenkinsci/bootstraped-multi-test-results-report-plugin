@@ -10,11 +10,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AllJunitReportsTest {
-    private final String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
-    private List<String> xmlReports;
-    private JUnitReportBuilder builder;
+private final String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
+private List<String> xmlReports;
+private JUnitReportBuilder builder;
 
-    private AllJUnitReports reports;
+private AllJUnitReports reports;
 
     @BeforeEach
     public void setUp() throws IOException {
@@ -38,7 +38,7 @@ public class AllJunitReportsTest {
 
     @Test
     public void totalErrorsTest() {
-        assertEquals(reports.getSuitesCount(), 1);
+        assertEquals(reports.getTotalErrors(), 0);
     }
 
     @Test
