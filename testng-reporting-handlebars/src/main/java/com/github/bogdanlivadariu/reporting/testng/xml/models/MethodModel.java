@@ -1,17 +1,15 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@XmlRootElement(name = "method")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "method")
 public class MethodModel {
-    @XmlAttribute
     private String signature;
 
-    @XmlAttribute
     private String name;
 
-    @XmlAttribute(name = "class")
+    @JacksonXmlProperty(localName = "class")
     private String clazz;
 
     public String getSignature() {

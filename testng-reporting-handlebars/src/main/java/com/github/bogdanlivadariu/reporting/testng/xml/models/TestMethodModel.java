@@ -1,40 +1,34 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.UUID;
 
-import jakarta.xml.bind.annotation.*;
-
-@XmlRootElement(name = "test-method")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "test-method")
 public class TestMethodModel {
-    @XmlAttribute
+    private final String uniqueID;
     private String status;
-
-    @XmlAttribute
     private String signature;
-
-    @XmlAttribute
     private String name;
 
-    @XmlAttribute(name = "is-config")
+    @JacksonXmlProperty(localName = "params")
+    private ParamsModel params;
+    @JacksonXmlProperty(localName = "is-config")
     private boolean isConfig;
-
-    @XmlAttribute(name = "duration-ms")
+    @JacksonXmlProperty(localName = "duration-ms")
     private Long durationMs;
-
-    @XmlAttribute(name = "started-at")
+    @JacksonXmlProperty(localName = "started-at")
     private String startedAt;
-
-    @XmlAttribute(name = "finished-at")
+    @JacksonXmlProperty(localName = "finished-at")
     private String finishedAt;
-
-    @XmlElement(name = "reporter-output")
+    @JacksonXmlProperty(localName = "reporter-output")
     private ReporterOutputModel reporterOutput;
-
-    @XmlElement(name = "exception")
+    @JacksonXmlProperty(localName = "exception")
     private ExceptionModel exception;
 
-    private String uniqueID;
+    @JacksonXmlProperty(localName = "depends-on-methods")
+    private String dependsOnMethods;
 
     public TestMethodModel() {
         uniqueID = UUID.randomUUID().toString();

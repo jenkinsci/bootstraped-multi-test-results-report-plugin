@@ -1,21 +1,21 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import org.testng.reporters.XMLReporterConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-import jakarta.xml.bind.annotation.*;
-import org.testng.reporters.XMLReporterConfig;
-
-@XmlRootElement(name = "suite")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "suite")
 public class ClassModel {
-    @XmlAttribute
+
+    @JacksonXmlElementWrapper(localName = "test-method", useWrapping = false)
+    @JacksonXmlProperty(localName = "test-method")
+    private final List<TestMethodModel> testMethods = new ArrayList<>();
     private String name;
-
-    @XmlElement(name = "test-method")
-    private List<TestMethodModel> testMethods = new ArrayList<>();
-
     private String overallStatus = XMLReporterConfig.TEST_PASSED;
 
     private int totalPassed = 0;
@@ -32,7 +32,7 @@ public class ClassModel {
         for (TestMethodModel tm : getTestMethods()) {
             String status = tm.getStatus();
             if (status.equalsIgnoreCase(XMLReporterConfig.TEST_FAILED)
-                || status.equalsIgnoreCase(XMLReporterConfig.TEST_SKIPPED)) {
+                    || status.equalsIgnoreCase(XMLReporterConfig.TEST_SKIPPED)) {
                 overallStatus = XMLReporterConfig.TEST_FAILED;
                 break;
             }
@@ -62,7 +62,7 @@ public class ClassModel {
     }
 
     public String getName() {
-        return name;
+        return name.replaceAll(" ", "_");
     }
 
     public List<TestMethodModel> getTestMethods() {

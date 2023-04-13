@@ -1,18 +1,16 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@XmlRootElement(name = "exception")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "exception")
 public class ExceptionModel {
-    @XmlAttribute(name = "class")
-    private String clazz;
-
-    @XmlElement(name = "message")
+    @JacksonXmlProperty(localName = "message")
     public MessageModel message;
-
-    @XmlElement(name = "full-stacktrace")
+    @JacksonXmlProperty(localName = "full-stacktrace")
     public FullStacktraceModel fullStacktrace;
+    @JacksonXmlProperty(localName = "class")
+    private String clazz;
 
     public String getClazz() {
         return clazz;

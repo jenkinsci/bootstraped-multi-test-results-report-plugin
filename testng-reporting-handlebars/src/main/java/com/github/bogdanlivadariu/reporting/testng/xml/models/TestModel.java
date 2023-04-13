@@ -1,29 +1,25 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.xml.bind.annotation.*;
-
-@XmlRootElement(name = "test")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "test")
 public class TestModel {
 
-    @XmlAttribute
+    @JacksonXmlElementWrapper(localName = "class", useWrapping = false)
+    @JacksonXmlProperty(localName = "class")
+    private final List<ClassModel> classes = new ArrayList<>();
     private String name;
-
-    @XmlAttribute(name = "duration-ms")
+    @JacksonXmlProperty(localName = "duration-ms")
     private String durationMs;
-
-    @XmlAttribute(name = "started-at")
+    @JacksonXmlProperty(localName = "started-at")
     private String startedAt;
-
-    @XmlAttribute(name = "finished-at")
+    @JacksonXmlProperty(localName = "finished-at")
     private String finishedAt;
-
-    @XmlElement(name = "class")
-    private List<ClassModel> classes = new ArrayList<>();
-
     private int totalPassed = 0;
 
     private int totalFailed = 0;

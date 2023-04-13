@@ -1,24 +1,25 @@
 package com.github.bogdanlivadariu.reporting.testng.builder;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.github.bogdanlivadariu.reporting.testng.helpers.Helpers;
+import com.github.bogdanlivadariu.reporting.testng.helpers.StringUtils;
 import com.github.bogdanlivadariu.reporting.testng.xml.models.ClassModel;
 import com.github.bogdanlivadariu.reporting.testng.xml.models.SuiteModel;
 import com.github.bogdanlivadariu.reporting.testng.xml.models.TestModel;
 import com.github.bogdanlivadariu.reporting.testng.xml.models.TestngResultsModel;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
 import org.apache.commons.io.FileUtils;
-
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.*;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,33 +30,36 @@ public class TestNgReportBuilder {
 
     private final String classesSummaryPath;
 
-    private String testSummaryReport = "testng-reporting/testCaseSummaryReport";
+    private final String testSummaryReport = "testng-reporting/testCaseSummaryReport";
 
-    private String testOverviewReport = "testng-reporting/testsByClassOverview";
+    private final String testOverviewReport = "testng-reporting/testsByClassOverview";
 
-    private String testNameOverviewReport = "testng-reporting/testsByNameOverview";
+    private final String testNameOverviewReport = "testng-reporting/testsByNameOverview";
 
-    private List<TestngResultsModel> processedTestNgReports;
+    private final List<TestngResultsModel> processedTestNgReports;
+
 
     public TestNgReportBuilder(List<String> xmlReports, String targetBuildPath)
-            throws XMLStreamException, FactoryConfigurationError, IOException, JAXBException {
+            throws XMLStreamException, FactoryConfigurationError, IOException {
         testOverviewPath = targetBuildPath + "/";
         classesSummaryPath = targetBuildPath + "/classes-summary/";
         processedTestNgReports = new ArrayList<>();
 
-        JAXBContext cntx = JAXBContext.newInstance(TestngResultsModel.class);
-
-        Unmarshaller unm = cntx.createUnmarshaller();
+        XmlMapper mapper = new XmlMapper();
 
         for (String xml : xmlReports) {
             InputStream inputStream = new FileInputStream(xml);
             XMLStreamReader xmlStream = XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
-            TestngResultsModel ts = (TestngResultsModel) unm.unmarshal(xmlStream);
+            TestngResultsModel ts = mapper.readValue(xmlStream, TestngResultsModel.class);
             ts.postProcess();
             processedTestNgReports.add(ts);
             inputStream.close();
             xmlStream.close();
         }
+    }
+
+    public List<TestngResultsModel> getProcessedTestNgReports() {
+        return processedTestNgReports;
     }
 
     private void writeTestsByClassOverview() throws IOException {
@@ -74,7 +78,7 @@ public class TestNgReportBuilder {
                 template.apply(allTestNgReports), StandardCharsets.UTF_8);
     }
 
-    private void writeTestCaseSummaryReport() throws IOException {
+    private void writeTestCaseSummaryReport() throws IOException, NoSuchAlgorithmException {
         Template templateTestClassReport =
                 new Helpers(new Handlebars()).registerHelpers().compile(testSummaryReport);
         for (TestngResultsModel tngr : processedTestNgReports) {
@@ -86,10 +90,10 @@ public class TestNgReportBuilder {
         }
     }
 
-    private void generateHtmlReport(Template templateTestClassReport, TestModel tm) throws IOException {
+    private void generateHtmlReport(Template templateTestClassReport, TestModel tm) throws IOException, NoSuchAlgorithmException {
         for (ClassModel cm : tm.getClasses()) {
 
-            File file = new File(classesSummaryPath + tm.getName() + cm.getName() + ".html");
+            File file = new File(classesSummaryPath + StringUtils.getMd5From(tm.getName() + cm.getName()) + ".html");
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
@@ -104,7 +108,13 @@ public class TestNgReportBuilder {
         }
     }
 
-    public boolean writeReportsOnDisk() throws IOException {
+    private String getMd5(String source) throws NoSuchAlgorithmException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        md5.update(StandardCharsets.UTF_8.encode(source));
+        return String.format("%032x", new BigInteger(1, md5.digest()));
+    }
+
+    public boolean writeReportsOnDisk() throws IOException, NoSuchAlgorithmException {
         writeTestsByClassOverview();
         writeTestsByNameOverview();
         writeTestCaseSummaryReport();

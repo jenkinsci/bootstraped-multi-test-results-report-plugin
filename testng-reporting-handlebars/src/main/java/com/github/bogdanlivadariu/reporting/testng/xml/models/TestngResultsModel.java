@@ -1,30 +1,30 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.xml.bind.annotation.*;
-
-@XmlRootElement(name = "testng-results")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "testng-results")
 public class TestngResultsModel {
-    @XmlAttribute
+    @JacksonXmlElementWrapper(localName = "suite", useWrapping = false)
+    @JacksonXmlProperty(localName = "suite")
+    private final List<SuiteModel> suites = new ArrayList<>();
+    @JacksonXmlProperty
     private String skipped;
-
-    @XmlAttribute
+    @JacksonXmlProperty
     private String failed;
-
-    @XmlAttribute
+    @JacksonXmlProperty
     private String total;
-
-    @XmlAttribute
+    @JacksonXmlProperty
     private String passed;
-
+    @JacksonXmlProperty
+    private String ignored;
+    @JacksonXmlProperty(localName = "reporter-output")
+    private ReporterOutputModel reporterOutput;
     private Long totalTime = (long) 0;
-
-    @XmlElement(name = "suite")
-    private List<SuiteModel> suites = new ArrayList<>();
-
     private int totalClasses;
 
     private int totalClassesTests = 0;
