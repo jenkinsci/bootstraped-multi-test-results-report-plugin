@@ -1,26 +1,23 @@
 package com.github.bogdanlivadariu.reporting.junit.builder;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.xml.bind.JAXBException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AllJunitReportsTest {
+    private final String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
     private List<String> xmlReports;
-
-    private String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
-
     private JUnitReportBuilder builder;
 
     private AllJUnitReports reports;
 
     @BeforeEach
-    public void setUp() throws FileNotFoundException, JAXBException {
+    public void setUp() throws IOException {
         xmlReports = new ArrayList<>();
         xmlReports.add(reportPath);
         builder = new JUnitReportBuilder(xmlReports, "out");
@@ -28,7 +25,7 @@ public class AllJunitReportsTest {
     }
 
     @Test
-    public void restSuitesSizeTest() throws FileNotFoundException, JAXBException {
+    public void restSuitesSizeTest() {
         assertEquals(reports.getAllTestSuites().size(), 1, "reports count is not right");
         assertEquals(reports.getSuitesCount(), 1);
         assertEquals(reports.getTotalErrors(), 0);

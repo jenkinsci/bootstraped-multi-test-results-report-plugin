@@ -1,36 +1,38 @@
 package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.xml.bind.annotation.*;
-
-import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
-
-@XmlRootElement(name = "testsuites")
-@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlRootElement(name = "testsuites")
+//@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "testsuites")
 public class TestSuitesModel {
-    @XmlAttribute
+    //    @XmlAttribute
     private String failures;
 
-    @XmlAttribute
+    //    @XmlAttribute
     private String time;
 
-    @XmlAttribute
+    //    @XmlAttribute
     private String errors;
 
-    @XmlAttribute
+    //    @XmlAttribute
     private String tests;
 
-    @XmlAttribute
+    //    @XmlAttribute
     private String name;
 
     private String uniqueID;
 
     private String overallStatus;
 
-    @XmlElement(name = "testsuite")
+    //    @XmlElement(name = "testsuite")
+    @JacksonXmlElementWrapper(localName = "testsuite", useWrapping = false)
     private List<TestSuiteModel> testsuite;
 
     private Boolean hasMissingAttributes() {
@@ -104,12 +106,12 @@ public class TestSuitesModel {
         return testsuite == null ? new ArrayList<TestSuiteModel>() : testsuite;
     }
 
-    public String getOverallStatus() {
-        return overallStatus;
-    }
-
     public void setTestsuite(List<TestSuiteModel> testsuite) {
         this.testsuite = testsuite;
+    }
+
+    public String getOverallStatus() {
+        return overallStatus;
     }
 
 }

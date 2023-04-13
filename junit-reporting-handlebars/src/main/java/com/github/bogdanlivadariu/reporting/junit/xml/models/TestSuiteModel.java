@@ -1,43 +1,57 @@
 package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.xml.bind.annotation.*;
+//import javax.xml.bind.annotation.XmlRootElement;
 
-import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
-
-@XmlRootElement(name = "testsuite")
-@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlRootElement(name = "testsuite")
+//@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "testsuite")
 public class TestSuiteModel {
-    @XmlAttribute
+    //    @XmlAttribute
+    @JacksonXmlProperty(isAttribute = true)
     private String failures;
 
-    @XmlAttribute
+    //    @XmlAttribute
+    @JacksonXmlProperty(isAttribute = true)
     private String time;
 
-    @XmlAttribute
+    //    @XmlAttribute
+    @JacksonXmlProperty(isAttribute = true)
     private String errors;
 
-    @XmlAttribute
+    //    @XmlAttribute
+    @JacksonXmlProperty(isAttribute = true)
     private String tests;
 
-    @XmlAttribute
+    //    @XmlAttribute
+    @JacksonXmlProperty(isAttribute = true)
     private String skipped;
 
-    @XmlAttribute
+    //    @XmlAttribute
+    @JacksonXmlProperty(isAttribute = true)
     private String name;
 
     private String uniqueID;
 
     private String overallStatus;
 
-    @XmlElementWrapper(name = "properties")
-    @XmlElement(name = "property")
+    //    @XmlElementWrapper(name = "properties")
+//    @XmlElement(name = "property")
+    @JacksonXmlElementWrapper(localName = "properties")
+    @JacksonXmlProperty(localName = "property")
     private List<PropertyModel> properties;
 
-    @XmlElement(name = "testcase")
+    //    @XmlElement(name = "testcase")
+//    @JacksonXmlProperty(localName = "testcase")-
+    @JacksonXmlElementWrapper(localName = "testcase", useWrapping = false)
     private List<TestCaseModel> testcase;
 
     private Boolean hasMissingAttributes() {
@@ -121,20 +135,20 @@ public class TestSuiteModel {
         return properties == null ? new ArrayList<PropertyModel>() : properties;
     }
 
-    public List<TestCaseModel> getTestcase() {
-        return testcase == null ? new ArrayList<TestCaseModel>() : testcase;
-    }
-
-    public String getOverallStatus() {
-        return overallStatus;
-    }
-
     public void setProperties(List<PropertyModel> properties) {
         this.properties = properties;
     }
 
+    public List<TestCaseModel> getTestcase() {
+        return testcase == null ? new ArrayList<TestCaseModel>() : testcase;
+    }
+
     public void setTestcase(List<TestCaseModel> testcase) {
         this.testcase = testcase;
+    }
+
+    public String getOverallStatus() {
+        return overallStatus;
     }
 
 }

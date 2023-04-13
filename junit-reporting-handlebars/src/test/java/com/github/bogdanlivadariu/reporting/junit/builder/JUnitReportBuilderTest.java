@@ -1,11 +1,10 @@
 package com.github.bogdanlivadariu.reporting.junit.builder;
 
-import java.io.FileNotFoundException;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.xml.bind.JAXBException;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,7 +23,7 @@ public class JUnitReportBuilderTest {
     }
 
     @Test
-    public void processedReportsTest() throws FileNotFoundException, JAXBException {
+    public void processedReportsTest() throws IOException {
         List<String> xmlReports = new ArrayList<>();
         String report = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
         xmlReports.add(report);
@@ -36,7 +35,7 @@ public class JUnitReportBuilderTest {
     }
 
     @Test
-    public void processedReportsSuitesTest() throws FileNotFoundException, JAXBException {
+    public void processedReportsSuitesTest() throws IOException {
         List<String> xmlReports = new ArrayList<>();
         String report = this.getClass().getClassLoader().getResource("valid-report-2.xml").getPath();
         xmlReports.add(report);

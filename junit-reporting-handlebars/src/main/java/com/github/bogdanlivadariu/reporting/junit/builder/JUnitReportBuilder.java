@@ -1,5 +1,6 @@
 package com.github.bogdanlivadariu.reporting.junit.builder;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.github.bogdanlivadariu.reporting.junit.helpers.Constants;
 import com.github.bogdanlivadariu.reporting.junit.helpers.Helpers;
 import com.github.bogdanlivadariu.reporting.junit.xml.models.TestCaseModel;
@@ -7,13 +8,9 @@ import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuiteModel;
 import com.github.bogdanlivadariu.reporting.junit.xml.models.TestSuitesModel;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -27,14 +24,13 @@ public class JUnitReportBuilder {
 
     private final String TEST_SUMMARY_PATH;
 
-    private String TEST_SUMMARY_REPORT = "junit-reporting/testCaseSummaryReport";
+    private final String TEST_SUMMARY_REPORT = "junit-reporting/testCaseSummaryReport";
 
-    private String TEST_OVERVIEW_REPORT = "junit-reporting/testOverviewReport";
+    private final String TEST_OVERVIEW_REPORT = "junit-reporting/testOverviewReport";
 
-    private List<TestSuiteModel> processedTestSuites;
+    private final List<TestSuiteModel> processedTestSuites;
 
-    public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath)
-        throws FileNotFoundException, JAXBException {
+    public JUnitReportBuilder(List<String> xmlReports, String targetBuildPath) throws IOException {
         TEST_OVERVIEW_PATH = targetBuildPath + "/";
         TEST_SUMMARY_PATH = targetBuildPath + "/test-summary/";
         processedTestSuites = new ArrayList<>();
@@ -54,23 +50,30 @@ public class JUnitReportBuilder {
         processedTestSuites.add(ts);
     }
 
-    private List<TestSuiteModel> processXmlReports(List<String> xmlReports) throws JAXBException {
+    private List<TestSuiteModel> processXmlReports(List<String> xmlReports) throws IOException {
         for (String xml : xmlReports) {
             Logger.getGlobal().info("Processing: " + xml);
+            XmlMapper mapper = new XmlMapper();
             try {
                 /* we may found <testsuites> or <testsuite> as root element */
-                JAXBContext cntx = JAXBContext.newInstance(TestSuitesModel.class);
-                Unmarshaller unm = cntx.createUnmarshaller();
-                TestSuitesModel tss = (TestSuitesModel) unm.unmarshal(new File(xml));
+
+
+                TestSuitesModel tss = mapper.readValue(new File(xml), TestSuitesModel.class);
+
+//                JAXBContext cntx = JAXBContext.newInstance(TestSuitesModel.class);
+//                Unmarshaller unm = cntx.createUnmarshaller();
+//                TestSuitesModel tss = (TestSuitesModel) unm.unmarshal(new File(xml));
                 for (TestSuiteModel ts : tss.getTestsuite()) {
                     processSuite(ts);
                 }
                 tss.postProcess();
-            } catch (ClassCastException e) {
-                JAXBContext cntx2 = JAXBContext.newInstance(TestSuiteModel.class);
-                Unmarshaller unm2 = cntx2.createUnmarshaller();
-                TestSuiteModel ts = (TestSuiteModel) unm2.unmarshal(new File(xml));
+            } catch (Throwable e) {
+                TestSuiteModel ts = mapper.readValue(new File(xml), TestSuiteModel.class);
                 processSuite(ts);
+
+//                JAXBContext cntx2 = JAXBContext.newInstance(TestSuiteModel.class);
+//                Unmarshaller unm2 = cntx2.createUnmarshaller();
+//                TestSuiteModel ts = (TestSuiteModel) unm2.unmarshal(new File(xml));
             }
         }
         return processedTestSuites;
@@ -80,7 +83,7 @@ public class JUnitReportBuilder {
         Template template = new Helpers(new Handlebars()).registerHelpers().compile(TEST_OVERVIEW_REPORT);
         AllJUnitReports allFeatures = new AllJUnitReports("Test suites overview", processedTestSuites);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + SUITE_OVERVIEW),
-            template.apply(allFeatures), StandardCharsets.UTF_8);
+                template.apply(allFeatures), StandardCharsets.UTF_8);
     }
 
     private void writeTestCaseSummaryReport() throws IOException {
@@ -88,7 +91,7 @@ public class JUnitReportBuilder {
         for (TestSuiteModel ts : processedTestSuites) {
             String content = template.apply(ts);
             FileUtils.writeStringToFile(new File(TEST_SUMMARY_PATH + ts.getUniqueID() + ".html"),
-                content, StandardCharsets.UTF_8);
+                    content, StandardCharsets.UTF_8);
         }
     }
 
@@ -100,7 +103,7 @@ public class JUnitReportBuilder {
 
         AllJUnitReports allTestSuites = new AllJUnitReports("Passed test suites report", onlyPassed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsPassed.html"),
-            template.apply(allTestSuites), StandardCharsets.UTF_8);
+                template.apply(allTestSuites), StandardCharsets.UTF_8);
     }
 
     private void writeTestsFailedReport() throws IOException {
@@ -111,7 +114,7 @@ public class JUnitReportBuilder {
 
         AllJUnitReports allTestSuites = new AllJUnitReports("Failed test suites report", onlyFailed);
         FileUtils.writeStringToFile(new File(TEST_OVERVIEW_PATH + "testsFailed.html"),
-            template.apply(allTestSuites), StandardCharsets.UTF_8);
+                template.apply(allTestSuites), StandardCharsets.UTF_8);
     }
 
     public boolean writeReportsOnDisk() throws IOException {
@@ -121,9 +124,9 @@ public class JUnitReportBuilder {
         writeTestsFailedReport();
         for (TestSuiteModel ts : processedTestSuites) {
             if (Integer.parseInt(ts.getFailures()) >= 1
-                || Integer.parseInt(ts.getErrors()) >= 1
-                || Integer.parseInt(ts.getSkipped()) >= 1
-                || Integer.parseInt(ts.getTests()) < 1) {
+                    || Integer.parseInt(ts.getErrors()) >= 1
+                    || Integer.parseInt(ts.getSkipped()) >= 1
+                    || Integer.parseInt(ts.getTests()) < 1) {
                 return false;
             }
         }

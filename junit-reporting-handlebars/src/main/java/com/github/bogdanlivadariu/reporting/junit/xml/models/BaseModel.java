@@ -1,16 +1,19 @@
 package com.github.bogdanlivadariu.reporting.junit.xml.models;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
-@XmlAccessorType(XmlAccessType.FIELD)
 public class BaseModel {
-    @XmlAttribute
+
+    @JacksonXmlProperty
     private String message;
 
-    @XmlAttribute
+    @JacksonXmlProperty
     private String type;
 
-    @XmlValue
+    @JacksonXmlText
     private String value;
 
     public String getMessage() {
@@ -25,9 +28,11 @@ public class BaseModel {
         return value;
     }
 
-    @XmlRootElement(name = "error")
-    public static class ErrorModel extends BaseModel {}
+    @JacksonXmlRootElement(localName = "error")
+    public static class ErrorModel extends BaseModel {
+    }
 
-    @XmlRootElement(name = "failure")
-    public static class FailureModel extends BaseModel {}
+    @JacksonXmlRootElement(localName = "failure")
+    public static class FailureModel extends BaseModel {
+    }
 }
