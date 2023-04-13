@@ -1,12 +1,12 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
-@XmlRootElement(name = "full-stacktrace")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "full-stacktrace")
 public class FullStacktraceModel {
 
-    @XmlValue
+    @JacksonXmlText
     private String value;
 
     public String getValue() {

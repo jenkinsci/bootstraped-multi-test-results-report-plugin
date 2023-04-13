@@ -1,38 +1,27 @@
 package com.github.bogdanlivadariu.reporting.testng.xml.models;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import jakarta.xml.bind.annotation.*;
-
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.testng.reporters.XMLReporterConfig;
 
-@XmlRootElement(name = "suite")
-@XmlAccessorType(XmlAccessType.FIELD)
+import java.util.*;
+
+@JacksonXmlRootElement(localName = "suite")
 public class SuiteModel {
 
-    @XmlAttribute
+    @JacksonXmlElementWrapper(localName = "test", useWrapping = false)
+    @JacksonXmlProperty(localName = "test")
+    private final List<TestModel> tests = new ArrayList<>();
+    @JacksonXmlElementWrapper(localName = "groups")
+    private final List<GroupModel> groups = new ArrayList<>();
     private String name;
-
-    @XmlAttribute(name = "duration-ms")
+    @JacksonXmlProperty(localName = "duration-ms")
     private Long durationMs;
-
-    @XmlAttribute(name = "started-at")
+    @JacksonXmlProperty(localName = "started-at")
     private String startedAt;
-
-    @XmlAttribute(name = "finished-at")
+    @JacksonXmlProperty(localName = "finished-at")
     private String finishedAt;
-
-    @XmlElement(name = "test")
-    private List<TestModel> tests = new ArrayList<>();
-
-    @XmlElementWrapper(name = "groups")
-    @XmlElement(name = "group")
-    private List<GroupModel> groups = new ArrayList<>();
-
     private int totalPassed = 0;
 
     private int totalFailed = 0;
@@ -49,8 +38,13 @@ public class SuiteModel {
 
     private LinkedHashMap<GroupModel, ArrayList<ClassModel>> groupedTestMethods;
 
+//    @SuppressWarnings("unchecked")
+//    public static <T extends List<?>> T cast(Object obj) {
+//        return (T) obj;
+//    }
+
     public void postProcess() {
-        groupedTestMethods = new LinkedHashMap<GroupModel, ArrayList<ClassModel>>();
+        groupedTestMethods = new LinkedHashMap<>();
         uniqueID = UUID.randomUUID().toString();
         for (TestModel tm : getTests()) {
             tm.postProcess();
@@ -119,10 +113,5 @@ public class SuiteModel {
 
     public int getTotalClasses() {
         return totalClasses;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T extends List< ? >> T cast(Object obj) {
-        return (T) obj;
     }
 }

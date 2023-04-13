@@ -1,23 +1,20 @@
 package com.github.bogdanlivadariu.reporting.testng.cli;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-
-import jakarta.xml.bind.JAXBException;
-import org.apache.commons.io.FileUtils;
-
 import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
+import org.apache.commons.io.FileUtils;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
+import java.io.File;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestNgReportBuilderCli {
 
     public static void main(String[] args)
-            throws FactoryConfigurationError, JAXBException, XMLStreamException, IOException {
+            throws FactoryConfigurationError, XMLStreamException, IOException, NoSuchAlgorithmException {
         List<String> xmlReports = new ArrayList<String>();
         String[] extensions = {"xml"};
         String xmlPath = System.getProperty("xmlPath");

@@ -1,23 +1,18 @@
 package com.github.bogdanlivadariu.reporting.cucumber.helpers;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-import java.util.UUID;
-
-import org.joda.time.Period;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
-
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.Row;
 import com.github.bogdanlivadariu.reporting.cucumber.json.models.StepRow;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Helpers {
-    private Handlebars handlebar;
+    private final Handlebars handlebar;
 
     public Helpers(Handlebars handlebar) {
         this.handlebar = handlebar;
@@ -38,18 +33,18 @@ public class Helpers {
     private Helper<Long> dateHelper() {
         return (arg0, arg1) -> {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                .appendDays()
-                .appendSuffix(" d : ")
-                .appendHours()
-                .appendSuffix(" h : ")
-                .appendMinutes()
-                .appendSuffix(" m : ")
-                .appendSeconds()
-                .appendSuffix(" s : ")
-                .appendMillis()
-                .appendSuffix(" ms")
-                .toFormatter();
-            return formatter.print(new Period((arg0 * 1) / 1000000));
+                    .appendDays()
+                    .appendSuffix(" d : ")
+                    .appendHours()
+                    .appendSuffix(" h : ")
+                    .appendMinutes()
+                    .appendSuffix(" m : ")
+                    .appendSeconds()
+                    .appendSuffix(" s : ")
+                    .appendMillis()
+                    .appendSuffix(" ms")
+                    .toFormatter();
+            return formatter.print(new Period((arg0) / 1000000));
         };
     }
 
@@ -60,30 +55,30 @@ public class Helpers {
             int index = arg1.param(1);
             if (arg1.param(0).toString().contains("image")) {
                 toReturn =
-                    "<button 'type='button'"
-                        + "class='btn btn-primary'"
-                        + "data-toggle='modal' "
-                        + "data-target='#" + id + "'>"
-                        + "  Screenshot " + ++index + ""
-                        + "</button>";
+                        "<button 'type='button'"
+                                + "class='btn btn-primary'"
+                                + "data-toggle='modal' "
+                                + "data-target='#" + id + "'>"
+                                + "  Screenshot " + ++index + ""
+                                + "</button>";
                 toReturn +=
-                    "<div id='" + id + "'"
-                        + "class='modal fade'"
-                        + "tabindex='-1'"
-                        + "role='dialog'"
-                        + "aria-labelledby='myModalLabel'"
-                        + "aria-hidden='true'>"
-                        + "  <div style='width:90%;height:90%;'"
-                        + "  class='modal-dialog'>"
-                        + "    <div class='modal-content'>"
-                        + "      <div class='modal-body'>"
-                        + "        <img "
-                        + "        src='data:image/png;base64," + arg0 + "'"
-                        + "        class='img-responsive'>"
-                        + "      </div>"
-                        + "    </div>"
-                        + "  </div>"
-                        + "</div>";
+                        "<div id='" + id + "'"
+                                + "class='modal fade'"
+                                + "tabindex='-1'"
+                                + "role='dialog'"
+                                + "aria-labelledby='myModalLabel'"
+                                + "aria-hidden='true'>"
+                                + "  <div style='width:90%;height:90%;'"
+                                + "  class='modal-dialog'>"
+                                + "    <div class='modal-content'>"
+                                + "      <div class='modal-body'>"
+                                + "        <img "
+                                + "        src='data:image/png;base64," + arg0 + "'"
+                                + "        class='img-responsive'>"
+                                + "      </div>"
+                                + "    </div>"
+                                + "  </div>"
+                                + "</div>";
             } else {
                 toReturn = "<pre>" + arg0 + "</pre>";
             }
@@ -93,29 +88,29 @@ public class Helpers {
 
     private Helper<String> resultColorHelper() {
         return (arg0, arg1) -> checkState(
-            arg0.toLowerCase(),
-            Constants.INFO,
-            Constants.SUCCESS,
-            Constants.DANGER,
-            Constants.WARNING);
+                arg0.toLowerCase(),
+                Constants.INFO,
+                Constants.SUCCESS,
+                Constants.DANGER,
+                Constants.WARNING);
     }
 
     private Helper<String> resolveTitleHelper() {
         return (arg0, arg1) -> checkState(
-            arg0.toLowerCase(),
-            Constants.THIS_STEP_HAS_BEEN_SKIPPED,
-            Constants.THIS_STEP_HAS_PASSED,
-            Constants.THIS_STEP_HAS_FAILED,
-            Constants.THIS_STEP_HAS_NOT_BEEN_DEFINED);
+                arg0.toLowerCase(),
+                Constants.THIS_STEP_HAS_BEEN_SKIPPED,
+                Constants.THIS_STEP_HAS_PASSED,
+                Constants.THIS_STEP_HAS_FAILED,
+                Constants.THIS_STEP_HAS_NOT_BEEN_DEFINED);
     }
 
     private Helper<String> isCollapsedHelper() {
         return (arg0, arg1) -> checkState(
-            arg0.toLowerCase(),
-            Constants.COLLAPSE_IN,
-            Constants.COLLAPSE,
-            Constants.COLLAPSE_IN,
-            Constants.COLLAPSE_IN);
+                arg0.toLowerCase(),
+                Constants.COLLAPSE_IN,
+                Constants.COLLAPSE,
+                Constants.COLLAPSE_IN,
+                Constants.COLLAPSE_IN);
     }
 
     private Helper<Object> nowHelper() {
@@ -158,8 +153,8 @@ public class Helpers {
             return tableContent;
         };
     }
-    
-    
+
+
     private Helper<List<Row>> doTableHelper() {
         return (rows, arg1) -> {
             String tableContent = "<table  class='table table-condensed table-hover'>";
@@ -192,7 +187,7 @@ public class Helpers {
     }
 
     private CharSequence checkState(String arg0, String retValue1, String retValue2, String retValue3,
-        String retValue4) {
+                                    String retValue4) {
         switch (arg0.toLowerCase()) {
             case Constants.SKIPPED:
                 return retValue1;
