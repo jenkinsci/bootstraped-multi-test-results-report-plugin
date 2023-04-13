@@ -1,0 +1,2264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="1" failed="2" ignored="189" total="230" passed="39">
+  <reporter-output>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.869]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.870]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.872]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.872]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 ended at 2019-02-10T21:34:47.703]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.703]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.707]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.707]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 ended at 2019-02-10T21:34:47.907]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.907]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.910]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.911]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 ended at 2019-02-10T21:34:48.289]]>
+    </line>
+    <line>
+      <![CDATA[Thread id = 1 started at 2019-02-10T21:34:48.289]]>
+    </line>
+  </reporter-output>
+  <suite name="OVA Acceptance Test" duration-ms="22343" started-at="2019-02-10T21:34:24Z" finished-at="2019-02-10T21:34:46Z">
+    <groups>
+    </groups>
+    <test name="Service test - HDS status" duration-ms="1082" started-at="2019-02-10T21:34:24Z" finished-at="2019-02-10T21:34:25Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="SKIP" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@3688eb5b]" name="testSkylineServices" duration-ms="1081" started-at="2019-02-10T21:34:24Z" finished-at="2019-02-10T21:34:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/hds status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - HDS status -->
+    <test name="Service test - ADM status" duration-ms="1011" started-at="2019-02-10T21:34:25Z" finished-at="2019-02-10T21:34:26Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="FAIL" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@1e8b7643]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:25Z" finished-at="2019-02-10T21:34:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/adm status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - ADM status -->
+    <test name="Service test - Eureka status" duration-ms="1011" started-at="2019-02-10T21:34:26Z" finished-at="2019-02-10T21:34:27Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="FAIL" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@7daa0fbd]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:26Z" finished-at="2019-02-10T21:34:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/eureka status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Eureka status -->
+    <test name="Service test - CBS status" duration-ms="1012" started-at="2019-02-10T21:34:27Z" finished-at="2019-02-10T21:34:28Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@6bc407fd]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:27Z" finished-at="2019-02-10T21:34:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/cbs status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - CBS status -->
+    <test name="Service test - Zuul status" duration-ms="1011" started-at="2019-02-10T21:34:28Z" finished-at="2019-02-10T21:34:29Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@d771cc9]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:28Z" finished-at="2019-02-10T21:34:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/zuul status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Zuul status -->
+    <test name="Service test - Elastic search" duration-ms="1011" started-at="2019-02-10T21:34:29Z" finished-at="2019-02-10T21:34:30Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@5b367418]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:29Z" finished-at="2019-02-10T21:34:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/sbin/service elasticsearch status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[elasticsearch is running]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Elastic search -->
+    <test name="Service test - Storage manager" duration-ms="1012" started-at="2019-02-10T21:34:30Z" finished-at="2019-02-10T21:34:31Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@be68757]" name="testSkylineServices" duration-ms="1012" started-at="2019-02-10T21:34:30Z" finished-at="2019-02-10T21:34:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/storagemgr status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Storage manager -->
+    <test name="Service test - eCDM-UI" duration-ms="1011" started-at="2019-02-10T21:34:31Z" finished-at="2019-02-10T21:34:32Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@1b75c2e3]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:31Z" finished-at="2019-02-10T21:34:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/sbin/service ui status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[eCDM UI is running.]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - eCDM-UI -->
+    <test name="Service test - Scheduler" duration-ms="1014" started-at="2019-02-10T21:34:32Z" finished-at="2019-02-10T21:34:33Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@6d167f58]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:32Z" finished-at="2019-02-10T21:34:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/scheduler status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Scheduler -->
+    <test name="Service test - Workflow" duration-ms="1013" started-at="2019-02-10T21:34:33Z" finished-at="2019-02-10T21:34:34Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@74bf1791]" name="testSkylineServices" duration-ms="1012" started-at="2019-02-10T21:34:33Z" finished-at="2019-02-10T21:34:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/workflow status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Workflow -->
+    <test name="Service test - VMDM" duration-ms="1012" started-at="2019-02-10T21:34:34Z" finished-at="2019-02-10T21:34:35Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@6239aba6]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:34Z" finished-at="2019-02-10T21:34:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/vmdm status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - VMDM -->
+    <test name="Service test - Telemetry Manager" duration-ms="1011" started-at="2019-02-10T21:34:35Z" finished-at="2019-02-10T21:34:36Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@5be46f9d]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:35Z" finished-at="2019-02-10T21:34:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/telmgr status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Telemetry Manager -->
+    <test name="Service test - Compliance Verification" duration-ms="1011" started-at="2019-02-10T21:34:36Z" finished-at="2019-02-10T21:34:37Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@59a008ba]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:36Z" finished-at="2019-02-10T21:34:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/compliance-verification status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Compliance Verification -->
+    <test name="Service test - Log Manager" duration-ms="1011" started-at="2019-02-10T21:34:37Z" finished-at="2019-02-10T21:34:38Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@2796aeae]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:37Z" finished-at="2019-02-10T21:34:38Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/logmgr status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[logmgr is running]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Log Manager -->
+    <test name="Service test - Event" duration-ms="1011" started-at="2019-02-10T21:34:38Z" finished-at="2019-02-10T21:34:39Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@401f7633]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:38Z" finished-at="2019-02-10T21:34:39Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/eventservice status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[EventService is running]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Event -->
+    <test name="Service test - Discovery" duration-ms="1012" started-at="2019-02-10T21:34:39Z" finished-at="2019-02-10T21:34:40Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@7b205dbd]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:39Z" finished-at="2019-02-10T21:34:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/discovery-service status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Discovery -->
+    <test name="Service test - SysMgr" duration-ms="1012" started-at="2019-02-10T21:34:40Z" finished-at="2019-02-10T21:34:41Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@26ceffa8]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:40Z" finished-at="2019-02-10T21:34:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/lib/sysmgr/bin/sysmgr  status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - SysMgr -->
+    <test name="Service test - Server DR" duration-ms="1011" started-at="2019-02-10T21:34:41Z" finished-at="2019-02-10T21:34:42Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@78d6692f]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:41Z" finished-at="2019-02-10T21:34:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/serverdr status ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Server DR -->
+    <test name="Service test - Secrets Manager" duration-ms="1011" started-at="2019-02-10T21:34:42Z" finished-at="2019-02-10T21:34:43Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@8576fa0]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:42Z" finished-at="2019-02-10T21:34:43Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/secretsmgr status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Secrets Manager -->
+    <test name="Service test - Rabbitmq service" duration-ms="1011" started-at="2019-02-10T21:34:43Z" finished-at="2019-02-10T21:34:44Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@78641d23]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:43Z" finished-at="2019-02-10T21:34:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/sbin/service rabbitmq-server status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Rabbitmq service -->
+    <test name="Service test - NGINX service" duration-ms="1011" started-at="2019-02-10T21:34:44Z" finished-at="2019-02-10T21:34:45Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@1869fbd2]" name="testSkylineServices" duration-ms="1011" started-at="2019-02-10T21:34:44Z" finished-at="2019-02-10T21:34:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/sbin/service nginx status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - NGINX service -->
+    <test name="Service test - Authorization" duration-ms="1012" started-at="2019-02-10T21:34:45Z" finished-at="2019-02-10T21:34:46Z">
+      <class name="ovaAcceptance.tests.ovaAcceptanceTest">
+        <test-method status="PASS" signature="init(java.lang.String, java.lang.String, java.lang.String, boolean, org.testng.ITestContext)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@1046d517]" name="init" is-config="true" duration-ms="86" started-at="2019-02-10T21:34:24Z" finished-at="2019-02-10T21:34:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[org.testng.TestRunner@5408d4b3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testSkylineServices(java.lang.String, java.lang.String, int)[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@1046d517]" name="testSkylineServices" duration-ms="1010" started-at="2019-02-10T21:34:45Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[/usr/local/brs/bin/aaa status]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSkylineServices -->
+        <test-method status="PASS" signature="closeConnection()[pri:0, instance:ovaAcceptance.tests.ovaAcceptanceTest@1046d517]" name="closeConnection" is-config="true" duration-ms="3" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeConnection -->
+      </class> <!-- ovaAcceptance.tests.ovaAcceptanceTest -->
+    </test> <!-- Service test - Authorization -->
+  </suite> <!-- OVA Acceptance Test -->
+  <suite name="Justice League CI Acceptance suite for Workflow Tests" duration-ms="242895" started-at="2019-02-10T21:30:21Z" finished-at="2019-02-10T21:34:23Z">
+    <groups>
+    </groups>
+    <test name="Test Workflow Async Actions using scripts" duration-ms="242895" started-at="2019-02-10T21:30:21Z" finished-at="2019-02-10T21:34:23Z">
+      <class name="com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest@73302995]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="1219" started-at="2019-02-10T21:30:21Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:30:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest@73302995]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:21Z" finished-at="2019-02-10T21:30:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="testAsynchronousAction()[pri:0, instance:com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest@73302995]" name="testAsynchronousAction" duration-ms="241675" started-at="2019-02-10T21:30:22Z" finished-at="2019-02-10T21:34:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAsynchronousAction -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest@73302995]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:22Z" finished-at="2019-02-10T21:30:22Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest.testAsynchronousAction()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest@73302995]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:23Z" finished-at="2019-02-10T21:34:23Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest.testAsynchronousAction()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest@73302995]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:23Z" finished-at="2019-02-10T21:34:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.workflows.tests.WorkflowsAcceptanceTest -->
+    </test> <!-- Test Workflow Async Actions using scripts -->
+  </suite> <!-- Justice League CI Acceptance suite for Workflow Tests -->
+  <suite name="Trigger Discovery Services Acceptance Suites" duration-ms="8136" started-at="2019-02-10T21:30:12Z" finished-at="2019-02-10T21:30:20Z">
+    <groups>
+    </groups>
+    <test name="Login ECDM" duration-ms="2186" started-at="2019-02-10T21:30:12Z" finished-at="2019-02-10T21:30:14Z">
+      <class name="cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest">
+        <test-method status="PASS" signature="initTest(java.lang.String, org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="initTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:12Z" finished-at="2019-02-10T21:30:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@65a48cab]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTest -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:12Z" finished-at="2019-02-10T21:30:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="911" started-at="2019-02-10T21:30:12Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:30:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="beforeBaseClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:13Z" finished-at="2019-02-10T21:30:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:13Z" finished-at="2019-02-10T21:30:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.loginEcdm(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="loginEcdm(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="loginEcdm" duration-ms="1266" started-at="2019-02-10T21:30:13Z" finished-at="2019-02-10T21:30:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[8443]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginEcdm -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="springTestContextAfterTestClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@6e01f9b0]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.loginEcdm(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+      </class> <!-- cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest -->
+    </test> <!-- Login ECDM -->
+    <test name="Configuration - Create a vCenter Inventory Source, Expected Return Code 201" duration-ms="2514" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:17Z">
+      <class name="cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest">
+        <test-method status="PASS" signature="initTest(java.lang.String, org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="initTest" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@655621fd]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTest -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:14Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:30:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.test_create_inventory_sources_with_specified_name(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="beforeBaseClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="test_create_inventory_sources_with_specified_name(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="test_create_inventory_sources_with_specified_name" duration-ms="2510" started-at="2019-02-10T21:30:14Z" finished-at="2019-02-10T21:30:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[201]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-vCenter-lava243150-INVENTORY_SOURCE]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[VCENTER]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[443]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[lava243150.vdp.xxx.com]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-vCENTER-lava243150-administrator,administrator@vsphere.local,?Strong1?,STANDARD]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test_create_inventory_sources_with_specified_name -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.test_create_inventory_sources_with_specified_name(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5cdec700]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest -->
+    </test> <!-- Configuration - Create a vCenter Inventory Source, Expected Return Code 201 -->
+    <test name="Configuration - Create a vCenter 158 Inventory Source, Expected Return Code 201" duration-ms="1460" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:18Z">
+      <class name="cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest">
+        <test-method status="PASS" signature="initTest(java.lang.String, org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="initTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@77e9dca8]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTest -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:17Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:30:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="beforeBaseClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="test_create_inventory_sources_with_specified_name(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="test_create_inventory_sources_with_specified_name" duration-ms="1456" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[201]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-vCenter-158-INVENTORY_SOURCE]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[VCENTER]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[443]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[10.110.217.158]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-vCENTER-158-administrator,administrator@vsphere.local,Changeme@1,STANDARD]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test_create_inventory_sources_with_specified_name -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:17Z" finished-at="2019-02-10T21:30:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.test_create_inventory_sources_with_specified_name(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.test_create_inventory_sources_with_specified_name(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@5b7a8434]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest -->
+    </test> <!-- Configuration - Create a vCenter 158 Inventory Source, Expected Return Code 201 -->
+    <test name="Configuration - Create a DDMC Inventory Source, Expected Return Code 201" duration-ms="1966" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:20Z">
+      <class name="cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest">
+        <test-method status="PASS" signature="initSuite(java.lang.String, org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="initSuite" is-config="true" duration-ms="12" started-at="2019-02-10T21:30:12Z" finished-at="2019-02-10T21:30:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@eded048]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSuite -->
+        <test-method status="PASS" signature="initTest(java.lang.String, org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="initTest" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@eded048]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTest -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:18Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:30:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="beforeBaseClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.test_create_inventory_sources_with_specified_name(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="test_create_inventory_sources_with_specified_name(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="test_create_inventory_sources_with_specified_name" duration-ms="1964" started-at="2019-02-10T21:30:18Z" finished-at="2019-02-10T21:30:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[201]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-DD-lava253209-INVENTORY_SOURCE]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[EXTERNALDATADOMAIN]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[3009]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[lava253209.vdp.xxx.com]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-DD-lava253209-sysadmin,sysadmin,?Strong1?,STANDARD]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test_create_inventory_sources_with_specified_name -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:20Z" finished-at="2019-02-10T21:30:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest.test_create_inventory_sources_with_specified_name(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:20Z" finished-at="2019-02-10T21:30:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest@44c73c26]" name="teardown" is-config="true" duration-ms="0" started-at="2019-02-10T21:30:20Z" finished-at="2019-02-10T21:30:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@eded048]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- cs.discovery.itests.restapi.inventorysource.it.InventorySourceTestNgTest -->
+    </test> <!-- Configuration - Create a DDMC Inventory Source, Expected Return Code 201 -->
+  </suite> <!-- Trigger Discovery Services Acceptance Suites -->
+  <suite name="Validate Discovery Services Acceptance Suites" duration-ms="1425" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:48Z">
+    <groups>
+    </groups>
+    <test name="Login ECDM" duration-ms="6" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+      <class name="cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="beforeBaseClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="setup(java.lang.String, int, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="setup" is-config="true" duration-ms="2" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[8443]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.loginEcdm(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="beginTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="beginTest" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@fcd0e8d]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.869]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beginTest -->
+        <test-method status="PASS" signature="loginEcdm(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="loginEcdm" duration-ms="1" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[8443]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginEcdm -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.loginEcdm(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="endTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@1e097d59]" name="endTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@fcd0e8d]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.870]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+      </class> <!-- cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest -->
+    </test> <!-- Login ECDM -->
+    <test name="E2E - Validate vCenter Discovery at DataCopies Level in 5 Minutes" duration-ms="833" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:47Z">
+      <class name="cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest">
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="beforeBaseClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="setup(java.lang.String, int, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="setup" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[8443]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="beginTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="beginTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@4e4d0a0b]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.872]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beginTest -->
+        <test-method status="PASS" signature="test_discovered_assets(java.lang.String, int, int, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="test_discovered_assets" duration-ms="831" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-vCenter-lava243150-INVENTORY_SOURCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[30]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[A_JL_CA_VM1,D_JL_CA_VM2,K_JL_CA_VM3,M_JL_CA_VM4,P_JL_CA_VM5,Z_JL_CA_VM6]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:46.872]]>
+            </line>
+            <line>
+              <![CDATA[Thread id = 1 ended at 2019-02-10T21:34:47.703]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test_discovered_assets -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.test_discovered_assets(java.lang.String,int,int,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="endTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="endTest" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@4e4d0a0b]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.703]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@2bd08376]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.test_discovered_assets(java.lang.String,int,int,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+      </class> <!-- cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest -->
+    </test> <!-- E2E - Validate vCenter Discovery at DataCopies Level in 5 Minutes -->
+    <test name="E2E - Validate vCenter 158 Discovery at DataCopies Level in 5 Minutes" duration-ms="202" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+      <class name="cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:47Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="beforeBaseClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="beginTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="beginTest" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@1a4083f6]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.707]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beginTest -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.test_discovered_assets(java.lang.String,int,int,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="setup(java.lang.String, int, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="setup" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[8443]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="test_discovered_assets(java.lang.String, int, int, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="test_discovered_assets" duration-ms="200" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-vCenter-158-INVENTORY_SOURCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[30]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[VM1M,VM2M]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.707]]>
+            </line>
+            <line>
+              <![CDATA[Thread id = 1 ended at 2019-02-10T21:34:47.907]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test_discovered_assets -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="endTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="endTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@1a4083f6]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.907]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@52c3cb31]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.test_discovered_assets(java.lang.String,int,int,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+      </class> <!-- cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest -->
+    </test> <!-- E2E - Validate vCenter 158 Discovery at DataCopies Level in 5 Minutes -->
+    <test name="E2E - Validate Data Domain Discovery at DataCopies Level in 10 Minutes" duration-ms="381" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:48Z">
+      <class name="cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest">
+        <test-method status="PASS" signature="setupSpringAutowiring()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="setupSpringAutowiring" is-config="true" duration-ms="4" started-at="2019-02-10T21:34:46Z" finished-at="2019-02-10T21:34:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSpringAutowiring -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="beforeBaseClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="beforeBaseClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeBaseClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="setup(java.lang.String, int, java.lang.String, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="setup" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10.199.250.81]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[8443]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Changeme@1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="test_discovered_storage(java.lang.String, int, int, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="test_discovered_storage" duration-ms="379" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE-DD-lava253209-INVENTORY_SOURCE]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[10]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[30]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[lava253209.vdp.xxx.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.911]]>
+            </line>
+            <line>
+              <![CDATA[Thread id = 1 ended at 2019-02-10T21:34:48.289]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test_discovered_storage -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.test_discovered_storage(java.lang.String,int,int,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="beginTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="beginTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:47Z" finished-at="2019-02-10T21:34:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@23f5008a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:47.910]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beginTest -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest.test_discovered_storage(java.lang.String,int,int,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="endTest(org.testng.ITestContext)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="endTest" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@23f5008a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Thread id = 1 started at 2019-02-10T21:34:48.289]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestContext, java.lang.String)[pri:0, instance:cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest@68b32e3e]" name="teardown" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@23f5008a]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[DISCOVERY-ACCEPTANCE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- cs.discovery.itests.e2e.discovery.it.DiscoveryTestNgTest -->
+    </test> <!-- E2E - Validate Data Domain Discovery at DataCopies Level in 10 Minutes -->
+  </suite> <!-- Validate Discovery Services Acceptance Suites -->
+  <suite name="Justice League Acceptance suite for CI" duration-ms="5261" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:53Z">
+    <groups>
+    </groups>
+    <test name="HOST28089: Do GET on hosts - 200 OK" duration-ms="706" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:49Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="466" started-at="2019-02-10T21:34:48Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="setupForHostsTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="setupForHostsTests" is-config="true" duration-ms="84" started-at="2019-02-10T21:34:48Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForHostsTests -->
+        <test-method status="PASS" signature="testGetAllHosts()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="testGetAllHosts" duration-ms="155" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllHosts -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc.testGetAllHosts()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc.testGetAllHosts()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc@79179359]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.hosts.HostsTestSvc -->
+    </test> <!-- HOST28089: Do GET on hosts - 200 OK -->
+    <test name="ASSETS27353: Verify GET by id on assets" duration-ms="407" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="4" started-at="2019-02-10T21:34:49Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="setupForAssetsTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="setupForAssetsTests" is-config="true" duration-ms="297" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForAssetsTests -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc.testGetAssetById()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testGetAssetById()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="testGetAssetById" duration-ms="103" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAssetById -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc.testGetAssetById()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc@797cf65c]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.assets.AssetsTestSvc -->
+    </test> <!-- ASSETS27353: Verify GET by id on assets -->
+    <test name="SS24553 : Verify GET on storageSystems" duration-ms="295" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="4" started-at="2019-02-10T21:34:49Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="setupForStorageSystemsTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="setupForStorageSystemsTests" is-config="true" duration-ms="198" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForStorageSystemsTests -->
+        <test-method status="PASS" signature="testGetAllStorageSystems()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="testGetAllStorageSystems" duration-ms="92" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllStorageSystems -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc.testGetAllStorageSystems()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc.testGetAllStorageSystems()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc@22875539]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.storagesystems.StorageSystemsTestSvc -->
+    </test> <!-- SS24553 : Verify GET on storageSystems -->
+    <test name="LOC23011: Create Location with valid parameters" duration-ms="276" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:50Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="5" started-at="2019-02-10T21:34:49Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc.testCreateLocationInAcceptance(java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="setupForLocationsTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="setupForLocationsTests" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForLocationsTests -->
+        <test-method status="PASS" signature="setUpTestLocation()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="setUpTestLocation" is-config="true" duration-ms="183" started-at="2019-02-10T21:34:49Z" finished-at="2019-02-10T21:34:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpTestLocation -->
+        <test-method status="PASS" signature="testCreateLocationInAcceptance(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="testCreateLocationInAcceptance" duration-ms="88" started-at="2019-02-10T21:34:50Z" finished-at="2019-02-10T21:34:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[acceptanceLocation]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[23N]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[35E]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateLocationInAcceptance -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:50Z" finished-at="2019-02-10T21:34:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc.testCreateLocationInAcceptance(java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc@115667d]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:50Z" finished-at="2019-02-10T21:34:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.locations.LocationsTestSvc -->
+    </test> <!-- LOC23011: Create Location with valid parameters -->
+    <test name="TG29499: Verify POST on tagCategories - create tagCategory" duration-ms="1302" started-at="2019-02-10T21:34:50Z" finished-at="2019-02-10T21:34:51Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:50Z" finished-at="2019-02-10T21:34:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="4" started-at="2019-02-10T21:34:50Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="setupForTGTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="setupForTGTests" is-config="true" duration-ms="1169" started-at="2019-02-10T21:34:50Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForTGTests -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc.testCreateTagCategory(java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testCreateTagCategory(java.lang.String, java.lang.String)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="testCreateTagCategory" duration-ms="127" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TestTG_Acceptance]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[TestTG_Vmax_Tag1,TestTG_Vmax_Tag2,TestTG_Vmax_Tag3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateTagCategory -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc.testCreateTagCategory(java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc@63a270c9]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.tagcategories.TagCategoriesTestSvc -->
+    </test> <!-- TG29499: Verify POST on tagCategories - create tagCategory -->
+    <test name="CRED26411: Verify credentials can be created via POST with all required properties" duration-ms="115" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="4" started-at="2019-02-10T21:34:51Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="setupForCredentialsTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="setupForCredentialsTests" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForCredentialsTests -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc.testCreateCredentialAcceptance(java.lang.String,java.lang.String,java.lang.String,com.xxx.brs.idp.client.model.cbs.external.CredentialRestModel$TypeEnum)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testCreateCredentialAcceptance(java.lang.String, java.lang.String, java.lang.String, com.xxx.brs.idp.client.model.cbs.external.CredentialRestModel$TypeEnum)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="testCreateCredentialAcceptance" duration-ms="109" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Cred_Test_Acceptance]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[?Strong1?]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[STANDARD]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateCredentialAcceptance -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc.testCreateCredentialAcceptance(java.lang.String,java.lang.String,java.lang.String,com.xxx.brs.idp.client.model.cbs.external.CredentialRestModel$TypeEnum)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc@7b84fcf8]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.credentials.CredentialsTestSvc -->
+    </test> <!-- CRED26411: Verify credentials can be created via POST with all required properties -->
+    <test name="Verify GET all SLOs with count and names" duration-ms="142" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="4" started-at="2019-02-10T21:34:51Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="setupForSloTest()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="setupForSloTest" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForSloTest -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests.testGetAllSlos()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testGetAllSlos()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="testGetAllSlos" duration-ms="137" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllSlos -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests@53d102a2]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests.testGetAllSlos()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.servicelevelobjectives.SloTests -->
+    </test> <!-- Verify GET all SLOs with count and names -->
+    <test name="Create SLA of Vmware type" duration-ms="383" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:52Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="6" started-at="2019-02-10T21:34:51Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="setupForSlaTest()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="setupForSlaTest" is-config="true" duration-ms="85" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForSlaTest -->
+        <test-method status="PASS" signature="testCreateVmwareSlaInAcceptance(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="testCreateVmwareSlaInAcceptance" duration-ms="292" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AcceptanceVmwareSLA]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[VMWARE_VIRTUAL_MACHINE]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[PROTECTION]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Recovery Point,Retention Lock,Deletion Compliance,Activity Window]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Recovery Point-false,Retention Lock-false,Deletion Compliance-false,Activity Window-false]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Recovery Point-FULL,Retention Lock-FULL,Deletion Compliance-FULL,Activity Window-FULL]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Recovery Point-STRING,Retention Lock-STRING,Retention Lock-BOOLEAN,Deletion Compliance-BOOLEAN,Activity Window-TIMESTAMP,Activity Window-STRING]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Recovery Point-PT6H,Retention Lock-P3D,Retention Lock-true,Deletion Compliance-true,Activity Window-PT2H,Activity Window-PT4H]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateVmwareSlaInAcceptance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:51Z" finished-at="2019-02-10T21:34:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests.testCreateVmwareSlaInAcceptance(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests@6b00f608]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests.testCreateVmwareSlaInAcceptance(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.servicelevelagreement.SlaPostTests -->
+    </test> <!-- Create SLA of Vmware type -->
+    <test name="Create PLC of Vmware type with one Protection Stage" duration-ms="756" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="5" started-at="2019-02-10T21:34:52Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="setupForPlcTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="setupForPlcTests" is-config="true" duration-ms="1" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForPlcTests -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests.testCreateVmwarePlcInAcceptance(java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testCreateVmwarePlcInAcceptance(java.lang.String, java.lang.String)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="testCreateVmwarePlcInAcceptance" duration-ms="749" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AcceptanceVmwarePLC]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AcceptanceVmwareSLA]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateVmwarePlcInAcceptance -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests.testCreateVmwarePlcInAcceptance(java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests@1b2c4efb]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcPostTests -->
+    </test> <!-- Create PLC of Vmware type with one Protection Stage -->
+    <test name="Add Vmware type asset to PLC" duration-ms="869" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:53Z">
+      <class name="com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="5" started-at="2019-02-10T21:34:52Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="setupForPlcTests()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="setupForPlcTests" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupForPlcTests -->
+        <test-method status="PASS" signature="testAddVmwareAssetToPlcInAcceptance(java.lang.String)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="testAddVmwareAssetToPlcInAcceptance" duration-ms="864" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AcceptanceVmwarePLC]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddVmwareAssetToPlcInAcceptance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:52Z" finished-at="2019-02-10T21:34:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests.testAddVmwareAssetToPlcInAcceptance(java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:53Z" finished-at="2019-02-10T21:34:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests.testAddVmwareAssetToPlcInAcceptance(java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests@544820b7]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2019-02-10T21:34:53Z" finished-at="2019-02-10T21:34:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.xxx.itests.cbs.tests.api.pub.protectionlifecycles.PlcAddAssetsTests -->
+    </test> <!-- Add Vmware type asset to PLC -->
+  </suite> <!-- Justice League Acceptance suite for CI -->
+</testng-results>
