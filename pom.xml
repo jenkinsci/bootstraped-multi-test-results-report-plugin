@@ -44,7 +44,7 @@
         <joda-time.version>2.12.5</joda-time.version>
         <log4j-core.version>2.20.0</log4j-core.version>
         <gson.version>2.10.1</gson.version>
-        <jackson-xml.version>2.14.2</jackson-xml.version>
+        <jackson-xml.version>2.15.2</jackson-xml.version>
     </properties>
     <modules>
         <!-- <module>commons-reporting-handlebars</module> -->
