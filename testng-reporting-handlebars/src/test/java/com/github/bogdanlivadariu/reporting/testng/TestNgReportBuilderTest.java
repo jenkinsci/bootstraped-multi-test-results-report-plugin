@@ -11,17 +11,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestNgReportBuilderTest {
+class TestNgReportBuilderTest {
+
     @Test
-    public void npeTest() {
-        assertThrows(NullPointerException.class, () -> {
-            List<String> xmlReports = null;
-            new TestNgReportBuilder(xmlReports, "out");
-        });
+    void npeTest() {
+        List<String> xmlReports = null;
+        assertThrows(NullPointerException.class, () -> new TestNgReportBuilder(xmlReports, "out"));
     }
 
     @Test
-    public void processedReportsTest() throws IOException, XMLStreamException {
+    void processedReportsTest() throws IOException, XMLStreamException {
         List<String> xmlReports = new ArrayList<>();
         String report = this.getClass().getClassLoader().getResource("testng-results.xml").getPath();
         xmlReports.add(report);

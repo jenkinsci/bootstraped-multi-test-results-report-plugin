@@ -9,18 +9,20 @@ import java.io.IOException;
 
 import static com.github.bogdanlivadariu.reporting.junit.helpers.Constants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class HelperTest {
+class HelperTest {
+
     private static Handlebars instance;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         Helpers a = new Helpers(new Handlebars());
         instance = a.registerHelpers();
     }
 
     @Test
-    public void resolveTooltipTest() throws IOException {
+    void resolveTooltipTest() throws IOException {
         String helperName = "resolve-tooltip";
         assertEquals("This test has Failed",
             instance.helper(helperName).apply("Failed", null));
@@ -30,7 +32,7 @@ public class HelperTest {
     }
 
     @Test
-    public void isCollapsedTest() throws IOException {
+    void isCollapsedTest() throws IOException {
         String helperName = "is-collapsed";
         assertEquals("collapse",
             instance.helper(helperName).apply(PASSED, null));
@@ -38,15 +40,13 @@ public class HelperTest {
         assertEquals("collapse in",
             instance.helper(helperName).apply(FAILED, null));
 
-        assertEquals(null,
-            instance.helper(helperName).apply(SKIPPED, null));
+        assertNull(instance.helper(helperName).apply(SKIPPED, null));
 
-        assertEquals(null,
-            instance.helper(helperName).apply(ERRORED, null));
+        assertNull(instance.helper(helperName).apply(ERRORED, null));
     }
 
     @Test
-    public void resolveTitleTest() throws IOException {
+    void resolveTitleTest() throws IOException {
         String helperName = "resolve-title";
         assertEquals("This step has passed",
             instance.helper(helperName).apply(PASSED, null));
@@ -57,12 +57,11 @@ public class HelperTest {
         assertEquals("This step has been skipped",
             instance.helper(helperName).apply(SKIPPED, null));
 
-        assertEquals(null,
-            instance.helper(helperName).apply(ERRORED, null));
+        assertNull(instance.helper(helperName).apply(ERRORED, null));
     }
 
     @Test
-    public void resultColorTest() throws IOException {
+    void resultColorTest() throws IOException {
         String helperName = "result-color";
         assertEquals("success",
             instance.helper(helperName).apply(PASSED, null));

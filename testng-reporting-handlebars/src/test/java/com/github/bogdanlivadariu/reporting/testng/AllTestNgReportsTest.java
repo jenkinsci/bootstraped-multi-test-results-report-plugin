@@ -5,15 +5,12 @@ import com.github.bogdanlivadariu.reporting.testng.builder.TestNgReportBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.stream.XMLStreamException;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AllTestNgReportsTest {
+class AllTestNgReportsTest {
 
     private final String reportPath = this.getClass().getClassLoader().getResource("testng-results.xml").getPath();
     private List<String> xmlReports;
@@ -22,7 +19,7 @@ public class AllTestNgReportsTest {
     private AllTestNgReports reports;
 
     @BeforeEach
-    public void setUp() throws IOException, XMLStreamException, NoSuchAlgorithmException {
+    void setUp() throws Exception {
         xmlReports = new ArrayList<>();
         xmlReports.add(reportPath);
         builder = new TestNgReportBuilder(xmlReports, "out");
@@ -32,32 +29,32 @@ public class AllTestNgReportsTest {
     }
 
     @Test
-    public void ceva() {
+    void ceva() {
         System.out.println(reports);
     }
 
     @Test
-    public void pageTitleTest() {
-        assertEquals(reports.getPageTitle(), "title");
+    void pageTitleTest() {
+        assertEquals("title", reports.getPageTitle());
     }
 
     @Test
-    public void totalFailuresTest() {
-        assertEquals(reports.getTotalFailed(), 2);
+    void totalFailuresTest() {
+        assertEquals(2, reports.getTotalFailed());
     }
 
     @Test
-    public void totalSkippedTest() {
-        assertEquals(reports.getTotalSkipped(), 1);
+    void totalSkippedTest() {
+        assertEquals(1, reports.getTotalSkipped());
     }
 
     @Test
-    public void totalTestsTest() {
-        assertEquals(reports.getTotalTests(), 41);
+    void totalTestsTest() {
+        assertEquals(41, reports.getTotalTests());
     }
 
     @Test
-    public void totalTimeTest() {
-        assertEquals(reports.getTotalTime(), 280060L);
+    void totalTimeTest() {
+        assertEquals(280060L, reports.getTotalTime());
     }
 }

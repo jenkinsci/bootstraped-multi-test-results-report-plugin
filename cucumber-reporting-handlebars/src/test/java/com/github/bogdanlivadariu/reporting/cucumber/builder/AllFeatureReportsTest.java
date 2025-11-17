@@ -16,14 +16,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class AllFeatureReportsTest {
+class AllFeatureReportsTest {
 
     private CucumberReportBuilder builder;
 
     private AllFeatureReports reports;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void setUp() throws IOException {
         List<String> jsonReports = new ArrayList<>();
 
         String firstReport = AllFeatureReportsTest.class.getResource("/result.json").getPath();
@@ -37,29 +37,29 @@ public class AllFeatureReportsTest {
     }
 
     @Test
-    public void tagSizeTest() {
+    void tagSizeTest() {
         assertEquals(9, reports.getAllTags().size());
     }
 
     @Test
-    public void featureSizeTest() {
+    void featureSizeTest() {
         assertEquals(4, reports.getFeatures().size());
     }
 
     @Test
-    public void featureTagTest() {
+    void featureTagTest() {
         List<String> existingTags = new ArrayList<>();
         for (Feature f : reports.getFeatures()) {
             for (Tag t : f.getTags()) {
                 existingTags.add(t.getName() + t.getLine());
             }
         }
-        List<String> expectedTags = new ArrayList<String>(Arrays.asList("@super1", "@editor1", "@formatting1", "@formattingBlocks1", "@formattingSpacer1", "@all3", "@ControleDeBens3", "@Patrimonio3"));
+        List<String> expectedTags = new ArrayList<>(Arrays.asList("@super1", "@editor1", "@formatting1", "@formattingBlocks1", "@formattingSpacer1", "@all3", "@ControleDeBens3", "@Patrimonio3"));
         assertEquals(expectedTags, existingTags);
     }
 
     @Test
-    public void scenariosTagTest() {
+    void scenariosTagTest() {
         List<String> existingTags = new ArrayList<>();
         List<String> expectedTags = new ArrayList<>(Arrays.asList("@super1", "@fast12", "@super1", "@checkout12", "@fast12", "@super1", "@checkout12", "@super28", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1", "@formattingBlocks1", "@editor1", "@formattingSpacer1", "@formatting1"));
 
@@ -74,14 +74,14 @@ public class AllFeatureReportsTest {
     }
 
     @Test
-    public void scenariosTest() {
+    void scenariosTest() {
         assertEquals(Integer.valueOf(21), reports.getScenariosTotal());
         assertEquals(Integer.valueOf(1), reports.getScenariosTotalFailed());
         assertEquals(Integer.valueOf(20), reports.getScenariosTotalPassed());
     }
 
     @Test
-    public void stepsTest() {
+    void stepsTest() {
         assertEquals(Integer.valueOf(92), reports.getStepsTotal());
         assertEquals(Integer.valueOf(1), reports.getStepsTotalFailed());
         assertEquals(Integer.valueOf(88), reports.getStepsTotalPassed());
@@ -90,13 +90,13 @@ public class AllFeatureReportsTest {
     }
 
     @Test
-    public void totalDurationTest() {
+    void totalDurationTest() {
         long duration = Long.parseLong("239323852509");
         assertEquals(duration, reports.getTotalDuration());
     }
 
     @Test
-    public void elementEmbeddingTest() {
+    void elementEmbeddingTest() {
         List<Integer> expected = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0);
         List<Integer> actualEmbeddingsCount = new ArrayList<>();
 
@@ -109,7 +109,7 @@ public class AllFeatureReportsTest {
     }
 
     @Test
-    public void stepEmbeddingTest() {
+    void stepEmbeddingTest() {
         List<Integer> expected = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         List<Integer> actualEmbeddingsCount = new ArrayList<>();
 
@@ -124,7 +124,7 @@ public class AllFeatureReportsTest {
     }
 
     @Test
-    public void builderShouldFail() throws IOException {
+    void builderShouldFail() throws IOException {
         assertFalse(builder.writeReportsOnDisk());
     }
 }

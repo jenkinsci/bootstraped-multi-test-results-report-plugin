@@ -9,15 +9,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AllJunitReportsTest {
-private final String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
-private List<String> xmlReports;
-private JUnitReportBuilder builder;
+class AllJunitReportsTest {
 
-private AllJUnitReports reports;
+    private final String reportPath = this.getClass().getClassLoader().getResource("valid-report-1.xml").getPath();
+    private List<String> xmlReports;
+    private JUnitReportBuilder builder;
+
+    private AllJUnitReports reports;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void setUp() throws IOException {
         xmlReports = new ArrayList<>();
         xmlReports.add(reportPath);
         builder = new JUnitReportBuilder(xmlReports, "out");
@@ -25,39 +26,39 @@ private AllJUnitReports reports;
     }
 
     @Test
-    public void restSuitesSizeTest() {
-        assertEquals(reports.getAllTestSuites().size(), 1, "reports count is not right");
-        assertEquals(reports.getSuitesCount(), 1);
-        assertEquals(reports.getTotalErrors(), 0);
+    void restSuitesSizeTest() {
+        assertEquals(1, reports.getAllTestSuites().size(), "reports count is not right");
+        assertEquals(1, reports.getSuitesCount());
+        assertEquals(0, reports.getTotalErrors());
     }
 
     @Test
-    public void pageTitleTest() {
-        assertEquals(reports.getPageTitle(), "title");
+    void pageTitleTest() {
+        assertEquals("title", reports.getPageTitle());
     }
 
     @Test
-    public void totalErrorsTest() {
-        assertEquals(reports.getTotalErrors(), 0);
+    void totalErrorsTest() {
+        assertEquals(0, reports.getTotalErrors());
     }
 
     @Test
-    public void totalFailuresTest() {
-        assertEquals(reports.getTotalFailures(), 7);
+    void totalFailuresTest() {
+        assertEquals(7, reports.getTotalFailures());
     }
 
     @Test
-    public void totalSkippedTest() {
-        assertEquals(reports.getTotalSkipped(), 0);
+    void totalSkippedTest() {
+        assertEquals(0, reports.getTotalSkipped());
     }
 
     @Test
-    public void totalTestsTest() {
-        assertEquals(reports.getTotalTests(), 13);
+    void totalTestsTest() {
+        assertEquals(13, reports.getTotalTests());
     }
 
     @Test
-    public void totalTimeTest() {
-        assertEquals(reports.getTotalTime(), "0.813");
+    void totalTimeTest() {
+        assertEquals("0.813", reports.getTotalTime());
     }
 }
